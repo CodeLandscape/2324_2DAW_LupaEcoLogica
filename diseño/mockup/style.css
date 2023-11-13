@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo');
+
+body{
+    background-color: #F59436;
+    font-family: 'Agbalumo';
+    height: 
+}
+button{
+    font-family: 'Agbalumo';
+}
+h1{
+    text-align: center;
+}
+img{
+    margin: auto;
+    position:relative;
+    width: 25%;
+    left: 38%;
+}
+positin
+footer{
+    width: 100%;
+    text-align:center;
+    background-color: #588FA0;
+    position: fixed;
+}
