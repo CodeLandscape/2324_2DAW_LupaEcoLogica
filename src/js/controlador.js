@@ -5,16 +5,17 @@ class Juego {
     constructor(divJuego) {
         this.divJuego = divJuego;
         this.inicio = this.divJuego.querySelector('#menuInicio');
-        this.vista1 = new Vista1(this.divJuego, this);
+        this.vista1 = new Vista1(this);
         this.vistaActual = null;
     }
 
     mostrarVista2() {
         if (this.vistaActual) {
+            console.log("estoy en el if de ocultar")
             this.vistaActual.ocultar();
         }
 
-        const vista2 = new Vista2(this.divJuego, this); // Cambiado de 'this' a 'this.divJuego'
+        const vista2 = new Vista2(this);
         vista2.iniciar();
 
         this.vistaActual = vista2;
