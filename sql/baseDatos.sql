@@ -79,5 +79,8 @@ CREATE UNIQUE INDEX catgoriaNombre
 CREATE UNIQUE INDEX tableroNombre
   ON tablero (nombre);
 
+CREATE UNIQUE INDEX tableroNombre
+  ON tablero (nombre);
+
 CREATE UNIQUE INDEX objetoNombre
   ON objeto (nombre);
