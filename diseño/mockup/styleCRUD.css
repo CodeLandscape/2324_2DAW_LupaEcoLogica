@@ -47,7 +47,6 @@ main form{
 input{
     margin: 20px;
     width: 50%;
-
     font-size: 40px;
     font-family: 'Agbalumo';
 }
@@ -75,7 +74,7 @@ input[type="submit"]:active{
 }
 
 #botones{
-    margin-top: 200px;
+    margin-top: 20%;
 }
 .inputPeq{
     width: 10%;
