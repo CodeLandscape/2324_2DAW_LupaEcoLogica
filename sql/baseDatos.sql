@@ -52,35 +52,38 @@ ALTER TABLE config
   ADD CONSTRAINT checkObjetosBuenos CHECK (nObjetosBuenos<=6 AND nObjetosBuenos>=0);
 
 ALTER TABLE partida
-  ADD PRIMARY KEY (idPartida);
+  ADD CONSTRAINT pkPartida PRIMARY KEY (idPartida);
   ADD CONSTRAINT checkObjetoAcertado CHECK (objetosAcertados>=0);
   ADD CONSTRAINT checkPreguntaAcertada CHECK (preguntasAcertadas>=0);
 
 ALTER TABLE categoria
-  ADD PRIMARY KEY (idCategoria);
+  ADD CONSTRAINT pkCategoria PRIMARY KEY (idCategoria);
 
 ALTER TABLE tablero
-  ADD PRIMARY KEY (idTablero);
+  ADD CONSTRAINT pkTablero PRIMARY KEY (idTablero);
   ADD CONSTRAINT categoriaTablero FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE objeto
-  ADD PRIMARY KEY (idObjeto);
-  ADD CONSTRAINT categoriaObjeto FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT pkObjeto PRIMARY KEY (idObjeto);
+  ADD CONSTRAINT categoriaObjeto FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria) ON UPDATE CASCADE;
   ADD CONSTRAINT checkPuntuacion CHECK (puntuacion>=1);
 
 ALTER TABLE pregunta
-  ADD PRIMARY KEY (idPregunta);
+  ADD CONSTRAINT pkPregunta PRIMARY KEY (idPregunta);
   ADD CONSTRAINT categoriaPregunta FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria) ON DELETE CASCADE ON UPDATE CASCADE;
   ADD CONSTRAINT checkPuntuacion CHECK (puntuacion>=1);
 
-CREATE UNIQUE INDEX catgoriaNombre
+CREATE UNIQUE INDEX categoriaNombre
   ON categoria (nombre);
 
 CREATE UNIQUE INDEX tableroNombre
   ON tablero (nombre);
 
-CREATE UNIQUE INDEX tableroNombre
-  ON tablero (nombre);
+CREATE UNIQUE INDEX tableroCategoria
+  ON tablero (idCategoria);
+
+CREATE UNIQUE INDEX objetoNombre
+  ON objeto (nombre);
 
 CREATE UNIQUE INDEX objetoNombre
   ON objeto (nombre);
