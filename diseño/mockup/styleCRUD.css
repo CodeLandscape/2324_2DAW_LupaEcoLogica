@@ -84,3 +84,7 @@ input[type="submit"]:active{
 input[type="checkbox"]{
     transform: scale(4);
 }
+
+#prueba{
+    margin-top: 10%;
+}

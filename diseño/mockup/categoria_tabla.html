@@ -1,29 +1,24 @@
 <!--Óscar Arroyo Aguadero-->
 <html>
 	<head>
-		<title>Crear Objeto</title>
+		<title>Crear Categoría y Tablero</title>
 		<meta charset="UTF-8">
 		<link href="styleCRUD.css" rel="stylesheet" type="text/css"/>
 	</head>
     <body>
         <!--Cabecera de la página-->
 		<header>
-            Crear Objeto
+            Crear categoría y tablero
         </header>
         <main>
             <form method='post'>
                 <div id="prueba">
-                    <label for='nombre'>Nombre:</label>
-                    <input type='text' id='nombre' name='nombre' required><br>
-                
-                    <label for='img'>Añadir imagen:</label>
+                    <label for='categoria'>Nombre de la categoría:</label>
+                    <input type='text' id='categoria' name='categoria' required><br>
+                    <label for='tablero'>Nombre del tablero:</label>
+                    <input type='text' id='tablero' name='tablero' required><br>
+                    <label for='img'>Fondo:</label>
                     <input type='file' id='img' name='img' required><br>
-                
-                    <label for='punt'>Puntuación:</label>
-                    <input type='text' id='punt' name='punt' required class="inputPeq"><br>
-                    <label for='bueno'>Bueno:</label>
-                    <input type='checkbox' id='buneo' name='bueno' required class="inputPeq"><br>
-    
                     <div id="botones">
                         <input type='submit' value='Añadir'>
                         <input type='submit' value='Volver'>    
