@@ -3,30 +3,32 @@
 	<head>
 		<title>Configuración</title>
 		<meta charset="UTF-8">
-		<link href="style.css" rel="stylesheet" type="text/css"/>
+		<link href="styleCRUD.css" rel="stylesheet" type="text/css"/>
 	</head>
     <body>
         <!--Cabecera de la página-->
 		<header>
             Configuración
         </header>
-        <form method='post'>
-            <div id="prueba">
-                <label for='tiempo'>Tiempo de búsqueda:</label>
-                <input type='text' id='tiempo' name='tiempo' class="inputPeq" required><br>
-            
-                <label for='nPreguntas'>Número de preguntas:</label>
-                <input type='text' id='nPreguntas' name='nPreguntas' class="inputPeq" required><br>
-            
-                <label for='nObjB'>Número de objetos buenos:</label>
-                <input type='text' id='nObjB' name='nObjB' class="inputPeq" required><br>
-                <div id="botones">
-                    <input type='submit' value='Modificar'>
-                    <input type='submit' value='Volver'>    
+        <main>
+            <form method='post'>
+                <div id="prueba">
+                    <label for='tiempo'>Tiempo de búsqueda:</label>
+                    <input type='text' id='tiempo' name='tiempo' class="inputPeq" required><br>
+                
+                    <label for='nPreguntas'>Número de preguntas:</label>
+                    <input type='text' id='nPreguntas' name='nPreguntas' class="inputPeq" required><br>
+                
+                    <label for='nObjB'>Número de objetos buenos:</label>
+                    <input type='text' id='nObjB' name='nObjB' class="inputPeq" required><br>
+                    <div id="botones">
+                        <input type='submit' value='Modificar'>
+                        <input type='submit' value='Volver'>    
+                    </div>
+    
                 </div>
-
-            </div>
-        </form>
+            </form>
+        </main>
         <footer>
             <p>Escuela Virgen de Guadalupe 2023</p>
         </footer>

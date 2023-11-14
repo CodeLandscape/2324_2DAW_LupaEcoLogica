@@ -36,15 +36,6 @@ img{
     width: 25%;
     left: 38%;
 }
-header{
-    width: 100%;
-    text-align:center;
-    background-color: #588FA0;
-    position: fixed;
-    height: 40px;
-    top: 0;
-    font-size: x-large;
-}
 
 footer{
     width: 100%;
@@ -53,50 +44,6 @@ footer{
     position: fixed;
     height: 40px;
     bottom: 0;
-}
-form{
-    border: 1px solid black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-    width: 57.3%;
-    height: 68.5%;
-    overflow: auto;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
-}
-input{
-    margin: 20px;
-    width: 50%;
-    font-size: 40px;
-    font-family: 'Agbalumo';
-}
-input[type="text"]{
-    font-size: 30px;
-    text-align: center;
-}
-label{
-    font-size: 40px;
-}
-input[type="submit"] {
-    font-family: 'Agbalumo';
-    background-color: #36C8F5;
-    border-radius: 15px;
-    border: 1px solid black;
-    width: 133px;
-    height: 50px;
-    font-size: large;
-}
-input[type="submit"]:hover{
-    background-color:#368ff5;
-}
-input[type="submit"]:active{
-    background-color:#588FA0;
 }
 #jugar{
     right: 60%;
@@ -107,26 +54,4 @@ input[type="submit"]:active{
 footer p{
     margin: 0;
     margin-top: 5px;
-}
-#prueba{
-    position:absolute;
-    bottom: 0;
-    top: 20%;
-    left: 0;
-    right: 0;
-    margin: 0;   
-}
-
-#botones{
-    position: absolute;
-    bottom: 0;
-    top: 75%;
-    left: 0;
-    right: 0;
-    margin: 0;   
-}
-
-.inputPeq{
-    width: 10%;
-    height: 10%;
 }
