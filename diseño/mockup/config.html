@@ -7,18 +7,25 @@
 	</head>
     <body>
         <!--Cabecera de la página-->
-		<header>Configuración</header>
+		<header>
+            Configuración
+        </header>
         <form method='post' action='agregar_lugar.php'>
-            <label for='tiempo'>Tiempo de búsqueda:</label>
-            <input type='text' id='tiempo' name='tiempo' required><br>
-        
-            <label for='nPreguntas'>Número de preguntas:</label>
-            <input type='text' id='nPreguntas' name='nPreguntas' required><br>
-        
-            <label for='nObjB'>Número de objetos buenos:</label>
-            <input type='text' id='nObjB' name='nObjB' required><br>
-        
-            <input type='submit' value='Modificar'>
+            <div id="prueba">
+                <label for='tiempo'>Tiempo de búsqueda:</label>
+                <input type='text' id='tiempo' name='tiempo' required><br>
+            
+                <label for='nPreguntas'>Número de preguntas:</label>
+                <input type='text' id='nPreguntas' name='nPreguntas' required><br>
+            
+                <label for='nObjB'>Número de objetos buenos:</label>
+                <input type='text' id='nObjB' name='nObjB' required><br>
+                <div id="botones">
+                    <input type='submit' value='Modificar'>
+                    <input type='submit' value='Volver'>    
+                </div>
+
+            </div>
         </form>
         <footer>
             <p>Escuela Virgen de Guadalupe 2023</p>
