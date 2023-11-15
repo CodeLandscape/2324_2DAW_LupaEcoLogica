@@ -159,8 +159,5 @@ select {
     width: 100%;
     text-align:center;
     background-color: transparent;
-    height: 40px;
-    top: 0;
     position:fixed;
-    font-size: x-large;
 }
