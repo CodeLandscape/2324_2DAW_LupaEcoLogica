@@ -1,36 +1,41 @@
 <html>
 	<head>
-		<title>Crear Objeto</title>
+		<title>Añadir Pregunta</title>
 		<meta charset="UTF-8">
 		<link href="styleCRUD.css" rel="stylesheet" type="text/css"/>
 	</head>
     <body>
         <!--Cabecera de la página-->
-		<header>
-            Crear Objeto
-        </header>
+		<header>Añadir Pregunta</header>
         <main>
             <form method='post'>
                 <div id="contenido">
-                    <label for='nombre'>Nombre:</label>
-                    <input type='text' id='nombre' name='nombre' required><br>
+                    <label for='texto'>Texto: </label>
+                    <input type='text' name='texto' required><br>
                 
-                    <label for='img'>Añadir imagen:</label>
-                    <input type='file' id='img' name='img' required><br>
+                    <label for='ref1'>Reflexion Positiva: </label>
+                    <input type='text' name='ref1' required><br>
                 
-                    <label for='punt'>Puntuación:</label>
-                    <input type='text' id='punt' name='punt' required class="inputPeq"><br>
-                    <label for='bueno'>Bueno:</label>
-                    <input type='checkbox' id='buneo' name='bueno' required class="inputPeq"><br>
-    
-                    <div id="botones">
+                    <label for='ref2'>Reflexión Negativa: </label>
+                    <input type='text' name='ref2' required><br>
+                    <div id="respuesta">
+                        <label for='resp'>Respuesta</label>
+                        <p> 
+                            <label for='si'>Sí</label>
+                            <input type="radio" name="opcion" value="si">
+                        </p>
+                        <p>
+                            <label for='no'>No</label>  
+                            <input type="radio" name="opcion" value="no">
+                        </p>
+                    </div>
+                    <div>
                         <input type='submit' value='Añadir'>
                         <input type='submit' value='Volver'>    
                     </div>
                 </div>
             </form>
         </main>
-
         <footer>
             <p>Escuela Virgen de Guadalupe 2023</p>
         </footer>
