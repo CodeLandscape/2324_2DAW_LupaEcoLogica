@@ -1,17 +1,26 @@
-export class Vista2 {
-    constructor(juego) {
-        this.intro = "Estás en el tablero de juego";
-        this.juego = juego;
+import {Vista} from "./vista.js"
+
+export class Vista2 extends Vista{
+    constructor(controlador,base){
+        super(controlador,base)
+        this.crearInterfaz()
     }
 
-    iniciar() {
-        let encabezado = document.createElement("h1");
-        encabezado.textContent = this.intro;
-
-        this.juego.divJuego.appendChild(encabezado);
+    crearInterfaz()
+    {
+        //crear boton
+        this.botonvista3 =document.createElement("button")
+        this.explicacionJuego = document.createElement("p")
+        this.explicacionJuego.textContent= "En esta primera fase tu mision consiste en encontrar todos los objetos maliciosos del entorno. ¡Mucho animo con tu busqueda!"
+        this.base.appendChild(this.explicacionJuego)
+        this.base.appendChild(this.botonvista3)
+        this.botonvista3.textContent= "Ir a las preguntas"
+        this.botonvista3.onclick= () => {
+            this.controlador.verVista(Vista.VISTA3)
+        }
+       
+       
     }
 
-    ocultar() {
-        this.juego.style.display = "none";
-    }
+  
 }

@@ -1,24 +1,33 @@
-export class Vista1 {
-    constructor(juego) {
-        this.intro = "Estás en el menú de inicio";
-        this.juego = juego;
+import {Vista} from "./vista.js"
+
+export class Vista1 extends Vista{
+
+    constructor(controlador,base)
+    {
+        super(controlador,base)
+        //coger referencia del interfaz
+        this.enlace1 = document.createElement("button")
+        this.enlace1.textContent= "Jugar partida"
+        this.enlace2= document.createElement("button")
+        this.enlace2.textContent="Ver ranking de jugadores registrados"
+        this.titulo= document.createElement("h1")
+        this.titulo.textContent= "Bienvenido a Lupa Eco-Logica"
+       
+        //aspciar ebventos
+        this.base.appendChild(this.titulo)
+        this.base.appendChild(this.enlace1)
+        this.base.appendChild(this.enlace2)
+        this.enlace1.onclick = this.pulsarEnlace1.bind(this)
+        this.enlace2.onclick = this.pulsarEnlace2.bind(this)
     }
 
-    iniciar() {
-        let encabezado = document.createElement("h1");
-        encabezado.textContent = this.intro;
-
-        this.juego.divJuego.appendChild(encabezado);
-
-        // Botón para navegar entre vistas
-        const botonVista2 = document.createElement("button");
-        botonVista2.textContent = "Mover a vista 2";
-        botonVista2.onclick = () => {
-            this.juego.mostrarVista2();
-        };
-        this.juego.divJuego.appendChild(botonVista2);
+    pulsarEnlace1()
+    {
+        this.controlador.verVista(Vista.VISTA2)
     }
-    ocultar() {
-        this.juego.style.display = "none";
+
+    pulsarEnlace2()
+    {
+        this.controlador.verVista(Vista.VISTA5)
     }
 }
