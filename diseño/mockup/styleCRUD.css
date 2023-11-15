@@ -55,7 +55,7 @@ input[type="text"]{
     text-align: center;
 }
 label{
-    font-size: 40px;
+    font-size: 30px;
 }
 input[type="submit"] , select{
     font-family: 'Agbalumo';
@@ -153,4 +153,14 @@ a {
 
 select {
     margin-bottom: 10px; /* Ajusta el valor según tu preferencia */
+}
+
+#noFixed {
+    width: 100%;
+    text-align:center;
+    background-color: transparent;
+    height: 40px;
+    top: 0;
+    position:fixed;
+    font-size: x-large;
 }
