@@ -121,4 +121,32 @@ a {
 
 #volver{
     margin-top: 20%;
-    }
+}
+#imagenTabla img{
+    width: 25%;
+    border: 1px solid black;
+}
+
+.tamFuenteGrande{
+    font-size: 40px;
+}
+
+.botonAbajo{
+    margin-top: 10%;
+}
+
+.botonAbajo input[type="submit"]{
+    width: 250px;
+}
+
+.icono{
+    width:10%;
+}
+.sinEstilo{
+    padding: none;
+	background-color: transparent;
+	color: none;
+	text-decoration: none;
+	border: none;
+	border-radius: 0px;
+}
