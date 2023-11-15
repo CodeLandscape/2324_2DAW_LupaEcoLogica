@@ -36,7 +36,7 @@ main{
 }
 
 main form{
-    width: 57.3%;
+    min-width: 57.3vh;
     min-height: 68.5vh;
     border: 1px solid black;
     text-align: center;
