@@ -88,3 +88,37 @@ input[type="checkbox"]{
 #contenido{
     margin-top: 10%;
 }
+
+table{
+	width: 87.7%;
+	border-collapse: collapse;
+	color: black;
+	background-color: #e6e6e6;
+	margin: 4.0% 6.0%;
+}
+
+td{
+	border: 2px solid black;
+	height: 40px;
+	text-align: center;
+}
+
+#azul td{
+	background-color: #44caf3;
+    height: 50px;
+}
+
+a {
+	padding: 10px 20px;
+	background-color: #44caf3;;
+	color: black;
+	text-decoration: none;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+
+
+#volver{
+    margin-top: 20%;
+    }
