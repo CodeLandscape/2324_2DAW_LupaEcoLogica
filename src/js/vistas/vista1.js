@@ -8,13 +8,14 @@ export class Vista1 extends Vista{
         //coger referencia del interfaz
         this.enlace1 = document.createElement("button")
         this.enlace1.textContent= "Jugar partida"
+        this.enlace1.setAttribute("id", "botonJuego");
         this.enlace2= document.createElement("button")
-        this.enlace2.textContent="Ver ranking de jugadores registrados"
-        this.titulo= document.createElement("h1")
-        this.titulo.textContent= "Bienvenido a Lupa Eco-Logica"
+        this.enlace2.textContent="Ranking"
+        this.enlace2.setAttribute("id", "botonRanking");
        
-        //aspciar ebventos
-        this.base.appendChild(this.titulo)
+       
+        //asociar ebventos
+        
         this.base.appendChild(this.enlace1)
         this.base.appendChild(this.enlace2)
         this.enlace1.onclick = this.pulsarEnlace1.bind(this)
