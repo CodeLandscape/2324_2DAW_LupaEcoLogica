@@ -5,7 +5,6 @@ body{
     font-family: 'Agbalumo';
     margin: 0;
 }
-
 header{
     width: 100%;
     text-align:center;
@@ -16,6 +15,43 @@ header{
     font-size: x-large;
 }
 
+nav{
+    width: 100%;
+    text-align:center;
+    background-color: #36C8F5;
+    height: 45px;
+    top: 40;
+    position:fixed;
+    border: 1px solid black;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    line-height: 5px;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 30px;
+    font-size: 13px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    background-color: #588FA0;
+    color: white;
+    font-size: 18px;
+}
+
 footer{
     width: 100%;
     text-align:center;
@@ -24,12 +60,10 @@ footer{
     height: 40px;
     bottom: 0;
 }
-
 footer p{
     margin: 0;
     margin-top: 5px;
 }
-
 main{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -48,24 +82,20 @@ main form{
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
 }
-
 input{
     margin: 20px;
     width: 50%;
     font-size: 40px;
     font-family: 'Agbalumo';
 }
-
 input[type="text"]{
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
 }
-
 label{
-    font-size: 40px;
+    font-size: 30px;
 }
-
-input[type="submit"] {
+input[type="submit"] , select{
     font-family: 'Agbalumo';
     background-color: #36C8F5;
     border-radius: 15px;
@@ -74,11 +104,9 @@ input[type="submit"] {
     height: 50px;
     font-size: large;
 }
-
 input[type="submit"]:hover{
     background-color:#368ff5;
 }
-
 input[type="submit"]:active{
     background-color:#588FA0;
 }
@@ -86,7 +114,6 @@ input[type="submit"]:active{
 #botones{
     margin-top: 20%;
 }
-
 .inputPeq{
     width: 10%;
     height: 10%;
@@ -126,7 +153,50 @@ a {
 	text-decoration: none;
 	border: 2px solid black;
 	border-radius: 10px;
-    margin-top: 20%;
+}
+
+#imagenTabla img{
+    width: 25%;
+    border: 1px solid black;
+}
+
+.tamFuenteGrande{
+    font-size: 40px;
+}
+
+.botonAbajo{
+    margin-top: 10%;
+}
+
+.botonAbajo input[type="submit"]{
+    width: 250px;
+}
+
+.icono{
+    width:10%;
+}
+.sinEstilo{
+    padding: none;
+	background-color: transparent;
+	color: none;
+	text-decoration: none;
+	border: none;
+	border-radius: 0px;
+}
+
+select {
+    margin-bottom: 10px; /* Ajusta el valor según tu preferencia */
+}
+
+#noFixed {
+    width: 100%;
+    text-align:center;
+    background-color: transparent;
+    position:fixed;
+}
+
+#objeto{
+    width: 42.8%;
 }
 
 #respuesta{
