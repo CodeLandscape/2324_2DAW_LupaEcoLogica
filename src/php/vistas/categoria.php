@@ -28,6 +28,9 @@
                 }
             ?>
         </header>
+        <?php
+            include 'template/navegacion.php';
+        ?>
         <main>
             <form method='post'>
                 <div id="contenido">
