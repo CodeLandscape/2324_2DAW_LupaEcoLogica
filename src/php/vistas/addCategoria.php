@@ -1,3 +1,4 @@
+<!--Oscar Arroyo Aguadero y Aarón Izquierdo Cordero-->
 <?php
     include 'template/cabezera.html';
 ?>
@@ -7,6 +8,9 @@
         <header>
             Crear Categoría y Tablero
         </header>
+        <?php
+            include 'template/navegacion.php';
+        ?>
         <main>
             <form action="../controladores/crudTablero.php" method="post" enctype="multipart/form-data">
                 <div id="contenido">
