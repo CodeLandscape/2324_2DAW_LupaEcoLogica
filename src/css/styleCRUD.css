@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo');
+
+body{
+    background-color: #F59436;
+    font-family: 'Agbalumo';
+    margin: 0;
+}
+header{
+    width: 100%;
+    text-align:center;
+    background-color: #588FA0;
+    height: 40px;
+    top: 0;
+    position:fixed;
+    font-size: x-large;
+}
+nav{
+    width: 100%;
+    text-align:center;
+    background-color: #36C8F5;
+    height: 45px;
+    top: 40;
+    position:fixed;
+    border: 1px solid black;
+}
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    line-height: 5px;
+}
+nav li {
+    display: inline-block;
+    margin-right: 30px;
+    font-size: 13px;
+}
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+    transition: color 0.3s;
+}
+nav a:hover {
+    background-color: #588FA0;
+    color: white;
+    font-size: 18px;
+}
+footer{
+    width: 100%;
+    text-align:center;
+    background-color: #588FA0;
+    position: fixed;
+    height: 40px;
+    bottom: 0;
+}
+footer p{
+    margin: 0;
+    margin-top: 5px;
+}
+main{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+main form{
+    min-width: 57.3vh;
+    min-height: 68.5vh;
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
+}
+input{
+    margin: 20px;
+    width: 50%;
+    font-size: 40px;
+    font-family: 'Agbalumo';
+}
+input[type="text"]{
+    font-size: 30px;
+    text-align: center;
+}
+label{
+    font-size: 40px;
+}
+input[type="submit"], .submit{
+    display: inline-block;
+    font-family: 'Agbalumo';
+    background-color: #36C8F5;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 133px;
+    height: 50px;
+    font-size: large;
+}
+input[type="submit"]:hover, .submit:hover{
+    background-color:#368ff5;
+}
+input[type="submit"]:active, .submit:active{
+    background-color:#588FA0;
+}
+
+#botones{
+    margin-top: 20%;
+}
+.inputPeq{
+    width: 10%;
+    height: 10%;
+}
+
+input[type="checkbox"]{
+    transform: scale(4);
+}
+
+#contenido{
+    margin-top: 10%;
+}
+
+table{
+	width: 87.7%;
+	border-collapse: collapse;
+	color: black;
+	background-color: #e6e6e6;
+	margin: 4.0% 6.0%;
+}
+
+td{
+	border: 2px solid black;
+	height: 40px;
+	text-align: center;
+}
+
+#azul td{
+	background-color: #44caf3;
+    height: 50px;
+}
+
+a {
+	padding: 10px 20px;
+	background-color: #44caf3;;
+	color: black;
+	text-decoration: none;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+
+
+#volver{
+    margin-top: 20%;
+}
+#imagenTabla img{
+    width: 25%;
+    border: 1px solid black;
+}
+
+.tamFuenteGrande{
+    font-size: 40px;
+}
+
+.botonAbajo{
+    margin-top: 10%;
+}
+
+.botonAbajo input[type="submit"]{
+    width: 250px;
+}
+
+.icono{
+    width:10%;
+}
+.sinEstilo{
+    padding: none;
+	background-color: transparent;
+	color: none;
+	text-decoration: none;
+	border: none;
+	border-radius: 0px;
+}
