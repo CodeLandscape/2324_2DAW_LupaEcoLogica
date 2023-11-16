@@ -14,6 +14,43 @@ header{
     position:fixed;
     font-size: x-large;
 }
+
+nav{
+    width: 100%;
+    text-align:center;
+    background-color: #36C8F5;
+    height: 45px;
+    top: 40;
+    position:fixed;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    line-height: 5px;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 30px;
+    font-size: 13px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    background-color: #588FA0;
+    color: white;
+    font-size: 18px;
+}
+
 footer{
     width: 100%;
     text-align:center;
@@ -27,8 +64,6 @@ footer p{
     margin-top: 5px;
 }
 main{
-    margin-top: 50px;
-    margin-bottom: 50px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +96,7 @@ input[type="submit"] , select{
     font-family: 'Agbalumo';
     background-color: #36C8F5;
     border-radius: 15px;
-    border: 1px solid black;
+    border: 2px solid black;
     width: 133px;
     height: 50px;
     font-size: large;
@@ -117,11 +152,6 @@ a {
 	border-radius: 10px;
 }
 
-
-
-#volver{
-    margin-top: 20%;
-}
 #imagenTabla img{
     width: 25%;
     border: 1px solid black;
@@ -160,4 +190,22 @@ select {
     text-align:center;
     background-color: transparent;
     position:fixed;
+}
+
+#objeto{
+    width: 42.8%;
+}
+
+#respuesta{
+    display: inline-flex;
+}
+
+.aumentarMargin100{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.aumentarMargin25{
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
