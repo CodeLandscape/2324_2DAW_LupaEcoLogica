@@ -7,71 +7,67 @@ export class Vista4 extends Vista{
 		this.validacionFormulario()
     }
 
-    crearInterfaz()
-    {
-        ////Crear el objeto formulario
-		this.formulario=document.createElement("form");
-
-
-		////CREA UN P QUE EXPLIQUE AL USUARIO LA FORMA PARA INTRODUCIR SU NOMBRE, EN BASE A LA COMUNIDAD ELEGIDA
-		this.explicacionRegex=document.createElement("p")
-		this.explicacionRegex.textContent="El nombre de usuario debe contener las dos primer iniciales de la provincia elegida. Por ejemplo si seleccionas Badajoz quedarías así tu nombre BAvi123"
- 
-		//crea un parrafo donde mostramos los puntos obtenidos en total
-		this.puntos=document.createElement("h2")
-		this.puntos.textContent="¡Has obtenido (cantidad de puntos) en tu partida!"
-
-        //crear boton para ir al ranking
-        this.irInicio=document.createElement("button")
-        this.irInicio.textContent="Enviar formulario"
-
-		////Crear el objeto label de titulo
-		this.titulo=document.createElement("label");
- 
-		////Crear el objeto caja de texto Nombres
-		 this.cajaTextNombres=document.createElement("input");
- 
-		////Crear el objeto boton
-		this.boton=document.createElement("input");
- 
-		////Asignar atributos al objeto formulario
-        	this.formulario.setAttribute('method', "post");//Asignar el atributo method
-        	this.formulario.setAttribute('action', "");//Asignar el atributo action
-        	this.formulario.setAttribute('style', "width:300px;margin: 0px auto");//Asignar el atributo style
- 
-        	////Asignar atributos al objeto caja de texto de Nombres
-        	this.cajaTextNombres.setAttribute('type', "text");//Asignar el atributo type
-        	this.cajaTextNombres.setAttribute('placeholder', "Nickname");//Asignar el atributo placeholder
-        	this.cajaTextNombres.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");//Asignar el atributo style
- 
-        	
- 
-		////Asignar atributos al objeto boton
-			this.boton.setAttribute('type', "button");//Asignar el atributo type	
-        	this.boton.setAttribute('value', "Enviar");//Asignar el atributo value
-        	this.boton.setAttribute('style', "width:100px;margin: 10px 0px;padding: 10px;background:#F05133;color:#fff;border:solid 1px #000;");//Asignar el atributo style
-        	this.boton.setAttribute('onclick', "alert('Se envio el mensaje')");//Asignar el metodo onclick
-        	this.titulo.innerHTML='<h2>Registra tu puntuacion</h>';//Asignar el texto de titulo en el objeto titulo
-        	this.formulario.appendChild(this.titulo);//Agregar el objeto titulo al objeto formulario
-        	this.formulario.appendChild(this.cajaTextNombres);//Agregar el objeto caja de texto Nombres al objeto formulario
-   
-        	this.formulario.appendChild(this.boton);//Agregar el objeto boton al objeto formulario
-
-            this.base.appendChild(this.titulo)
-			this.base.appendChild(this.puntos)
-        	document.getElementById("registro").appendChild(this.formulario);//Agregar el formulario a la etiquete con el ID
-
-            this.base.appendChild(this.explicacionRegex)
-            this.formulario.appendChild(this.irInicio)	
-
-        //IMPLEMENTAR QUE CADA PREGUNTA SEA UNA VISTA, PUDIENDO ASI CREAR LA PREGUNTA RANDOM
-
-        this.irInicio.onclick= () => {
-            this.controlador.verVista(Vista.VISTA5)
-        }
-       
-       
-    }
+    crearInterfaz() {
+		// Crear el objeto formulario
+		this.formulario = document.createElement("form");
+	
+		// Crear un elemento <p> que explique al usuario la forma de introducir su nombre
+		this.explicacionRegex = document.createElement("p");
+		this.explicacionRegex.textContent = "El nombre de usuario debe contener las dos primeras iniciales de la provincia elegida. Por ejemplo, si seleccionas Badajoz, tu nombre sería BAvi123.";
+	
+		// Crear un párrafo donde se muestran los puntos obtenidos en total
+		this.puntos = document.createElement("h2");
+		this.puntos.textContent = "¡Has obtenido (cantidad de puntos) en tu partida!";
+	
+		// Crear botón para enviar el formulario
+		this.irInicio = document.createElement("button");
+		this.irInicio.textContent = "Enviar formulario";
+	
+		// Crear el objeto label de título
+		this.titulo = document.createElement("label");
+	
+		// Crear el objeto caja de texto Nombres
+		this.cajaTextNombres = document.createElement("input");
+	
+		// Crear el objeto botón
+		this.boton = document.createElement("input");
+	
+		// Asignar atributos al objeto formulario
+		this.formulario.setAttribute('method', "post");
+		this.formulario.setAttribute('action', "");
+		this.formulario.setAttribute('style', "width:300px;margin: 0px auto");
+	
+		// Asignar atributos al objeto caja de texto de Nombres
+		this.cajaTextNombres.setAttribute('type', "text");
+		this.cajaTextNombres.setAttribute('placeholder', "Nickname");
+		this.cajaTextNombres.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");
+	
+		// Asignar atributos al objeto botón
+		this.boton.setAttribute('type', "button");
+		this.boton.setAttribute('value', "Enviar");
+		this.boton.setAttribute('style', "width:100px;margin: 10px 0px;padding: 10px;background:#F05133;color:#fff;border:solid 1px #000;");
+		this.boton.setAttribute('onclick', "alert('Se envió el mensaje')");
+	
+		this.titulo.innerHTML = '<h2>Registra tu puntuación</h2>';
+		this.formulario.appendChild(this.titulo);
+		this.formulario.appendChild(this.cajaTextNombres);
+		this.formulario.appendChild(this.boton);
+	
+		// Obtener el elemento con ID "registro" para agregar el formulario
+		document.getElementById("registro").appendChild(this.formulario);
+	
+		// Agregar elementos al contenedor base
+		this.base.appendChild(this.titulo);
+		this.base.appendChild(this.puntos);
+		this.base.appendChild(this.explicacionRegex);
+		this.base.appendChild(this.irInicio);
+	
+		// Al hacer clic en el botón, mostrar la vista correspondiente
+		this.irInicio.onclick = () => {
+			this.controlador.verVista(Vista.VISTA5);
+		};
+	}
+	
 
 	validacionFormulario()
 	{
