@@ -5,7 +5,7 @@
             case 'addCategoria':
                 if(!isset($_GET['error'])){$error=0;}
                 else{$error=$_GET['error'];}
-                header('Location:vistas/'.$ruta.'.php&error='.$error);
+                header('Location:vistas/'.$ruta.'.php?error='.$error);
                 break;
             case 'categoria':
                 $id=$_GET['id'];
