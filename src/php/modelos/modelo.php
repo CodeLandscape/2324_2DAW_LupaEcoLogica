@@ -31,7 +31,6 @@
                     $sqlTablero="INSERT INTO tablero(nombre, imagenFondo, idCategoria) VALUES('".$nomT."','".$fondo."',".$idCategoria.");";
                     $Resultado = $this->Conexion->query($sqlTablero);
                     $this->Conexion->close();
-                    return 0;
                 } catch (mysqli_sql_exception $e) {
                     $errorCode = $e->getCode();
 
@@ -55,6 +54,7 @@
                 }
                 
             }
+            return 0;
         }
         /**
          * Método para sacar todas las filas de la tabla categoria.
@@ -129,6 +129,7 @@
         }
         /**
          * Método que borra una categoria.
+         * Se debe modificar este método para que los objetos que tengan categoría pasen a tener idCategoria=NULL
          */
         function borrarCategoria($id){
             $this->conectar();
@@ -154,6 +155,7 @@
                     return 3;
                 }
             }
+            return 0;
         }
         /**
          * Método que devuelve las filas en la tabla objetos que no tienen categoría.

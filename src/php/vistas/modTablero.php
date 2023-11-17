@@ -1,4 +1,4 @@
-<!--Aarón Izquierdo Cordero-->
+<!--Aarón Izquierdo Cordero y Oscar Arroyo Aguadero-->
 <?php
     include 'template/cabezera.html';
 ?>

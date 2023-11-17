@@ -1,9 +1,9 @@
 <?php
     /* Aarón Izquierdo Cordero */
-    if(isset($_GET['id'])){
+    if(isset($_POST['idCategoria'])){
         require '../modelos/modelo.php';
         $Modelo=new Modelo();
-        $id=$_GET['id'];
+        $id=$_POST['idCategoria'];
         $Modelo->borrarCategoria($id);
         header("Location:../index.php");
     }

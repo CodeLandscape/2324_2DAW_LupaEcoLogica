@@ -13,7 +13,7 @@
                 break;
             case 'removeCategoria':
                 $id=$_GET['id'];
-                header('Location:controladores/'.$ruta.'.php?id='.$id);
+                header('Location:vistas/'.$ruta.'.php?id='.$id);
                 break;
             case 'modTablero':
                 $id=$_GET['id'];
