@@ -26,8 +26,8 @@
                         $tabla = $Control->tablaCategoria();
                         foreach($tabla as $fila){
                             echo "<tr id=azul><td>".$fila['nombre']."</td>
-                                <td class=sinEstilo><a href=../index.php?id=".$fila['idCategoria']."&ruta=categoria><img src="img/IonEye.svg" class="icono"></a></td>
-                                <td class=sinEstilo><a href=../index.php?id=".$fila['idCategoria']."&ruta=removeCategoria><img src="img/IonIosRemoveCircle.svg" class="icono"></a></td>
+                                <td class=sinEstilo><a href=../index.php?id=".$fila['idCategoria']."&ruta=categoria><img src=img/IonEye.svg class=icono></a></td>
+                                <td class=sinEstilo><a href=../index.php?id=".$fila['idCategoria']."&ruta=removeCategoria><img src=img/IonIosRemoveCircle.svg class=icono></a></td>
                             </tr>";
                         }
                     ?>
