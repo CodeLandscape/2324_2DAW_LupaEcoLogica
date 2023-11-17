@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="estilos.css" />
+    <!-- <link rel=stylesheet href="css/styleCRUD.css" />
+    <link rel=stylesheet href="css/style.css" /> -->
+    <title>Proyecto Lupa Eco-Logica</title>
+</head>
+<body>
+    <!-- Cada div contendrá una vista del juego, que se irá mostrando/ocultando segun mande el controlador -->
+    
+        <div id="menuInicio">
+            <p id="titulo">Lupa Eco-Lógica</p>
+            <img src="logoCircular.png" alt="Lupa Eco-Lógica">     
+            <footer>
+                <p>Escuela Virgen de Guadalupe 2023</p>
+            </footer>
+        </div>
+        <div id="busquedaObjetos">
+            
+        </div>
+        <div id="rondaPreguntas">
+            
+        </div>
+        
+        <div id="registro">
+            <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p><!--Cambiar dinámicamente según el tablero a jugar-->
+                    <label for="localidad">Localidad: </label>
+                    <select id="localidad">
+                        <option value="" selected></option>
+                        <option>Badajoz</option>
+                        <option>Merida</option>
+                        <option>Caceres</option>
+                    </select><br>
+        </div>
+            
+        <div id="ranking">
+            
+        </div>
+    
+    <script type="module" src="js/controlador.js"></script>
+</body>
+</html>
