@@ -2,10 +2,14 @@
     /* Aarón Izquierdo Cordero */
     require_once '../config/configBD.php';
 
+    /**
+     * Clase Modelo para la interacción con la base de datos.
+     */
     class Modelo {
-        /* Propiedades */
+        /**
+         * @var mysqli La conexión a la base de datos.
+         */
         public $Conexion;
-
         /**
          * Método de conexión con la base de datos.
          */
@@ -15,7 +19,11 @@
         }
         /**
          * Método para insertar en la base de datos la categoría y el tablero.
-         * Utiliza TRY CATCH para el sistema de errores.
+         *
+         * @param string $nomC Nombre de la categoría.
+         * @param string $nomT Nombre del tablero.
+         * @param string $fondo Imagen de fondo del tablero.
+         * @return int Código de resultado (0 para éxito, 2 para clave secundaria duplicada en Categoria, 3 para clave secundaria duplicada en Tablero, 4 para otros errores).
          */
         function insertarCategoria($nomC, $nomT, $fondo){
             //Intenta la consulta de creación de categoría.
@@ -33,12 +41,14 @@
                     $this->Conexion->close();
                 } catch (mysqli_sql_exception $e) {
                     $errorCode = $e->getCode();
+                    $sqlCategoria="DELETE FROM categoria WHERE nombre='".$nomC."';";
+                    $Resultado = $this->Conexion->query($sqlCategoria);
+                    $this->Conexion->close();
 
                     if ($errorCode == 1062) {
                         //Error de clave secundaria duplicada
                         return 3;
                     } else {
-                        echo "Error: " . $e->getMessage();
                         return 4;
                     }
                 }
@@ -49,7 +59,6 @@
                     //Error de clave secundaria duplicada
                     return 2;
                 } else {
-                    echo "Error: " . $e->getMessage();
                     return 4;
                 }
                 
@@ -57,8 +66,9 @@
             return 0;
         }
         /**
-         * Método para sacar todas las filas de la tabla categoria.
-         * Devuelve las filas de la base de datos y las inserta en una tabla (array bidimensional).
+         * Método para sacar todas las filas de la tabla categoría.
+         *
+         * @return array Un array bidimensional con las filas de la tabla categoría.
          */
         function tablaCategoria(){
             $this->conectar();
@@ -73,6 +83,9 @@
         }
         /**
          * Método que devuelve una categoría.
+         * 
+         * @param string $id Id de la categoría.
+         * @return array Un array de una fila de la tabla categoría.
          */
         function verCategoria($id){
             $this->conectar();
@@ -85,6 +98,9 @@
         }
         /**
          * Método que devuelve el tablero de una categoría.
+         * 
+         * @param string $id Id de la categoría.
+         * @return array Un array de una fila de la tabla Tablero.
          */
         function verTablero($id){
             $this->conectar();
@@ -97,6 +113,9 @@
         }
         /**
          * Método que devuelve todas las preguntas de una categoría.
+         * 
+         * @param string $id Id de la categoría.
+         * @return array Un array bidimensional con las filas de la tabla pregunta.
          */
         function verPreguntas($id){
             $tabla=array();
@@ -113,6 +132,9 @@
         }
         /**
          * Método que devuleve todos los objetos de una categoría.
+         * 
+         * @param string $id Id de la categoría.
+         * @return array Un array bidimensional con las filas de la tabla objeto.
          */
         function verObjetos($id){
             $tabla=array();
@@ -128,8 +150,9 @@
             return $tabla;
         }
         /**
-         * Método que borra una categoria.
-         * Se debe modificar este método para que los objetos que tengan categoría pasen a tener idCategoria=NULL
+         * Método que borra una categoria. (Se debe modificar este método para que los objetos que tengan categoría pasen a tener idCategoria=NULL)
+         * 
+         * @param string $id Id de la categoría.
          */
         function borrarCategoria($id){
             $this->conectar();
@@ -139,7 +162,11 @@
         }
         /**
          * Método que modifica un tablero de una categoría.
-         * Utiliza TRY CATCH para el sistema de errores.
+         * 
+         * @param string $idCategoria Id de la categoría.
+         * @param string $nombre Nombre del tablero.
+         * @param string $fondo Imagen de fondo del tablero.
+         * @return int Código de resultado (0 para éxito, 2 para clave secundaria duplicada en Categoria, 3 para otros errores).
          */
         function modificarTablero($idCategoria,$nombre,$fondo){
             $this->conectar();
@@ -151,7 +178,6 @@
                     //Error de clave secundaria duplicada
                     return 2;
                 } else {
-                    echo "Error: " . $e->getMessage();
                     return 3;
                 }
             }
@@ -159,6 +185,8 @@
         }
         /**
          * Método que devuelve las filas en la tabla objetos que no tienen categoría.
+         * 
+         * @return array Un array bidimensional con los objetos con idCategoria en NULL.
          */
         function tablaObjetos(){
             $tabla=array();
