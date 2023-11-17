@@ -7,10 +7,10 @@
     <body>
         <header>
             Modificar Tablero
+            <?php
+                include 'template/navegacion.php';
+            ?>
         </header>
-        <?php
-            include 'template/navegacion.php';
-        ?>
         <main>
             <form action="../controladores/crudTablero.php" method="post" enctype="multipart/form-data">
                 <div>
