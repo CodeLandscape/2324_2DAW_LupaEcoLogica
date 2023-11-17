@@ -1,0 +1,39 @@
+<!--Óscar Arroyo Aguadero-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="styleCRUD.css">
+        <title>Registro</title>
+    </head>
+    <body>
+        <main>
+            <header id="noFixed">
+                <p class="tamFuenteGrande">4500 puntos</p><!--Cambiar dinámicamente según la puntuación-->
+            </header>
+            <form method='post'>
+                <div id="contenido">
+                    <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p><!--Cambiar dinámicamente según el tablero a jugar-->
+                    <label for="localidad">Localidad: </label>
+                    <select id="localidad">
+                        <option>Badajoz</option>
+                        <option>Mérida</option>
+                        <option>Cáceres</option>
+                    </select><br>
+
+                    <label for='nombre'>Nombre del jugador:</label><br>
+                    <input type='text' id='nombre' name='nombre' placeholder="3 letras y 2 números"><br>
+                    
+                    <input type='submit' value='Enviar'>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>Titulo del tablero a jugar</p><!--Actualizar de forma dinámica-->
+        </footer>
+    </body>
+</html>

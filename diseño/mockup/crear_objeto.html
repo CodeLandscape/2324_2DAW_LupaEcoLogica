@@ -1,0 +1,49 @@
+<!--Óscar Arroyo Aguadero-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="styleCRUD.css">
+        <title>Crear Objeto</title>
+    </head>
+    <body>
+        <!--Cabecera de la página-->
+		<header>
+            Crear Objeto
+            <nav>
+                <ul>
+                    <li><a href="#categorias">CATEGORÍAS</a></li>
+                    <li><a href="#configuracion">CONFIGURACION</a></li>
+                    <li><a href="#objetos">OBJETOS SIN CATEGORÍA</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="aumentarMargin25">
+            <form method='post'>
+                <div id="contenido">
+                    <label for='nombre'>Nombre:</label>
+                    <input type='text' id='nombre' name='nombre' required><br>
+                
+                    <label for='img'>Añadir imagen:</label>
+                    <input type='file' id='img' name='img' required><br>
+                
+                    <label for='punt'>Puntuación:</label>
+                    <input type='text' id='punt' name='punt' required class="inputPeq"><br>
+                    <label for='bueno'>Bueno:</label>
+                    <input type='checkbox' id='buneo' name='bueno' required class="inputPeq"><br>
+    
+                    <div id="botones">
+                        <input type='submit' value='Añadir'>
+                        <input type='submit' value='Volver'>    
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>Escuela Virgen de Guadalupe 2023</p>
+        </footer>
+    </body>
+</html>

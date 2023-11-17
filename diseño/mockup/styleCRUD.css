@@ -1,0 +1,254 @@
+/* Importa la fuente 'Agbalumo' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo');
+
+/* Estilo del cuerpo de la página */
+body {
+    background-color: #F59436; /* Color de fondo naranja */
+    font-family: 'Agbalumo'; /* Usa la fuente 'Agbalumo' */
+    margin: 0; /* Elimina los márgenes predeterminados */
+}
+
+/* Estilo del encabezado de la página */
+header {
+    width: 100%;
+    text-align: center;
+    background-color: #588FA0; /* Color de fondo azul */
+    height: 40px;
+    top: 0;
+    position: fixed;
+    font-size: x-large; /* Tamaño de fuente extra grande */
+}
+
+/* Estilo de la barra de navegación */
+nav {
+    width: 100%;
+    text-align: center;
+    background-color: #36C8F5; /* Color de fondo azul claro */
+    height: 45px;
+    top: 40;
+    position: fixed;
+}
+
+/* Estilos de la lista de navegación */
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    line-height: 5px;
+}
+
+/* Estilos de los elementos de la lista de navegación */
+nav li {
+    display: inline-block;
+    margin-right: 30px;
+    font-size: 13px;
+}
+
+/* Estilos de los enlaces de navegación */
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+/* Estilos al pasar el ratón sobre los enlaces de navegación */
+nav a:hover {
+    background-color: #588FA0;
+    color: white;
+    font-size: 18px;
+}
+
+/* Estilo del pie de página */
+footer {
+    width: 100%;
+    text-align: center;
+    background-color: #588FA0; /* Color de fondo azul */
+    position: fixed;
+    height: 40px;
+    bottom: 0;
+}
+
+/* Estilos del contenido principal */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos del formulario dentro del contenido principal */
+main form {
+    min-width: 57.3vh;
+    min-height: 68.5vh;
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
+}
+
+/* Estilos generales para los campos de entrada */
+input {
+    margin: 20px;
+    width: 50%;
+    font-size: 40px;
+    font-family: 'Agbalumo';
+}
+
+/* Estilos específicos para el campo de texto */
+input[type="text"] {
+    font-size: 30px;
+    text-align: center;
+}
+
+/* Estilos para las etiquetas del formulario */
+label {
+    font-size: 30px;
+}
+
+/* Estilos para los botones de envío y selectores */
+input[type="submit"], select {
+    font-family: 'Agbalumo';
+    background-color: #36C8F5; /* Color de fondo azul claro */
+    border-radius: 15px;
+    border: 2px solid black;
+    width: 133px;
+    height: 50px;
+    font-size: large;
+}
+
+/* Estilos al pasar el ratón sobre el botón de envío */
+input[type="submit"]:hover {
+    background-color: #368ff5;
+}
+
+/* Estilos al hacer clic en el botón de envío */
+input[type="submit"]:active {
+    background-color: #588FA0;
+}
+
+/* Estilos específicos para el bloque con id 'botones' */
+#botones {
+    margin-top: 20%;
+}
+
+/* Estilos específicos para las entradas pequeñas */
+.inputPeq {
+    width: 10%;
+    height: 10%;
+}
+
+/* Estilos para los checkboxes */
+input[type="checkbox"] {
+    transform: scale(4); /* Aumenta el tamaño del checkbox */
+}
+
+/* Estilos específicos para el bloque con id 'contenido' */
+#contenido {
+    margin-top: 10%;
+}
+
+/* Estilos para las tablas */
+table {
+    width: 87.7%;
+    border-collapse: collapse;
+    color: black;
+    background-color: #e6e6e6; /* Color de fondo gris claro */
+    margin: 4.0% 6.0%;
+}
+
+/* Estilos para las celdas de la tabla */
+td {
+    border: 2px solid black;
+    height: 40px;
+    text-align: center;
+}
+
+/* Estilos para las celdas de la tabla con fondo azul */
+#azul td {
+    background-color: #44caf3;
+    height: 50px;
+}
+
+/* Estilos para los enlaces */
+a {
+    padding: 10px 20px;
+    background-color: #44caf3; /* Color de fondo azul claro */
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/* Estilos para las imágenes dentro de la tabla */
+#imagenTabla img {
+    width: 25%;
+    border: 1px solid black;
+}
+
+/* Estilos para el texto con fuente grande */
+.tamFuenteGrande {
+    font-size: 40px;
+}
+
+/* Estilos para el botón de abajo */
+.botonAbajo {
+    margin-top: 10%;
+}
+
+/* Estilos específicos para el ancho del botón de abajo */
+.botonAbajo input[type="submit"] {
+    width: 250px;
+}
+
+/* Estilos para los iconos */
+.icono {
+    width: 10%;
+}
+
+/* Estilos para elementos sin estilo */
+.sinEstilo {
+    padding: none;
+    background-color: transparent;
+    color: none;
+    text-decoration: none;
+    border: none;
+    border-radius: 0px;
+}
+
+/* Estilos para los selectores */
+select {
+    margin-bottom: 10px; /* Ajusta el valor según tu preferencia */
+}
+
+/* Estilos para el bloque con id 'noFixed' */
+#noFixed {
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+    position: fixed;
+}
+
+/* Estilos para el objeto con id 'objeto' */
+#objeto {
+    width: 42.8%;
+}
+
+/* Estilos para el bloque con id 'respuesta' */
+#respuesta {
+    display: inline-flex;
+}
+
+/* Estilos para aumentar el margen en 100px */
+.aumentarMargin100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* Estilos para aumentar el margen en 25px */
+.aumentarMargin25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

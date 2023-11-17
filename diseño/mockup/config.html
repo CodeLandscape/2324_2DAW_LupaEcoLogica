@@ -1,0 +1,46 @@
+<!--Óscar Arroyo Aguadero-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="styleCRUD.css">
+		<title>Configuración</title>
+	</head>
+    <body>
+        <!--Cabecera de la página-->
+		<header>
+            Configuración
+            <nav>
+                <ul>
+                    <li><a href="#categorias">CATEGORÍAS</a></li>
+                    <li><a href="#configuracion">CONFIGURACION</a></li>
+                    <li><a href="#objetos">OBJETOS SIN CATEGORÍA</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <form method='post'>
+                <div id="contenido">
+                    <label for='tiempo'>Tiempo de búsqueda:</label>
+                    <input type='text' id='tiempo' name='tiempo' class="inputPeq" required><br>
+                
+                    <label for='nPreguntas'>Número de preguntas:</label>
+                    <input type='text' id='nPreguntas' name='nPreguntas' class="inputPeq" required><br>
+                    
+                    <label for='nObjB'>Número de objetos buenos:</label>
+                    <input type='text' id='nObjB' name='nObjB' class="inputPeq" required><br>
+                    <div id="botones">
+                        <input type='submit' value='Modificar'>
+                        <input type='submit' value='Volver'>    
+                    </div>
+    
+                </div>
+            </form>
+        </main>
+        <footer>
+            <p>Escuela Virgen de Guadalupe 2023</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!--Óscar Arroyo Aguadero-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="styleCRUD.css">
+		<title>Crear Categoría y Tablero</title>
+	</head>
+    <body>
+        <!--Cabecera de la página-->
+		<header>
+            Crear categoría y tablero
+            <nav>
+                <ul>
+                    <li><a href="#categorias">CATEGORÍAS</a></li>
+                    <li><a href="#configuracion">CONFIGURACION</a></li>
+                    <li><a href="#objetos">OBJETOS SIN CATEGORÍA</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <form method='post'>
+                <div id="contenido">
+                    <label for='categoria'>Nombre de la categoría:</label>
+                    <input type='text' id='categoria' name='categoria' required><br>
+                    <label for='tablero'>Nombre del tablero:</label>
+                    <input type='text' id='tablero' name='tablero' required><br>
+                    <label for='img'>Fondo:</label>
+                    <input type='file' id='img' name='img' required><br>
+                    <div id="botones">
+                        <input type='submit' value='Añadir'>
+                        <input type='submit' value='Volver'>    
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>Escuela Virgen de Guadalupe 2023</p>
+        </footer>
+    </body>
+</html>
