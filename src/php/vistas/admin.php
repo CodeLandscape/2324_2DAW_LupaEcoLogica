@@ -7,10 +7,10 @@
     <body>
         <header>
             Administración
+		<?php
+            		include 'template/navegacion.php';
+        	?>
         </header>
-        <?php
-            include 'template/navegacion.php';
-        ?>
 		<main>
 			<div id="contenido">
 					<!--Contenido de la tabla-->
