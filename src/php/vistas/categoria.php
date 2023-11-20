@@ -44,7 +44,7 @@
                         echo '<p class="tamFuenteGrande">ERROR</p>';
                     }
                 ?>
-                    <a class="submit" href="../index.php?ruta=modTablero&id=<?php echo $id; ?>">Modificar</a>
+                    <a class="submit" href="../index.php?ruta=modTablero&id=<?php echo $id; ?>&error=0">Modificar</a>
                 <!--Contenido de la tabla-->
                 <div class="botonAbajo">
                     <a class="submit">Añadir Pregunta</a>
