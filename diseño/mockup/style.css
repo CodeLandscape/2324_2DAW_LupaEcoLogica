@@ -4,7 +4,7 @@ html{
     position: relative;
 }
 body{
-    background-color: #F59436;
+    background-color: hsl(30, 91%, 59%);
     font-family: 'Agbalumo';
     margin: 0;
 }
@@ -55,3 +55,60 @@ footer p{
     margin: 0;
     margin-top: 5px;
 }
+
+#tablero{
+    position: absolute;
+    top:25%;
+}
+
+
+
+#objetosEncontrados{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    right:0%;
+    top:0%;
+    left: 85%;
+    bottom:0%;
+    background-color: #588fa098;
+    object-fit: cover;
+    display: block;
+}
+
+#objetosEncontrados p{
+    padding-left: 5%;
+}
+
+#objetosEncontrados img {
+    width: 40%;
+    height: 40%;
+}
+
+
+#preguntaJuego {
+    position: relative;
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #368ff5;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+
+#preguntaJuego p {
+    margin: 0;
+    font-size: large;
+}
+
+#preguntaJuego img {
+    max-width: 40%;
+    max-height: 40%;
+    position: static;
+}
+
