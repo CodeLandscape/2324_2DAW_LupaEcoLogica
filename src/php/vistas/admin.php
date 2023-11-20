@@ -33,7 +33,7 @@
                             }
                         ?>
                     </table>
-                    <a href="../index.php?ruta=addCategoria" class="submit">Añadir Categoría</a>
+                    <a href="../index.php?ruta=addCategoria&error=0" class="submit">Añadir Categoría</a>
                 </div>
             </form>
 		</main>
