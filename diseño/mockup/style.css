@@ -58,10 +58,29 @@ footer p{
 
 #tablero{
     position: absolute;
-    top:25%;
+    top:5%;
+    width: auto;
+    height: auto;
+    width: 80%;
+    height: 70%;
+    border: 3px solid black;
 }
 
+#tablero img{
+    position: static;
+    width: 100%;
+    height: 100%;
+    
+}
 
+#puntuacion{
+    position: absolute;
+}
+
+#tiempo{
+    position: absolute;
+    left: 60%;
+}
 
 #objetosEncontrados{
     position: absolute;
