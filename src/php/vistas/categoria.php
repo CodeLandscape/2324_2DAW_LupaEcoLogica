@@ -29,7 +29,7 @@
                 include 'template/navegacion.php';
             ?>
         </header>
-        <main>
+        <main class="aumentarMargin100">
             <form method='post'>
                 <div id="contenido">
                 <?php

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo');
+html{
+    min-height: 100%;
+    position: relative;
+}
+body{
+    background-color: #F59436;
+    font-family: 'Agbalumo';
+    margin: 0;
+}
+button{
+    position: absolute;
+    font-family: 'Agbalumo';
+    background-color: #36C8F5;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    top: 80%;
+}
+button:hover{
+    background-color:#368ff5;
+}
+button:active{
+    background-color:#588FA0;
+
+}
+#titulo{
+    text-align: center;
+    font-size: 60px;
+}
+img{
+    margin: auto;
+    position:relative;
+    width: 25%;
+    left: 38%;
+}
+
+footer{
+    width: 100%;
+    text-align:center;
+    background-color: #588FA0;
+    position: fixed;
+    height: 40px;
+    bottom: 0;
+}
+#botonJuego, #botonCrono{
+    right: 60%;
+}
+#botonRanking, #botonvista3{
+    left: 60%; 
+}
+footer p{
+    margin: 0;
+    margin-top: 5px;
+}
+
+/* Estilos del contenido principal */
+#registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos del formulario dentro del contenido principal */
+#registro form {
+    min-width: 57.3vh;
+    min-height: 68.5vh;
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
+}
+
+/* Estilos generales para los campos de entrada */
+input {
+    margin: 20px;
+    width: 50%;
+    font-size: 40px;
+    font-family: 'Agbalumo';
+}
+
+/* Estilos específicos para el campo de texto */
+input[type="text"] {
+    font-size: 30px;
+    text-align: center;
+}
+
+/* Estilos para las etiquetas del formulario */
+label {
+    font-size: 30px;
+}
+
+/* Estilos para los botones de envío y selectores */
+input[type="submit"], select {
+    font-family: 'Agbalumo';
+    background-color: #36C8F5; /* Color de fondo azul claro */
+    border-radius: 15px;
+    border: 2px solid black;
+    width: 133px;
+    height: 50px;
+    font-size: large;
+}
+
+/* Estilos al pasar el ratón sobre el botón de envío */
+input[type="submit"]:hover {
+    background-color: #368ff5;
+}
+
+/* Estilos al hacer clic en el botón de envío */
+input[type="submit"]:active {
+    background-color: #588FA0;
+}

@@ -1,6 +1,6 @@
 <?php
     /* Aarón Izquierdo Cordero */
-    require_once '../config/configBD.php';
+    require_once 'C:/xampp/htdocs/Proyecto-ABP/2324_2DAW_LupaEcoLogica/src/php/config/configBD.php';
 
     /**
      * Clase Modelo para la interacción con la base de datos.

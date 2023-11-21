@@ -1,5 +1,4 @@
 import { Vista } from "./vista.js";
-/////FALTA IMPLEMENTAR QUE CADA PREGUNTA SEA UNA VISTA NUEVA
 /**
  * Clase que representa una vista específica, extendiendo la clase base Vista.
  * @extends Vista
@@ -27,6 +26,7 @@ export class Vista5 extends Vista {
 
         // Asignar evento al botón para volver a la vista de inicio
         this.irIndex.onclick = () => {
+
             this.controlador.verVista(Vista.VISTA1);
         };
     }

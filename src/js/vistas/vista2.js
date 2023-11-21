@@ -25,6 +25,7 @@ export class Vista2 extends Vista {
         this.botonCrono = document.createElement("button");
         this.botonCrono.textContent = "¡Comenzar partida!";
         this.botonCrono.setAttribute("id", "botonCrono");
+        this.botonvista3.setAttribute("id", "botonvista3");
         this.base.appendChild(this.botonCrono);
 
         this.explicacionJuego = document.createElement("p");
@@ -35,12 +36,15 @@ export class Vista2 extends Vista {
         this.base.appendChild(this.botonvista3);
         this.botonvista3.textContent = "Ir a las preguntas";
 
+
         // Agregar eventos a los botones
         this.botonCrono.onclick = () => {
+            this.footer = document.getElementById("pie");
+            this.footer.textContent = "Lionel Andrés Messi";
             this.botonCrono.style.display = "none";
             this.iniciarCuentaRegresiva();
         };
-
+        
         this.botonvista3.onclick = () => {
             this.controlador.verVista(Vista.VISTA3);
         };

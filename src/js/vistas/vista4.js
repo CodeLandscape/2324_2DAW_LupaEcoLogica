@@ -70,6 +70,8 @@ export class Vista4 extends Vista{
 	
 		// Al hacer clic en el botón, mostrar la vista correspondiente
 		this.irInicio.onclick = () => {
+            this.footer = document.getElementById("pie");
+            this.footer.textContent = "Escuela Virgen de Guadalupe 2023";
 			this.controlador.verVista(Vista.VISTA5);
 		};
 	}

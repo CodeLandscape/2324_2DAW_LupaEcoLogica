@@ -1,6 +1,6 @@
 <?php
-    require_once '../modelos/modelo.php';
-    /**
+require_once 'C:/xampp/htdocs/Proyecto-ABP/2324_2DAW_LupaEcoLogica/src/php/modelos/modelo.php';
+/**
      * Controlador para interactuar con la lógica de negocio y la presentación.
      */
     class Controlador{

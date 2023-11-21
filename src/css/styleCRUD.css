@@ -183,3 +183,15 @@ a {
 	border: none;
 	border-radius: 0px;
 }
+
+/* Estilos para aumentar el margen en 100px */
+.aumentarMargin100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* Estilos para aumentar el margen en 25px */
+.aumentarMargin25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}   
