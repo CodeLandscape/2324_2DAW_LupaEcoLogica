@@ -40,8 +40,9 @@ export class Vista2 extends Vista {
         // Agregar eventos a los botones
         this.botonCrono.onclick = () => {
             this.footer = document.getElementById("pie");
-            this.footer.textContent = "Lionel Andrés Messi";
+            this.footer.textContent = "Lionel Andrés Messi"; //Se cogerá de la base de datos el nombre del tablero, footer temporal!!!
             this.botonCrono.style.display = "none";
+
             this.iniciarCuentaRegresiva();
         };
         
@@ -54,7 +55,7 @@ export class Vista2 extends Vista {
      * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
      */
     iniciarCuentaRegresiva() {
-        const tiempoLimite = 5; // 5 segundos de cuenta regresiva
+        const tiempoLimite = 30; // 5 segundos de cuenta regresiva
         let tiempoRestante = tiempoLimite;
         this.tiempoRestante.setAttribute("id", "cuentaAtras");
 
