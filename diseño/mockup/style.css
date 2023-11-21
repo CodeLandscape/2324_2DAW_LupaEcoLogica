@@ -91,7 +91,7 @@ footer p{
     max-width: 80%;
     margin: 0 auto;
     background-color: #368ff5;
-    border-radius: 50%;
+    border-radius: 30px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -112,3 +112,55 @@ footer p{
     position: static;
 }
 
+header h1{
+    text-align: center;
+}
+
+#botonSiPregunta{
+    right:60%;
+}
+
+#botonNoPregunta{
+    left:60%;
+}
+
+#containerTabla{
+    width: 1140px;
+    max-height: 100%;
+    background-color: bisque;
+    border-radius: 40px;
+}
+
+#inicioRanking{
+position: relative;
+left: 42.5%;
+}
+
+#tablaRanking{
+    width: 1000px;
+    max-height: 100%;
+}
+
+#botonContinuar{
+    left: 45%;
+}
+
+#reflexion{
+    position: relative;
+    max-width: 80%;
+    margin: 5% auto;
+    background-color: #368ff5;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#reflexion img {
+    max-width: 10%;
+    max-height: 10%;
+    position: static;
+}
