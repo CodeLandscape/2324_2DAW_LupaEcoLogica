@@ -22,8 +22,6 @@
                     // Obtener las categorías
                     $tabla = $controlador->tablaCategoria();
 
-                    echo "Número de filas en \$tabla: " . count($tabla) . "<br>";
-
                     if (empty($tabla)) {
                         echo "No se encontraron categorías";
                     } 
