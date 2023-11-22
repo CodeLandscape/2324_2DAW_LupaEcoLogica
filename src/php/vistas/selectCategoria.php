@@ -1,4 +1,5 @@
 <?php
+    /* Leandro José Paniagua Balbuena */
     include 'template/cabezera.html';
 ?>
         <title>Seleccionar Categorías</title>

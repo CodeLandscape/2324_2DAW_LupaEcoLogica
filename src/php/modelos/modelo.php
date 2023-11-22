@@ -207,7 +207,7 @@
          * @param string $texto           El texto de la pregunta sobre los riesgos de la escena.
          * @param string $reflexionAcierto La reflexión dada al acertar la pregunta.
          * @param string $reflexionFallo   La reflexión dada al fallar la pregunta.
-         * @param int    $respuesta        Dato que especifica la respuesta correcta. 0 para acierto, 1 para fallo.
+         * @param bool    $respuesta        Valor que especifica la respuesta correcta. 0 para acierto, 1 para fallo.
          * @param int    $idCategoria      El identificador de la categoría asociada a la pregunta.
          */
         function insertarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria) {

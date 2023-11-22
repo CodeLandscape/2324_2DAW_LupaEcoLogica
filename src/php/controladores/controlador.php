@@ -71,7 +71,7 @@
         }
 
         function agregarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria) {
-            $modelo = new Modelo();
-            $modelo->insertarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
+            $Modelo = new Modelo();
+            $Modelo->insertarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
         }
     }
