@@ -259,11 +259,12 @@ select {
     justify-content: center;
     align-items: center;
     right: 0%;
-    top: 8.5%;
+    top: 11%;
     left: 75%;
     bottom: 0%;
     background-color: #588fa098;
     object-fit: cover;
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding-left: 10%;
 }
