@@ -4,9 +4,9 @@ import { Vista } from "./vista.js";
  * Clase que representa una vista específica, extendiendo la clase base Vista.
  * @extends Vista
  */
-export class Vista1 extends Vista {
+export class Inicio extends Vista {
     /**
-     * Crea una instancia de Vista1.
+     * Crea una instancia de Inicio.
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */

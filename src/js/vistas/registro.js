@@ -1,8 +1,8 @@
 import {Vista} from "./vista.js"
-export class Vista4 extends Vista{
+export class Registro extends Vista{
 
      /**
-     * Crea una instancia de Vista4.
+     * Crea una instancia de Registro.
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
