@@ -128,45 +128,113 @@ input[type="submit"]:active {
 }
 
 /* Resto de los estilos del primer conjunto */
-#tablero {
+#tablero{
     position: absolute;
-    top: 5%;
+    top:5%;
     width: auto;
     height: auto;
     width: 80%;
-    height: 70%;
+    height: 80%;
     border: 3px solid black;
 }
 
-#tablero img {
+#objetoMalo1{
+    z-index: auto;
+    width: 2.5%;
+    height: 5%;
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    filter: blur(0.5px);
+}
+
+#objetoMalo2{
+    z-index: auto;
+    width: 15%;
+    height: 25%;
+    position: absolute;
+    top: 75%;
+    left: 55%;
+    filter: blur(0.5px);
+}
+
+#objetoMalo3{
+    z-index: auto;
+    width: 10%;
+    height: 15%;
+    position: absolute;
+    top: 85%;
+    left: 40%;
+    filter: blur(0.5px);
+}
+
+#objetoBueno1{
+    z-index: auto;
+    width: 10%;
+    height: 15%;
+    position: absolute;
+    top: 45%;
+    left: 12%;
+    filter: blur(0.5px);
+}
+
+#objetoBueno2{
+    z-index: auto;
+    width: 5%;
+    height: 10%;
+    position: absolute;
+    top: 80%;
+    left: 20%;
+    filter: blur(0.5px);
+}
+
+#objetoBueno3{
+    z-index: auto;
+    width: 5%;
+    height: 10%;
+    position: absolute;
+    top: 25%;
+    left: 65%;
+    filter: blur(0.5px);
+}
+
+#tablero img{
     position: static;
     width: 100%;
     height: 100%;
+    
 }
 
-#puntuacion {
+#puntuacion{
     position: absolute;
+    left: 5%;
+    background-color: rgba(240, 255, 255, 0.312);
+    border-radius: 20px;
+    padding: 5px;
 }
 
-#tiempo {
+#tiempo{
     position: absolute;
     left: 60%;
+    background-color: rgba(240, 255, 255, 0.312);
+    border-radius: 20px;
+    padding: 5px;
 }
 
-#objetosEncontrados {
+#objetosEncontrados{
     position: absolute;
     justify-content: center;
     align-items: center;
-    right: 0%;
-    top: 0%;
+    right:0%;
+    top:0%;
     left: 85%;
-    bottom: 0%;
+    bottom:0%;
     background-color: #588fa098;
     object-fit: cover;
     display: block;
 }
 
-#objetosEncontrados p {
+#objetosEncontrados p{
     padding-left: 5%;
 }
 
@@ -174,7 +242,6 @@ input[type="submit"]:active {
     width: 40%;
     height: 40%;
 }
-
 #preguntaJuego {
     position: relative;
     max-width: 80%;

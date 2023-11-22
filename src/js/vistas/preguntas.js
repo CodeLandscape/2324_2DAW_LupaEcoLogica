@@ -67,7 +67,7 @@ export class Preguntas extends Vista {
             })
             .then(data => {
                 console.log(data);
-                alert("Si miras este enlace verás el tiempo de mañana, de nada " + data.datos);
+                // alert("Si miras este enlace verás el tiempo de mañana, de nada " + data.datos);
             })
             .catch(error => {
                 console.error('ERROR WEB LA PETICION:', error);
