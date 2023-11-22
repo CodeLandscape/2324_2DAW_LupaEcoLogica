@@ -1,53 +1,119 @@
-<!--Leandro José Paniagua Balbuena-->
-<html>
-	<head>
-		<title>Añadir Pregunta</title>
-		<meta charset="UTF-8">
-		<link href="styleCRUD.css" rel="stylesheet" type="text/css"/>
-	</head>
-    <body>
-        <!--Cabecera de la página-->
-		<header>
-            Añadir Pregunta
-            <nav>
-                <ul>
-                    <li><a href="#categorias">CATEGORÍAS</a></li>
-                    <li><a href="#configuracion">CONFIGURACION</a></li>
-                    <li><a href="#objetos">OBJETOS SIN CATEGORÍA</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main class="aumentarMargin25">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styleCRUD.css" rel="stylesheet" type="text/css" />
+    <title>Añadir Preguntas Categoria</title>
+</head>
+<body>
+    <!--Cabecera de la página-->
+    <header>
+        Nombre Categoria
+        <nav>
+            <ul>
+                <li><a href="#categorias">CATEGORÍAS</a></li>
+                <li><a href="#configuracion">CONFIGURACION</a></li>
+                <li><a href="#objetos">OBJETOS SIN CATEGORÍA</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="aumentarMargin100">
+        <div id="contenidoPregunta">
             <form method='post'>
                 <div id="contenido">
-                    <label for='texto'>Texto: </label>
-                    <input type='text' name='texto' required><br>
-                
-                    <label for='ref1'>Reflexion Positiva: </label>
-                    <input type='text' name='ref1' required><br>
-                
-                    <label for='ref2'>Reflexión Negativa: </label>
-                    <input type='text' name='ref2' required><br>
+                    <h2>Añadir Pregunta</h2>
+                    <label for='pregunta'>Pregunta </label>
+                    <input type='text' maxlength="100" name='pregunta' required><br>
                     <div id="respuesta">
                         <label for='resp'>Respuesta</label>
-                        <p> 
+                        <p>
                             <label for='si'>Sí</label>
                             <input type="radio" name="opcion" value="si">
                         </p>
                         <p>
-                            <label for='no'>No</label>  
+                            <label for='no'>No</label>
                             <input type="radio" name="opcion" value="no">
                         </p>
                     </div>
-                    <div> 
-                        <input type='submit' value='Añadir'>
-                        <input type='submit' value='Volver'>    
+                    <label for='ref1'>Reflexion Positiva: </label>
+                   
+                    <input type='text' maxlength="255" name='ref1' required><br>
+            
+                    <label for='ref2'>Reflexión Negativa: </label>
+                    <input type='text' maxlength="255" name='ref2' required><br>
                     </div>
-                </div>
+                    <!-- <div id="contenido">
+                        <h2>Añadir Pregunta</h2>
+                        <label for='pregunta'>Pregunta </label>
+                        <input type='text' maxlength="100" name='pregunta' required><br>
+                        <div id="respuesta">
+                            <label for='resp'>Respuesta</label>
+                            <p>
+                                <label for='si'>Sí</label>
+                                <input type="radio" name="opcion" value="si">
+                            </p>
+                            <p>
+                                <label for='no'>No</label>
+                                <input type="radio" name="opcion" value="no">
+                            </p>
+                        </div>
+                        <label for='ref1'>Reflexion Positiva: </label>
+                    
+                        <input type='text' maxlength="255" name='ref1' required><br>
+                    
+                        <label for='ref2'>Reflexión Negativa: </label>
+                        <input type='text' maxlength="255" name='ref2' required><br>
+                    </div> -->
+
+                
             </form>
-        </main>
-        <footer>
-            <p>Escuela Virgen de Guadalupe 2023</p>
-        </footer>
-    </body>
+            <div>
+                <input type='submit' value='+' id="btnMas">
+                <input type='submit' value='Enviar'>
+            </div>
+        </div>
+        <aside id="listaPreguntas">
+            <p>
+                Pregunta 1
+            </p>
+            <!-- <p>
+                Pregunta 2
+            </p>
+            <p>
+                Pregunta 3
+            </p> -->
+        </aside>
+    </main>
+    <footer>
+        <p>Escuela Virgen de Guadalupe 2023</p>
+    </footer>
+
+    <script>
+        'use strict'
+        // Obtener referencia al botón, al formulario y al div que se clonará
+        this.btnMas = document.getElementById('btnMas');
+        this.formulario = document.querySelector('form');
+        this.contenidoDiv = document.getElementById('contenido');
+        this.listaPreguntas = document.getElementById('listaPreguntas');
+    
+        // Contador para asignar un número de pregunta único
+        this.contadorPregunta = 1;
+    
+        this.btnMas.onclick = () => {
+            // Clonar el div con id "contenido"
+            let nuevoContenido = contenidoDiv.cloneNode(true);
+    
+            // Incrementar el contador y agregar el número de pregunta al aside
+            this.contadorPregunta++;
+            let numeroPregunta = 'Pregunta ' + this.contadorPregunta;
+            let nuevaPreguntaElemento = document.createElement('p');
+            nuevaPreguntaElemento.textContent = numeroPregunta;
+            listaPreguntas.appendChild(nuevaPreguntaElemento);
+    
+            // Agregar el nuevo div como hijo del formulario
+            formulario.appendChild(nuevoContenido);
+        }
+    </script>
+</body>
 </html>
