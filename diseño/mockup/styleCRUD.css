@@ -156,7 +156,8 @@ table {
     border-collapse: collapse;
     color: black;
     background-color: #e6e6e6; /* Color de fondo gris claro */
-    margin: 4.0% 6.0%;
+    margin: 2.0% 6.0%;
+    
 }
 
 /* Estilos para las celdas de la tabla */
@@ -237,9 +238,9 @@ select {
 }
 
 /* Estilos para el bloque con id 'respuesta' */
-#respuesta {
-    display: inline-flex;
-}
+/* #respuesta {
+    position: static;
+} */
 
 /* Estilos para aumentar el margen en 100px */
 .aumentarMargin100 {
@@ -251,4 +252,18 @@ select {
 .aumentarMargin25 {
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+#listaPreguntas {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    right: 0%;
+    top: 8.5%;
+    left: 75%;
+    bottom: 0%;
+    background-color: #588fa098;
+    object-fit: cover;
+    display: block;
+    padding-left: 10%;
 }
