@@ -282,6 +282,9 @@ header h1 {
 #containerTabla {
     width: 1140px;
     max-height: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 5%;
     background-color: bisque;
     border-radius: 40px;
 }

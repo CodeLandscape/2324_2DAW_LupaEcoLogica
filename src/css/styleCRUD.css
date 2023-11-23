@@ -161,14 +161,14 @@ table {
 }
 
 /* Estilos para las celdas de la tabla */
-td {
+td, thead {
     border: 2px solid black;
     height: 40px;
     text-align: center;
 }
 
 /* Estilos para las celdas de la tabla con fondo azul */
-#azul td {
+#azul td, thead {
     background-color: #44caf3;
     height: 50px;
 }
@@ -259,11 +259,12 @@ select {
     justify-content: center;
     align-items: center;
     right: 0%;
-    top: 8.5%;
+    top: 11%;
     left: 75%;
     bottom: 0%;
     background-color: #588fa098;
     object-fit: cover;
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding-left: 10%;
 }

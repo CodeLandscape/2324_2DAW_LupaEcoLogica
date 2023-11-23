@@ -11,8 +11,10 @@ export class Vista {
         Vista.VISTA1 = Symbol("Inicio")
         Vista.VISTA2 = Symbol("BusquedaObjetos")
         Vista.VISTA3 = Symbol("Preguntas")
+        Vista.VISTA3_1 = Symbol("Reflexion")
         Vista.VISTA4 = Symbol("Registro")
         Vista.VISTA5 = Symbol("Ranking")        // Símbolo para la vista de ranking
+
     };
 
     /**

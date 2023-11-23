@@ -1,4 +1,5 @@
 import { Vista } from "./vista.js";
+import { Rest } from "../servicios/rest.js";
 
 /**
  * Clase que representa una vista específica, extendiendo la clase base Vista.
@@ -13,7 +14,8 @@ export class Preguntas extends Vista {
     constructor(controlador, base) {
         super(controlador, base);
         this.crearInterfaz();
-        this.previsionTiempo();
+        this.llamarAJAXConfig();
+        // this.previsionTiempo();
     }
 
     /**
@@ -29,6 +31,8 @@ export class Preguntas extends Vista {
         this.pregunta.textContent = "Pregunta generada en base a la categoría del tablero";
 
         // Configurar texto para los botones
+        this.respuestaSi.id = "botonSiPregunta";
+        this.respuestaNo.id = "botonNoPregunta";
         this.respuestaSi.textContent = "SI";
         this.respuestaNo.textContent = "NO";
         this.registro.textContent = "Ir al registro";
@@ -38,39 +42,67 @@ export class Preguntas extends Vista {
         this.base.appendChild(this.respuestaSi);
         this.base.appendChild(this.respuestaNo);
         this.base.appendChild(this.registro);
-
+        
+        this.respuestaSi.onclick = () => {
+            console.log("Hola?")
+            this.controlador.verVista(Vista.VISTA3_1);
+        }
         // Asignar evento al botón de registro
         this.registro.onclick = () => {
             this.controlador.verVista(Vista.VISTA4);
         };
     }
+    llamarAJAXConfig = () => {
+		//Recojo los valores... validaciones... si todo está bien
+		const params ={};
+		
+		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+		Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXConfig);
+	}
+    verResultadoAJAXConfig = (objeto) => {
+        this.nPregunta = objeto.nPregunta;
+        console.log(objeto);
+        console.log(this.nPregunta); 
+    }
+    llamarAJAXPregunta = () => {
+		//Recojo los valores... validaciones... si todo está bien
+		const params ={};
+		
+		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+		Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXPregunta);
+	}
+    verResultadoAJAXPregunta = (objeto) => {
+        this.pregunta=objeto;
+    }
+
+
 
     /**
      * Realiza una solicitud a una API de pronóstico del tiempo.
      * Muestra el resultado en un mensaje de alerta.
      */
-    previsionTiempo() {
-        // URL y token de acceso a la API de AEMET
-        this.aemetAPIUrl = 'https://opendata.aemet.es/opendata/api/prediccion/ccaa/manana/ext';
-        this.apiToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdGFiYXJlc2xvemFuby5ndWFkYWx1cGVAYWx1bW5hZG8uZnVuZGFjaW9ubG95b2xhLm5ldCIsImp0aSI6IjQ5NzViMWYwLTY1ODItNDVhYi1iZWM0LTg2MWViODgyMWM2NCIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNzAwMTU5NjQ4LCJ1c2VySWQiOiI0OTc1YjFmMC02NTgyLTQ1YWItYmVjNC04NjFlYjg4MjFjNjQiLCJyb2xlIjoiIn0.OllY8QryZO9Dk2_1JuXcVnzSLn4IWETtfcKaD_Qc7LQ'; //token de acceso a la api de aemet
+    // previsionTiempo() {
+    //     // URL y token de acceso a la API de AEMET
+    //     this.aemetAPIUrl = 'https://opendata.aemet.es/opendata/api/prediccion/ccaa/manana/ext';
+    //     this.apiToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdGFiYXJlc2xvemFuby5ndWFkYWx1cGVAYWx1bW5hZG8uZnVuZGFjaW9ubG95b2xhLm5ldCIsImp0aSI6IjQ5NzViMWYwLTY1ODItNDVhYi1iZWM0LTg2MWViODgyMWM2NCIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNzAwMTU5NjQ4LCJ1c2VySWQiOiI0OTc1YjFmMC02NTgyLTQ1YWItYmVjNC04NjFlYjg4MjFjNjQiLCJyb2xlIjoiIn0.OllY8QryZO9Dk2_1JuXcVnzSLn4IWETtfcKaD_Qc7LQ'; //token de acceso a la api de aemet
 
-        // Construir la URL final incluyendo el token de acceso
-        this.url = `${this.aemetAPIUrl}?api_key=${this.apiToken}`;
+    //     // Construir la URL final incluyendo el token de acceso
+    //     this.url = `${this.aemetAPIUrl}?api_key=${this.apiToken}`;
 
-        // Realizar la solicitud utilizando fetch
-        fetch(this.url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('ERROR DE NETWORK');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                // alert("Si miras este enlace verás el tiempo de mañana, de nada " + data.datos);
-            })
-            .catch(error => {
-                console.error('ERROR WEB LA PETICION:', error);
-            });
-    }
+    //     // Realizar la solicitud utilizando fetch
+    //     fetch(this.url)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error('ERROR DE NETWORK');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             console.log(data);
+    //             // alert("Si miras este enlace verás el tiempo de mañana, de nada " + data.datos);
+    //         })
+    //         .catch(error => {
+    //             console.error('ERROR WEB LA PETICION:', error);
+    //         });
+    // }
 }

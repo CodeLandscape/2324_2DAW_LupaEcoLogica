@@ -61,7 +61,7 @@ export class IniciarTablero extends Vista {
      * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
      */
     iniciarCuentaRegresiva() {
-        const tiempoLimite = 30; // 5 segundos de cuenta regresiva
+        const tiempoLimite = 5; // 5 segundos de cuenta regresiva
         let tiempoRestante = tiempoLimite;
         this.tiempoRestante.setAttribute("id", "tiempo");
 
