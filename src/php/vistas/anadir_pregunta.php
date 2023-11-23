@@ -1,52 +1,25 @@
-<?php
-    /* Leandro José Paniagua Balbuena */
-    include 'template/cabezera.html';
-?>
+
     <title>Añadir Pregunta</title>
     </head>
     <body>
         <header>
             Añadir Pregunta
-            <?php
-                include 'template/navegacion.php';
-            ?>
         </header>
         <main class="aumentarMargin100">
-            <div id="contenidoPregunta">
-                <form method='post' action="../controlador/crudPregunta.php">
-                    <?php
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            // Acceder al valor de la categoría seleccionada
-                            $categoriaSeleccionada = isset($_POST['categoria_seleccionada']) ? $_POST['categoria_seleccionada'] : '';
-                        
-                            // Mostrar la categoría seleccionada como un label
-                            echo '<label>Categoría Seleccionada:</label>';
-                            echo '<p>' . $categoriaSeleccionada . '</p>';
-                        }
-                    ?>
-                    <div id="contenido">
-                        <h2>Añadir Pregunta</h2>
-                        <label for='pregunta'>Pregunta </label>
-                        <input type='text' maxlength="100" name='pregunta' required><br>
-                        <div id="respuesta">
-                            <label for='resp'>Respuesta</label>
-                            <p>
-                                <label for='si'>Sí</label>
-                                <input type="radio" name="opcion" value="si">
-                            </p>
-                            <p>
-                                <label for='no'>No</label>
-                                <input type="radio" name="opcion" value="no">
-                            </p>
-                        </div>
-                        <label for='ref1'>Reflexion Positiva: </label>
-                    
-                        <input type='text' maxlength="255" name='ref1' required><br>
-                
-                        <label for='ref2'>Reflexión Negativa: </label>
-                        <input type='text' maxlength="255" name='ref2' required><br>
-                        </div>
-                        <!-- <div id="contenido">
+            
+                <form method='post' action="../index.php">
+                    <div id="contenidoPregunta">
+                        <?php
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                // Acceder al valor de la categoría seleccionada
+                                $categoriaSeleccionada = isset($_POST['categoria_seleccionada']) ? $_POST['categoria_seleccionada'] : '';
+                            
+                                // Mostrar la categoría seleccionada como un label
+                                echo '<label>Categoría Seleccionada:</label>';
+                                echo '<p>' . $categoriaSeleccionada . '</p>';
+                            }
+                        ?>
+                        <div id="contenido">
                             <h2>Añadir Pregunta</h2>
                             <label for='pregunta'>Pregunta </label>
                             <input type='text' maxlength="100" name='pregunta' required><br>
@@ -64,16 +37,18 @@
                             <label for='ref1'>Reflexion Positiva: </label>
                         
                             <input type='text' maxlength="255" name='ref1' required><br>
-                        
+                    
                             <label for='ref2'>Reflexión Negativa: </label>
                             <input type='text' maxlength="255" name='ref2' required><br>
-                        </div> -->
+                        </div>      
+                    </div>
+                    <div>
+                            <input type='submit' value='+' id="btnMas">
+                            <input type='submit' value='Enviar'>
+                    </div>
                 </form>
-                <div>
-                    <input type='submit' value='+' id="btnMas">
-                    <input type='submit' value='Enviar'>
-                </div>
-            </div>
+               
+         
             <aside id="listaPreguntas">
                 <p>
                     Pregunta 1
@@ -114,8 +89,5 @@
             }
         </script>
 
-        <?php
-            include 'template/pie.html';
-        ?>
     </body>
 </html>

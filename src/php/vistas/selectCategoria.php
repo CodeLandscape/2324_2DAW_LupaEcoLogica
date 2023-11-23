@@ -1,23 +1,12 @@
-<?php
-    /* Leandro José Paniagua Balbuena */
-    include 'template/cabezera.html';
-?>
+
         <title>Seleccionar Categorías</title>
     </head>
     <body>
         <header>
             Seleccionar Categorías
-            <?php
-                include 'template/navegacion.php';
-            ?>
         </header>
 		<main>
             <?php
-                require "../controladores/controlador.php";
-
-                $controlador = new Controlador();
-                mostrarFormulario($controlador);
-
                 function mostrarFormulario($controlador) {
                     // Obtener las categorías
                 $tabla = $controlador->tablaCategoria();
@@ -39,6 +28,3 @@
             ?>
         </main>
     </body>
-<?php
-    include 'template/pie.html';
-?>

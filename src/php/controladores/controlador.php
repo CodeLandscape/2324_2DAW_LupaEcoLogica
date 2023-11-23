@@ -1,9 +1,29 @@
 <?php
-    require_once '../modelos/modelo.php';
+    require_once '../php/modelos/modelo.php';
     /**
      * Controlador para interactuar con la lógica de negocio y la presentación.
      */
     class Controlador{
+
+        public $vista;
+
+        public function __construct() 
+        {
+            $this->vista = null;
+        }
+
+        public function inicio(){
+            $this->vista = 'admin';
+        }
+
+        public function addCategoria(){
+            $this->vista = 'addCategoria';
+        }
+
+        public function selectCategoria(){
+            $this->vista = 'selectCategoria';
+        }
+
         /**
          * Método que devuelve la tabla de categorías.
          *
