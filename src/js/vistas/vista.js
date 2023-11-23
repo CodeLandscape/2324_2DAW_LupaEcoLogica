@@ -14,7 +14,7 @@ export class Vista {
         Vista.VISTA3_1 = Symbol("Reflexion")
         Vista.VISTA4 = Symbol("Registro")
         Vista.VISTA5 = Symbol("Ranking")        // Símbolo para la vista de ranking
-
+        
     };
 
     /**
@@ -22,9 +22,19 @@ export class Vista {
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
-    constructor(controlador, base) {
+    constructor(controlador, base, config, idCategoria, nomTablero) {
         this.controlador = controlador;  // Asigna el controlador a la instancia de Vista
         this.base = base;                // Asigna el elemento base a la instancia de Vista
+        this.config = config;
+        this.idCategoria = idCategoria;
+        this.nomTablero = nomTablero;
+        // if (!Vista.instance) {           //Asigna
+        //     this.idCategoria; //valor por ajax
+        //     this.configuracion; //(array) valor por ajax
+        //     this.partida; //valor acumulativo del número de preguntas acertadas, objetos encontrados y puntuación.
+        //     Vista.instance = this;
+        //   }
+        //   return Vista.instance;
     }
 
     /**

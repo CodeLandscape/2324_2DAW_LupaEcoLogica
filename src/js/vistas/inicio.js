@@ -1,5 +1,5 @@
 import { Vista } from "./vista.js";
-
+import { Rest } from "../servicios/rest.js";
 /**
  * Clase que representa una vista específica, extendiendo la clase base Vista.
  * @extends Vista
@@ -12,6 +12,7 @@ export class Inicio extends Vista {
      */
     constructor(controlador, base) {
         super(controlador, base);
+        this.llamarAJAXConfig();
 
         // Crea los botones y configura sus atributos
         this.enlace1 = document.createElement("button");
@@ -43,5 +44,19 @@ export class Inicio extends Vista {
      */
     pulsarEnlace2() {
         this.controlador.verVista(Vista.VISTA5);
+    }
+    llamarAJAXConfig = () => {
+		//Recojo los valores... validaciones... si todo está bien
+		const params ={};
+		
+		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+		Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXConfig);
+	}
+    verResultadoAJAXConfig = (objeto) => {
+        Vista.config = objeto;
+        console.log(Vista.config.nPregunta);
+        
+        // console.log(objeto);
+        // console.log(this.nPregunta); 
     }
 }

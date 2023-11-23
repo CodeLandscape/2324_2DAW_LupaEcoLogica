@@ -10,8 +10,8 @@ export class Reflexiones extends Vista {
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
-    constructor(controlador, base) {
-        super(controlador, base);
+    constructor(controlador, base, config) {
+        super(controlador, base,config);
         this.crearInterfaz();
         this.previsionTiempo();
     }

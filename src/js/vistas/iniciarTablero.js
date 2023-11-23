@@ -1,5 +1,5 @@
 import { Vista } from "./vista.js";
-
+import { Rest } from "../servicios/rest.js";
 /**
  * Clase que representa una vista específica, extendiendo la clase base Vista.
  * @extends Vista
@@ -12,6 +12,8 @@ export class IniciarTablero extends Vista {
      */
     constructor(controlador, base) {
         super(controlador, base);
+        this.llamarAJAXTablero();
+        //this.llamarAJAXFondo(); //Agregar la imagen de la id sacada.
         this.crearInterfaz();
     }
 
@@ -37,6 +39,7 @@ export class IniciarTablero extends Vista {
         this.botonvista3.textContent = "Ir a las preguntas";
 
 
+
         // Agregar eventos a los botones
         this.botonCrono.onclick = () => {
             this.footer = document.getElementById("pie");
@@ -44,9 +47,6 @@ export class IniciarTablero extends Vista {
             this.botonCrono.style.display = "none";
 
             this.capturarObjetos();
-
-
-
             this.iniciarCuentaRegresiva();
         };
         
@@ -61,7 +61,8 @@ export class IniciarTablero extends Vista {
      * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
      */
     iniciarCuentaRegresiva() {
-        const tiempoLimite = 5; // 5 segundos de cuenta regresiva
+        console.log(Vista.config.tiempoCrono);
+        const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
         let tiempoRestante = tiempoLimite;
         this.tiempoRestante.setAttribute("id", "tiempo");
 
@@ -132,4 +133,42 @@ export class IniciarTablero extends Vista {
         this.aside.appendChild(this.nuevoContenido);
 
     }
+    llamarAJAXTablero = () => {
+		//Recojo los valores... validaciones... si todo está bien
+
+		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+		Rest.getJSON('php/controladores/ajaxCateg.php', {'id': Vista.idCategoria}, this.verResultadoAJAXTablero);
+    }
+    verResultadoAJAXTablero = (objeto) => {
+        Vista.idCategoria = objeto.idCategoria;
+        Vista.nomTablero = objeto.nombre;
+        console.log(Vista.idCategoria);
+        console.log(Vista.idCategoria,Vista.nomTablero);
+        this.llamarAJAXFondo();
+
+    }
+    llamarAJAXFondo = () => {
+        console.log(Vista.idCategoria);
+        // Recojo los valores... validaciones... si todo está bien
+        const params = {
+            'id': Vista.idCategoria
+        };
+    
+        // Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+        Rest.post('php/controladores/ajaxFondo.php', params, this.verResultadoAJAXFondo);
+    }
+    
+    
+    verResultadoAJAXFondo = (objeto) => {
+        console.log('Resultado POST:', objeto)
+		if (objeto) {
+			const fondo=document.getElementById("fondo");
+			//Establece el contenido del párrafo con los datos de la fila
+			fondo.src = "data:image/png;base64," + objeto.imagen;
+			fondo.alt = Vista.nomTablero;
+		} else {
+			console.error('La respuesta del servidor no contiene datos de imagen.');
+		}
+    }
+
 } 

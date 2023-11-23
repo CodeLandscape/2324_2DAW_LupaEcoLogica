@@ -11,10 +11,10 @@ export class Preguntas extends Vista {
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
-    constructor(controlador, base) {
-        super(controlador, base);
+    constructor(controlador, base, config) {
+        super(controlador, base,config);
         this.crearInterfaz();
-        this.llamarAJAXConfig();
+        // this.llamarAJAXConfig();
         // this.previsionTiempo();
     }
 
@@ -52,28 +52,16 @@ export class Preguntas extends Vista {
             this.controlador.verVista(Vista.VISTA4);
         };
     }
-    llamarAJAXConfig = () => {
-		//Recojo los valores... validaciones... si todo está bien
-		const params ={};
+    // llamarAJAXPregunta = () => {
+	// 	//Recojo los valores... validaciones... si todo está bien
+	// 	const params ={};
 		
-		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
-		Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXConfig);
-	}
-    verResultadoAJAXConfig = (objeto) => {
-        this.nPregunta = objeto.nPregunta;
-        console.log(objeto);
-        console.log(this.nPregunta); 
-    }
-    llamarAJAXPregunta = () => {
-		//Recojo los valores... validaciones... si todo está bien
-		const params ={};
-		
-		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
-		Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXPregunta);
-	}
-    verResultadoAJAXPregunta = (objeto) => {
-        this.pregunta=objeto;
-    }
+	// 	//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+	// 	Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXPregunta);
+	// }
+    // verResultadoAJAXPregunta = (objeto) => {
+    //     this.pregunta=objeto;
+    // }
 
 
 

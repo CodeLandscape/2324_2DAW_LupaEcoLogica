@@ -39,10 +39,10 @@ export class Rest{
             body: parametros
         }
         fetch(url,opciones)
-		.then( respuesta => respuesta.text())
-		.then( texto => {
+		.then( respuesta => respuesta.json())
+		.then( json => {
 			if (callback)
-				callback(texto)
+				callback(json)
 		})
 	}
 	static consultarAEMET(){
