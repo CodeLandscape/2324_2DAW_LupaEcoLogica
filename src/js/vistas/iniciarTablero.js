@@ -133,20 +133,22 @@ export class IniciarTablero extends Vista {
         this.aside.appendChild(this.nuevoContenido);
 
     }
+
     llamarAJAXTablero = () => {
 		//Recojo los valores... validaciones... si todo está bien
 
 		//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
 		Rest.getJSON('php/controladores/ajaxCateg.php', {'id': Vista.idCategoria}, this.verResultadoAJAXTablero);
     }
+
     verResultadoAJAXTablero = (objeto) => {
         Vista.idCategoria = objeto.idCategoria;
         Vista.nomTablero = objeto.nombre;
         console.log(Vista.idCategoria);
         console.log(Vista.idCategoria,Vista.nomTablero);
         this.llamarAJAXFondo();
-
     }
+
     llamarAJAXFondo = () => {
         console.log(Vista.idCategoria);
         // Recojo los valores... validaciones... si todo está bien
@@ -158,17 +160,42 @@ export class IniciarTablero extends Vista {
         Rest.post('php/controladores/ajaxFondo.php', params, this.verResultadoAJAXFondo);
     }
     
-    
     verResultadoAJAXFondo = (objeto) => {
-        console.log('Resultado POST:', objeto)
+        console.log('Resultado POST:', objeto);
 		if (objeto) {
 			const fondo=document.getElementById("fondo");
 			//Establece el contenido del párrafo con los datos de la fila
 			fondo.src = "data:image/png;base64," + objeto.imagen;
 			fondo.alt = Vista.nomTablero;
+            this.llamarAJAXObjeto();
 		} else {
 			console.error('La respuesta del servidor no contiene datos de imagen.');
 		}
     }
 
+    llamarAJAXObjeto = () => {
+        console.log(Vista.idCategoria);
+        // Recojo los valores... validaciones... si todo está bien
+        const params = {
+            'id': Vista.idCategoria
+        };
+    
+        // Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
+        Rest.post('php/controladores/ajaxObjeto.php', params, this.verResultadoAJAXObjeto);
+    }
+    
+    verResultadoAJAXObjeto = (objeto) => {
+        console.log('Resultado POST:', objeto);
+        console.log(objeto[0].idObjeto);
+        const fondo=document.createElement('img');
+			//Establece el contenido del párrafo con los datos de la fila
+			fondo.src = "data:image/png;base64," + objeto[0].imagen;
+			fondo.alt = Vista.nomTablero;
+        document.body.appendChild(fondo);  
+		// this.crearObjetos(objeto);
+    }
+
+    // crearObjetos(objeto){
+
+    // }
 } 
