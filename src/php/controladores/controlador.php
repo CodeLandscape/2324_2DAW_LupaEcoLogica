@@ -1,5 +1,5 @@
 <?php
-require_once 'C:/xampp/htdocs/Proyecto-ABP/2324_2DAW_LupaEcoLogica/src/php/modelos/modelo.php';
+require_once '../modelos/modelo.php';
 /**
      * Controlador para interactuar con la lógica de negocio y la presentación.
      */
@@ -68,5 +68,27 @@ require_once 'C:/xampp/htdocs/Proyecto-ABP/2324_2DAW_LupaEcoLogica/src/php/model
             $Modelo = new Modelo();
             $tabla = $Modelo->verObjetos($idCategoria);
             return $tabla;
+        }
+        /**
+         * Método que devuelve las filas 10 filas con mayor puntuación de la tabla de partidas.
+         * 
+         * @return array Un array bidimensional con las filas de las partidas.
+         */
+        function rankingTabla(){
+            $Modelo = new Modelo();
+            $tabla = $Modelo->rankingTabla();
+            return $tabla;
+        }
+
+        function configuracion(){
+            $Modelo = new Modelo();
+            $fila = $Modelo->configuracion();
+            return $fila;
+        }
+
+        function randomTablero(){
+            $Modelo = new Modelo();
+            $fila = $Modelo->randomTablero();
+            return $fila;
         }
     }
