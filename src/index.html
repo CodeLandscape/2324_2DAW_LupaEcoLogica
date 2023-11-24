@@ -26,22 +26,16 @@
                 </div>
                 <img src="" id="fondo"/>
                 <div id="objetoMalo1">
-                    <img src="img/objetos/incendios/malos/colillas.png"/>
                 </div>
                 <div id="objetoMalo2">
-                    <img src="img/objetos/incendios/malos/barbacoa.png"/>
                 </div>
                 <div id="objetoMalo3">
-                    <img src="img/objetos/incendios/malos/neumatico.png"/>
                 </div>
                 <div id="objetoBueno1">
-                    <img src="img/objetos/incendios/buenos/animal.png"/>
                 </div>
                 <div id="objetoBueno2">
-                    <img src="img/objetos/incendios/buenos/seta.png"/>
                 </div>
                 <div id="objetoBueno3">
-                    <img src="img/objetos/incendios/buenos/panal.png"/>
                 </div>
             </div>
             
@@ -95,15 +89,26 @@
             <button id="botonContinuar">Continuar</button>
         </div>
         <div id="registro">
-            <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p><!--Cambiar dinámicamente según el tablero a jugar-->
+            <form method='post' id="miFormulario">
+                <div id="contenido">
+                    <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p>
+                    <!-- Cambiar dinámicamente según el tablero a jugar -->
                     <label for="localidad">Localidad: </label>
                     <select id="localidad">
-                        <option value="" selected></option>
                         <option>Badajoz</option>
-                        <option>Merida</option>
-                        <option>Caceres</option>
+                        <option>Mérida</option>
+                        <option>Cáceres</option>
                     </select><br>
+        
+                    <label for='nombre'>Nombre del jugador:</label><br>
+                    <input type='text' id='nombre' name='nombre' placeholder="3 letras y 2 números"><br>
+        
+                    <button type='submit' id="botonEnviar">Enviar</button>
+                </div>
+            </form>
         </div>
+        
+        
             
         <div id="ranking">
             <div id="containerTabla">

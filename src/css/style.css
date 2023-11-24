@@ -322,3 +322,8 @@ header h1 {
     max-height: 10%;
     position: static;
 }
+
+#irInicio{
+    position:relative;
+    left: 50%;
+}
