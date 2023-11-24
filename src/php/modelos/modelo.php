@@ -1,39 +1,39 @@
 <?php
-    /* Aar�n Izquierdo Cordero */
+    /* Aarón Izquierdo Cordero */
     require_once '../config/configBD.php';
 
     /**
-     * Clase Modelo para la interacci�n con la base de datos.
+     * Clase Modelo para la interacción con la base de datos.
      */
     class Modelo {
         /**
-         * @var mysqli La conexi�n a la base de datos.
+         * @var mysqli La conexión a la base de datos.
          */
         public $Conexion;
         /**
-         * M�todo de conexi�n con la base de datos.
+         * Método de conexión con la base de datos.
          */
         function conectar(){
             $this->Conexion=new Mysqli(HOST,USER,PSW,BDD);
             $this->Conexion->set_charset("utf8");
         }
         /**
-         * M�todo para insertar en la base de datos la categor�a y el tablero.
+         * Método para insertar en la base de datos la categoría y el tablero.
          *
-         * @param string $nomC Nombre de la categor�a.
+         * @param string $nomC Nombre de la categoría.
          * @param string $nomT Nombre del tablero.
          * @param string $fondo Imagen de fondo del tablero.
-         * @return int C�digo de resultado (0 para �xito, 2 para clave secundaria duplicada en Categoria, 3 para clave secundaria duplicada en Tablero, 4 para otros errores).
+         * @return int Código de resultado (0 para éxito, 2 para clave secundaria duplicada en Categoria, 3 para clave secundaria duplicada en Tablero, 4 para otros errores).
          */
         function insertarCategoria($nomC, $nomT, $fondo){
-            //Intenta la consulta de creaci�n de categor�a.
+            //Intenta la consulta de creación de categoría.
             try {
                 $this->conectar();
                 $sqlCategoria="INSERT INTO categoria(nombre) VALUES('".$nomC."');";
                 $Resultado = $this->Conexion->query($sqlCategoria);
                 $idCategoria = $this->Conexion->insert_id;
                 $this->Conexion->close();
-                //Intenta la consulta de creaci�n de tablero de la categoria.
+                //Intenta la consulta de creación de tablero de la categoria.
                 try {
                     $this->conectar();
                     $sqlTablero="INSERT INTO tablero(nombre, imagenFondo, idCategoria) VALUES('".$nomT."','".$fondo."',".$idCategoria.");";
@@ -66,9 +66,9 @@
             return 0;
         }
         /**
-         * M�todo para sacar todas las filas de la tabla categor�a.
+         * Método para sacar todas las filas de la tabla categoría.
          *
-         * @return array Un array bidimensional con las filas de la tabla categor�a.
+         * @return array Un array bidimensional con las filas de la tabla categoría.
          */
         function tablaCategoria(){
             $this->conectar();
@@ -82,10 +82,10 @@
             return $tabla;
         }
         /**
-         * M�todo que devuelve una categor�a.
+         * Método que devuelve una categoría.
          * 
-         * @param string $id Id de la categor�a.
-         * @return array Un array de una fila de la tabla categor�a.
+         * @param string $id Id de la categoría.
+         * @return array Un array de una fila de la tabla categoría.
          */
         function verCategoria($id){
             $this->conectar();
@@ -97,9 +97,9 @@
             return $fila;
         }
         /**
-         * M�todo que devuelve el tablero de una categor�a.
+         * Método que devuelve el tablero de una categoría.
          * 
-         * @param string $id Id de la categor�a.
+         * @param string $id Id de la categoría.
          * @return array Un array de una fila de la tabla Tablero.
          */
         function verTablero($id){
@@ -112,9 +112,9 @@
             return $fila;
         }
         /**
-         * M�todo que devuelve todas las preguntas de una categor�a.
+         * Método que devuelve todas las preguntas de una categoría.
          * 
-         * @param string $id Id de la categor�a.
+         * @param string $id Id de la categoría.
          * @return array Un array bidimensional con las filas de la tabla pregunta.
          */
         function verPreguntas($id){
@@ -131,9 +131,9 @@
             return $tabla;
         }
         /**
-         * M�todo que devuleve todos los objetos de una categor�a con consulta preparada.
+         * Método que devuleve todos los objetos de una categoría con consulta preparada.
          * 
-         * @param string $id Id de la categor�a.
+         * @param string $id Id de la categoría.
          * @return array Un array bidimensional con las filas de la tabla objeto.
          */
         function verObjetos($id){
@@ -153,9 +153,9 @@
             return $tabla;
         }
         /**
-         * M�todo que borra una categoria. (Se debe modificar este m�todo para que los objetos que tengan categor�a pasen a tener idCategoria=NULL)
+         * Método que borra una categoria. (Se debe modificar este método para que los objetos que tengan categoría pasen a tener idCategoria=NULL)
          * 
-         * @param string $id Id de la categor�a.
+         * @param string $id Id de la categoría.
          */
         function borrarCategoria($id){
             $this->conectar();
@@ -164,12 +164,12 @@
             $this->Conexion->close();
         }
         /**
-         * M�todo que modifica un tablero de una categor�a.
+         * Método que modifica un tablero de una categoría.
          * 
-         * @param string $idCategoria Id de la categor�a.
+         * @param string $idCategoria Id de la categoría.
          * @param string $nombre Nombre del tablero.
          * @param string $fondo Imagen de fondo del tablero.
-         * @return int C�digo de resultado (0 para �xito, 2 para clave secundaria duplicada en Categoria, 3 para otros errores).
+         * @return int Código de resultado (0 para éxito, 2 para clave secundaria duplicada en Categoria, 3 para otros errores).
          */
         function modificarTablero($idCategoria,$nombre,$fondo){
             $this->conectar();
@@ -187,7 +187,7 @@
             return 0;
         }
         /**
-         * M�todo que devuelve las filas en la tabla objetos que no tienen categor�a.
+         * Método que devuelve las filas en la tabla objetos que no tienen categoría.
          * 
          * @return array Un array bidimensional con los objetos con idCategoria en NULL.
          */
@@ -204,9 +204,9 @@
             return $tabla;
         }
         /**
-         * M�todo que devuelve las 10 primeras filas con la puntaci�n m�s alta de las partidas.
+         * Método que devuelve las 10 primeras filas con la puntación más alta de las partidas.
          * 
-         * @return array Un array bidimensional con las 10 primeras filas con la puntaci�n m�s alta.
+         * @return array Un array bidimensional con las 10 primeras filas con la puntación más alta.
          */
         function rankingTabla(){
             $this->conectar();
@@ -220,9 +220,9 @@
             return $tabla;
         }
         /**
-         * M�todo que devuelve la configuraci�n del juego.$Conexion
+         * Método que devuelve la configuración del juego.$Conexion
          * 
-         * @return array Un array con la configuraci�n.
+         * @return array Un array con la configuración.
          */
         function configuracion(){
             $this->conectar();

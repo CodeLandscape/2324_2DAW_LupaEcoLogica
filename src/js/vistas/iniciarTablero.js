@@ -186,16 +186,56 @@ export class IniciarTablero extends Vista {
     
     verResultadoAJAXObjeto = (objeto) => {
         console.log('Resultado POST:', objeto);
-        console.log(objeto[0].idObjeto);
-        const fondo=document.createElement('img');
-			//Establece el contenido del párrafo con los datos de la fila
-			fondo.src = "data:image/png;base64," + objeto[0].imagen;
-			fondo.alt = Vista.nomTablero;
-        document.body.appendChild(fondo);  
-		// this.crearObjetos(objeto);
+       // console.log(objeto[0].idObjeto);
+        // const fondo=document.createElement('img');
+		// 	//Establece el contenido del párrafo con los datos de la fila
+		// 	fondo.src = "data:image/png;base64," + objeto[0].imagen;
+		// 	fondo.alt = Vista.nomTablero;
+        // document.body.appendChild(fondo);  
+		this.crearObjetos(objeto);
     }
 
-    // crearObjetos(objeto){
+    crearObjetos(tablaObjeto){
+        let nObjetosBuenos = Vista.config.nObjetosBuenos;
+        const objetosBuenos = [];
+        const objetosMalos = [];
 
-    // }
+        tablaObjeto.forEach(objeto => {
+            if (objeto.valoracion === '0' && objetosBuenos.length < nObjetosBuenos) {
+                objetosBuenos.push(objeto);
+            } else {
+                objetosMalos.push(objeto);
+                console.log(objetosMalos);
+            }
+        });
+        this.visualizarObjetos(objetosBuenos, objetosMalos);
+
+    }
+
+    visualizarObjetos(buenos,malos){
+        this.objetomalo1 = document.getElementById("objetoMalo1");
+        this.objetomalo1.src=malos[0].imagen;
+        this.objetomalo1.alt=malos[0].nombre;
+
+        this.objetomalo2 = document.getElementById("objetoMalo2");
+        this.objetomalo2.src=malos[1].imagen;
+        this.objetomalo2.alt=malos[1].nombre;
+
+        this.objetomalo3 = document.getElementById("objetoMalo3");
+        this.objetomalo3.src=malos[2].imagen;
+        this.objetomalo3.alt=malos[2].nombre;
+
+        this.objetoBueno1 = document.getElementById("objetoBueno1");
+        this.objetoBueno1.src=buenos[0].imagen;
+        this.objetoBueno1.alt=buenos[0].nombre;
+
+        this.objetoBueno2 = document.getElementById("objetoBueno2");
+        this.objetoBueno2.src=buenos[1].imagen;
+        this.objetoBueno2.alt=buenos[1].nombre;
+
+        this.objetoBueno3 = document.getElementById("objetoBueno3");
+        this.objetoBueno3.src=buenos[2].imagen;
+        this.objetoBueno3.alt=buenos[2].nombre;
+
+    }
 } 
