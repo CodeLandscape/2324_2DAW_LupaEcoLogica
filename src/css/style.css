@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo');
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    background-color: #F59436;
+    font-family: 'Agbalumo';
+    margin: 0;
+}
+
+button {
+    position: absolute;
+    font-family: 'Agbalumo';
+    background-color: #36C8F5;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    top: 80%;
+}
+
+button:hover {
+    background-color: #368ff5;
+}
+
+button:active {
+    background-color: #588FA0;
+}
+
+#titulo {
+    text-align: center;
+    font-size: 60px;
+}
+
+img {
+    margin: auto;
+    position: relative;
+    width: 25%;
+    left: 38%;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    background-color: #588FA0;
+    position: fixed;
+    height: 40px;
+    bottom: 0;
+}
+
+#botonJuego,
+#botonCrono {
+    right: 60%;
+}
+
+#botonRanking,
+#botonvista3 {
+    left: 60%;
+}
+
+footer p {
+    margin: 0;
+    margin-top: 5px;
+}
+
+/* Estilos del contenido principal */
+#registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos del formulario dentro del contenido principal */
+#registro form {
+    min-width: 57.3vh;
+    min-height: 68.5vh;
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
+}
+
+/* Estilos generales para los campos de entrada */
+input {
+    margin: 20px;
+    width: 50%;
+    font-size: 40px;
+    font-family: 'Agbalumo';
+}
+
+/* Estilos específicos para el campo de texto */
+input[type="text"] {
+    font-size: 30px;
+    text-align: center;
+}
+
+/* Estilos para las etiquetas del formulario */
+label {
+    font-size: 30px;
+}
+
+/* Estilos para los botones de envío y selectores */
+input[type="submit"],
+select {
+    font-family: 'Agbalumo';
+    background-color: #36C8F5; /* Color de fondo azul claro */
+    border-radius: 15px;
+    border: 2px solid black;
+    width: 133px;
+    height: 50px;
+    font-size: large;
+}
+
+/* Estilos al pasar el ratón sobre el botón de envío */
+input[type="submit"]:hover {
+    background-color: #368ff5;
+}
+
+/* Estilos al hacer clic en el botón de envío */
+input[type="submit"]:active {
+    background-color: #588FA0;
+}
+
+/* Resto de los estilos del primer conjunto */
+#tablero{
+    position: absolute;
+    top:5%;
+    width: auto;
+    height: auto;
+    width: 80%;
+    height: 80%;
+    border: 3px solid black;
+}
+
+#objetoMalo1{
+    z-index: auto;
+    width: 2.5%;
+    height: 5%;
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    filter: blur(0.5px);
+}
+
+#objetoMalo2{
+    z-index: auto;
+    width: 15%;
+    height: 25%;
+    position: absolute;
+    top: 75%;
+    left: 55%;
+    filter: blur(0.5px);
+}
+
+#objetoMalo3{
+    z-index: auto;
+    width: 10%;
+    height: 15%;
+    position: absolute;
+    top: 85%;
+    left: 40%;
+    filter: blur(0.5px);
+}
+
+#objetoBueno1{
+    z-index: auto;
+    width: 10%;
+    height: 15%;
+    position: absolute;
+    top: 45%;
+    left: 12%;
+    filter: blur(0.5px);
+}
+
+#objetoBueno2{
+    z-index: auto;
+    width: 5%;
+    height: 10%;
+    position: absolute;
+    top: 80%;
+    left: 20%;
+    filter: blur(0.5px);
+}
+
+#objetoBueno3{
+    z-index: auto;
+    width: 5%;
+    height: 10%;
+    position: absolute;
+    top: 25%;
+    left: 65%;
+    filter: blur(0.5px);
+}
+
+#tablero img{
+    position: static;
+    width: 100%;
+    height: 100%;
+    
+}
+
+#puntuacion{
+    position: absolute;
+    left: 5%;
+    background-color: rgba(240, 255, 255, 0.312);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#tiempo{
+    position: absolute;
+    left: 60%;
+    background-color: rgba(240, 255, 255, 0.312);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#objetosEncontrados{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    right:0%;
+    top:0%;
+    left: 85%;
+    bottom:0%;
+    background-color: #588fa098;
+    object-fit: cover;
+    display: block;
+}
+
+#objetosEncontrados p{
+    padding-left: 5%;
+}
+
+#objetosEncontrados img {
+    width: 40%;
+    height: 40%;
+}
+#preguntaJuego {
+    position: relative;
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #368ff5;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#preguntaJuego p {
+    margin: 0;
+    font-size: large;
+}
+
+#preguntaJuego img {
+    max-width: 40%;
+    max-height: 40%;
+    position: static;
+}
+
+header h1 {
+    text-align: center;
+}
+
+#botonSiPregunta {
+    right: 60%;
+}
+
+#botonNoPregunta {
+    left: 60%;
+}
+
+#containerTabla {
+    width: 1140px;
+    max-height: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 5%;
+    background-color: bisque;
+    border-radius: 40px;
+}
+
+#inicioRanking {
+    position: relative;
+    left: 42.5%;
+}
+
+#tablaRanking {
+    width: 1000px;
+    max-height: 100%;
+}
+
+#botonContinuar {
+    left: 45%;
+}
+
+#reflexion {
+    position: relative;
+    max-width: 80%;
+    margin: 5% auto;
+    background-color: #368ff5;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#reflexion img {
+    max-width: 10%;
+    max-height: 10%;
+    position: static;
+}
+
+#irInicio{
+    position:relative;
+    left: 50%;
+}

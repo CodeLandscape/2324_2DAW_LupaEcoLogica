@@ -1,0 +1,5 @@
+
+# Ignorar configuraciones y cachés de ESLint
+.eslintcache
+.eslintrc.*
+/node_modules/
