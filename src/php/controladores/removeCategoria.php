@@ -5,5 +5,5 @@
         $Modelo=new Modelo();
         $id=$_POST['idCategoria'];
         $Modelo->borrarCategoria($id);
-        header("Location:../index.php");
+        header("Location:index.php");
     }

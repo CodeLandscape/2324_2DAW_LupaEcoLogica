@@ -6,10 +6,10 @@
             Añadir Pregunta
         </header>
         <main class="aumentarMargin100">
-            
-                <form method='post' action="../index.php">
+                <form method='post' action="../controladores/gestionPregunta.php">
                     <div id="contenidoPregunta">
                         <?php
+                            //La condición if ($_SERVER["REQUEST_METHOD"] == "POST") se utiliza para verificar si el formulario en la página se ha enviado mediante el método POST de HTTP.
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 // Acceder al valor de la categoría seleccionada
                                 $categoriaSeleccionada = isset($_POST['categoria_seleccionada']) ? $_POST['categoria_seleccionada'] : '';

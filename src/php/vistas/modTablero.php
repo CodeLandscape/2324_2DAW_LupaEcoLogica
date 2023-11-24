@@ -1,15 +1,9 @@
 <!--Aarón Izquierdo Cordero y Oscar Arroyo Aguadero-->
-<?php
-    include 'template/cabezera.html';
-?>
         <title> Modificar Tablero</title>
     </head>
     <body>
         <header>
             Modificar Tablero
-            <?php
-                include 'template/navegacion.php';
-            ?>
         </header>
         <main>
             <form action="../controladores/crudTablero.php" method="post" enctype="multipart/form-data">
@@ -38,11 +32,8 @@
                     <input type="hidden" name="tipo" value="mod">
                     <div id="botones">
                         <input type='submit' value='Añadir'>
-                        <a href="../index.php?id=<?php echo $_GET['id'];}?>&ruta=categoria">Volver</a>
+                        <a href="index.php?id=<?php echo $_GET['id'];}?>accion=categoria&controlador=Controlador">Volver</a>
                     </div>
                 </div>
             </form>
         </main>
-<?php
-    include 'template/pie.html';
-?>

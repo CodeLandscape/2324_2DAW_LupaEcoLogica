@@ -24,6 +24,18 @@
             $this->vista = 'selectCategoria';
         }
 
+        public function categoria(){
+            $this->vista = 'categoria';
+        }
+
+        public function modTablero(){
+            $this->vista = 'modTablero';
+        }
+
+        public function remove_Categoria(){
+            $this->vista = 'remove_Categoria';
+        }
+
         /**
          * Método que devuelve la tabla de categorías.
          *

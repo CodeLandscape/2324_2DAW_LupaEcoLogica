@@ -1,6 +1,6 @@
 <?php
     /* Aarón Izquierdo Cordero */
-    require_once __DIR__ . '/../config/configBD.php';
+    require_once '../php/config/configBD.php';
 
     /**
      * Clase Modelo para la interacción con la base de datos.
