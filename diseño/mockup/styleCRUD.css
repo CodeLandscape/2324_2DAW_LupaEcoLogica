@@ -156,18 +156,19 @@ table {
     border-collapse: collapse;
     color: black;
     background-color: #e6e6e6; /* Color de fondo gris claro */
-    margin: 4.0% 6.0%;
+    margin: 2.0% 6.0%;
+    
 }
 
 /* Estilos para las celdas de la tabla */
-td {
+td, thead {
     border: 2px solid black;
     height: 40px;
     text-align: center;
 }
 
 /* Estilos para las celdas de la tabla con fondo azul */
-#azul td {
+#azul td, thead {
     background-color: #44caf3;
     height: 50px;
 }
@@ -237,9 +238,9 @@ select {
 }
 
 /* Estilos para el bloque con id 'respuesta' */
-#respuesta {
-    display: inline-flex;
-}
+/* #respuesta {
+    position: static;
+} */
 
 /* Estilos para aumentar el margen en 100px */
 .aumentarMargin100 {
@@ -251,4 +252,19 @@ select {
 .aumentarMargin25 {
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+#listaPreguntas {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    right: 0%;
+    top: 11%;
+    left: 75%;
+    bottom: 0%;
+    background-color: #588fa098;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
 }
