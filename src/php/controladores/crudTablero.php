@@ -23,10 +23,10 @@
                 $error=$Modelo->insertarCategoria($categoria,$tablero,$base64);
             }
             if($error!=0){
-                header("Location:../index.php?ruta=addCategoria&error=".$error);
+                header("Location:index.php?ruta=addCategoria&error=".$error);
             }
             else{
-                header("Location:../index.php");
+                header("Location:index.php");
             }
         }
         /**
@@ -38,10 +38,10 @@
                 $error=$Modelo->modificarTablero($idCategoria,$tablero,$base64);
             }
             if($error!=0){
-                header("Location:../index.php?ruta=modTablero&error=".$error."&id=".$idCategoria);
+                header("Location:index.php?ruta=modTablero&error=".$error."&id=".$idCategoria);
             }
             else{
-                header("Location:../index.php?ruta=categoria&id=".$idCategoria);
+                header("Location:index.php?ruta=categoria&id=".$idCategoria);
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php
     /* Aarón Izquierdo Cordero */
-    require_once '../config/configBD.php';
+    require_once '../php/config/configBD.php';
 
     /**
      * Clase Modelo para la interacción con la base de datos.
@@ -200,4 +200,27 @@
 
             return $tabla;
         }
+
+        /**
+         * Método que inserta una nueva pregunta en la base de datos.
+         *
+         * @param string $texto           El texto de la pregunta sobre los riesgos de la escena.
+         * @param string $reflexionAcierto La reflexión dada al acertar la pregunta.
+         * @param string $reflexionFallo   La reflexión dada al fallar la pregunta.
+         * @param bool    $respuesta        Valor que especifica la respuesta correcta. 0 para acierto, 1 para fallo.
+         * @param int    $idCategoria      El identificador de la categoría asociada a la pregunta.
+         */
+        function insertarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria) {
+            $this->conectar();
+    
+            // Consulta para insertar una nueva pregunta
+            $sqlInsertar = "INSERT INTO preguntas (texto, reflexionAcierto, reflexionFallo, respuesta, idCategoria) 
+                            VALUES ('$texto', '$reflexionAcierto', '$reflexionFallo', $respuesta, $idCategoria);";
+    
+            // Ejecutar la consulta
+            $resultado = $this->Conexion->query($sqlInsertar);
+
+            $this->Conexion->close();
+        }
     }
+    

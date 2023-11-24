@@ -71,3 +71,10 @@ CREATE UNIQUE INDEX tableroCategoria
 
 CREATE UNIQUE INDEX objetoNombre
   ON objeto (nombre);
+
+INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES (43, 'Aportacion');
+INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES (17, 'Cacurria');
+INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES (29, 'Moñeco');
+INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES (44, 'Otro');
+INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES (35, 'pruebaLuis');
+

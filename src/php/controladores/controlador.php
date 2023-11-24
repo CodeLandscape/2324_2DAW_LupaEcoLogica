@@ -1,9 +1,41 @@
 <?php
-    require_once '../modelos/modelo.php';
+    require_once '../php/modelos/modelo.php';
     /**
      * Controlador para interactuar con la lógica de negocio y la presentación.
      */
     class Controlador{
+
+        public $vista;
+
+        public function __construct() 
+        {
+            $this->vista = null;
+        }
+
+        public function inicio(){
+            $this->vista = 'admin';
+        }
+
+        public function addCategoria(){
+            $this->vista = 'addCategoria';
+        }
+
+        public function selectCategoria(){
+            $this->vista = 'selectCategoria';
+        }
+
+        public function categoria(){
+            $this->vista = 'categoria';
+        }
+
+        public function modTablero(){
+            $this->vista = 'modTablero';
+        }
+
+        public function remove_Categoria(){
+            $this->vista = 'remove_Categoria';
+        }
+
         /**
          * Método que devuelve la tabla de categorías.
          *
@@ -68,5 +100,10 @@
             $Modelo = new Modelo();
             $tabla = $Modelo->verObjetos($idCategoria);
             return $tabla;
+        }
+
+        function agregarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria) {
+            $Modelo = new Modelo();
+            $Modelo->insertarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
         }
     }

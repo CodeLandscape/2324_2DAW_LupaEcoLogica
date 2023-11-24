@@ -1,10 +1,7 @@
 <!-- Aarón Izquierdo Cordero y Oscar Arroyo Aguadero -->
-<?php
-    include 'template/cabezera.html';
-?>
-		<title>
-            <?php
-                require '../controladores/controlador.php';
+            Categorias
+            <?php        
+                /*require '../php/controladores/controlador.php';
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
                     $Control = new Controlador();
@@ -12,23 +9,11 @@
                 }
                 else{
                     echo 'ERROR';
-                }
+                }*/
             ?>
         </title>
     </head>
     <body>
-        <!--Cabecera de la página-->
-		<header>
-            <?php
-                if(isset($_GET['id'])){
-                    echo $Control->nombreCategoria($id);
-                }
-                else{
-                    echo 'ERROR';
-                }
-                include 'template/navegacion.php';
-            ?>
-        </header>
         <main>
             <form method='post'>
                 <div id="contenido">
@@ -44,11 +29,8 @@
                         echo '<p class="tamFuenteGrande">ERROR</p>';
                     }
                 ?>
-                    <a class="submit" href="../index.php?ruta=modTablero&id=<?php echo $id; ?>">Modificar</a>
+                    <a class="submit" href="index.php?controlador=Controlador&accion=modTablero">Modificar</a>
                 <!--Contenido de la tabla-->
-                <div class="botonAbajo">
-                    <a class="submit">Añadir Pregunta</a>
-                </div>
 
                 <table>
                     <tr>
@@ -121,10 +103,7 @@
                         }
                     ?>
                 </table>
-                <a href="../index.php">Volver</a>
+                <a href="index.php">Volver</a>
             </div>
             </form>
         </main>
-<?php
-    include 'template/pie.html';
-?>
