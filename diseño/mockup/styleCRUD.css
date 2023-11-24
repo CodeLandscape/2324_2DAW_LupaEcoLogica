@@ -161,14 +161,14 @@ table {
 }
 
 /* Estilos para las celdas de la tabla */
-td {
+td, thead {
     border: 2px solid black;
     height: 40px;
     text-align: center;
 }
 
 /* Estilos para las celdas de la tabla con fondo azul */
-#azul td {
+#azul td, thead {
     background-color: #44caf3;
     height: 50px;
 }
