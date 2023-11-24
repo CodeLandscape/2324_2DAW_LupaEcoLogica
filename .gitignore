@@ -1,4 +1,3 @@
-/src/php/
 
 # Ignorar configuraciones y cachés de ESLint
 .eslintcache
