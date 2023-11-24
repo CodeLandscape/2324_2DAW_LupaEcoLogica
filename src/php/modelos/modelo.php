@@ -131,20 +131,23 @@
             return $tabla;
         }
         /**
-         * Método que devuleve todos los objetos de una categoría.
+         * Método que devuleve todos los objetos de una categoría con consulta preparada.
          * 
          * @param string $id Id de la categoría.
          * @return array Un array bidimensional con las filas de la tabla objeto.
          */
         function verObjetos($id){
             $tabla=array();
-
             $this->conectar();
-            $sqlObjeto="SELECT * FROM objeto WHERE idCategoria = ".$id.";";
-            $Resultado = $this->Conexion->query($sqlObjeto);
+            $sqlObjeto="SELECT * FROM objeto WHERE idCategoria=? ;";
+            $stmt = $this->Conexion->prepare($sqlObjeto);
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $Resultado=$stmt->get_result();
             while($fila = $Resultado->fetch_assoc()){
                 array_push($tabla,$fila);
             }
+            $stmt->close();
             $this->Conexion->close();
 
             return $tabla;
@@ -199,5 +202,41 @@
             $this->Conexion->close();
 
             return $tabla;
+        }
+        /**
+         * Método que devuelve las 10 primeras filas con la puntación más alta de las partidas.
+         * 
+         * @return array Un array bidimensional con las 10 primeras filas con la puntación más alta.
+         */
+        function rankingTabla(){
+            $this->conectar();
+            $sql = "SELECT nombre,localidad,puntuacion FROM partida ORDER BY puntuacion DESC LIMIT 10;";
+            $Resultado = $this->Conexion->query($sql);
+            $tabla = array();
+            while($fila = $Resultado->fetch_assoc()){
+                array_push($tabla,$fila);
+            }
+            $this->Conexion->close();
+            return $tabla;
+        }
+        /**
+         * Método que devuelve la configuración del juego.$Conexion
+         * 
+         * @return array Un array con la configuración.
+         */
+        function configuracion(){
+            $this->conectar();
+            $sql = "SELECT * FROM config";
+            $Resultado = $this->Conexion->query($sql);
+            return $Resultado->fetch_assoc();
+        }
+
+        function randomTablero(){
+            $this->conectar();
+            $sql="SELECT * FROM tablero ORDER BY RAND() LIMIT 1;";
+            $Resultado = $this->Conexion->query($sql);
+            $fila = $Resultado->fetch_assoc();
+            $this->Conexion->close();
+            return $fila;
         }
     }

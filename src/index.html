@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel=stylesheet href="estilos.css" />
-    <!-- <link rel=stylesheet href="css/styleCRUD.css" />
-    <link rel=stylesheet href="css/style.css" /> -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- <link rel=stylesheet href="estilos.css" /> -->
+    <link rel=stylesheet href="css/style.css" />
+    <link rel=stylesheet href="css/styleCRUD.css" />
     <title>Proyecto Lupa Eco-Logica</title>
 </head>
 <body>
@@ -13,33 +14,110 @@
     
         <div id="menuInicio">
             <p id="titulo">Lupa Eco-Lógica</p>
-            <img src="logoCircular.png" alt="Lupa Eco-Lógica">     
-            <footer>
-                <p>Escuela Virgen de Guadalupe 2023</p>
-            </footer>
+            <img src="img/logoCircular.png" alt="Lupa Eco-Lógica">     
+
         </div>
         <div id="busquedaObjetos">
+            <div id="tablero">
+                <div id="puntuacion">
+                    <p>
+                        Puntuacion: 1000pts
+                    </p>
+                </div>
+                <img src="" id="fondo"/>
+                <div id="objetoMalo1">
+                </div>
+                <div id="objetoMalo2">
+                </div>
+                <div id="objetoMalo3">
+                </div>
+                <div id="objetoBueno1">
+                </div>
+                <div id="objetoBueno2">
+                </div>
+                <div id="objetoBueno3">
+                </div>
+            </div>
             
+            <aside id="objetosEncontrados">
+                <p>
+                    Objetos encontrados en el tablero
+                </p>
+                <!-- <div id="objeto1">
+                    <img src="img/objetos/incendios/malos/barbacoa.png"/>
+                </div>
+                <div id="objeto2">
+                    <img src="img/objetos/incendios/malos/colillas.png"/>
+                </div>
+                <div id="objeto3">
+                    <img src="img/objetos/incendios/malos/neumatico.png"/>
+                </div>
+                <div id="objeto4">
+                    <img src="img/objetos/incendios/buenos/animal.png"/>
+                </div>
+                <div id="objeto5">
+                    <img src="img/objetos/incendios/buenos/seta.png"/>
+                </div>
+                <div id="objeto6">
+                    <img src="img/objetos/incendios/buenos/panal.png"/>
+                </div> -->
+            </aside>
         </div>
         <div id="rondaPreguntas">
-            
+            <!-- <div id="puntuacion">
+                <h1>1500 puntos</h1>
+            </div> -->
+            <div id="preguntaJuego">
+                <p>
+                   ¿Existen riesgos biológicos en el medio ambiente?
+                </p>
+                <img src="img/objetos/riesgo biológico/Malos/bateria.png"/>
+            </div>
+
         </div>
-        
+        <div id="reflexionjuego">
+            <!-- <header>
+                <h1>2500 puntos</h1>
+            </header> -->
+            <div id="reflexion">
+                <p>
+                    ¡Excelente! Reconocer los riesgos biológicos es el primer paso para proteger nuestra biodiversidad y 
+                    mantener un equilibrio saludable en la naturaleza.
+                </p>
+                <img src="img/IonCheckmarkCircled.png"/>
+            </div>
+            <button id="botonContinuar">Continuar</button>
+        </div>
         <div id="registro">
-            <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p><!--Cambiar dinámicamente según el tablero a jugar-->
+            <form method='post' id="miFormulario">
+                <div id="contenido">
+                    <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p>
+                    <!-- Cambiar dinámicamente según el tablero a jugar -->
                     <label for="localidad">Localidad: </label>
                     <select id="localidad">
-                        <option value="" selected></option>
                         <option>Badajoz</option>
-                        <option>Merida</option>
-                        <option>Caceres</option>
+                        <option>Mérida</option>
+                        <option>Cáceres</option>
                     </select><br>
+        
+                    <label for='nombre'>Nombre del jugador:</label><br>
+                    <input type='text' id='nombre' name='nombre' placeholder="3 letras y 2 números"><br>
+        
+                    <button type='submit' id="botonEnviar">Enviar</button>
+                </div>
+            </form>
         </div>
+        
+        
             
         <div id="ranking">
-            
+            <div id="containerTabla">
+
+            </div>
         </div>
-    
+        <footer>
+            <p id="pie"></p>
+        </footer>
     <script type="module" src="js/controlador.js"></script>
 </body>
 </html>

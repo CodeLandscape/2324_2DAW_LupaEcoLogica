@@ -1,38 +1,49 @@
+/* Importa la fuente 'Agbalumo' desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo');
 
-body{
-    background-color: #F59436;
-    font-family: 'Agbalumo';
-    margin: 0;
+/* Estilo del cuerpo de la página */
+body {
+    background-color: #F59436; /* Color de fondo naranja */
+    font-family: 'Agbalumo'; /* Usa la fuente 'Agbalumo' */
+    margin: 0; /* Elimina los márgenes predeterminados */
 }
-header{
+
+/* Estilo del encabezado de la página */
+header {
     width: 100%;
-    text-align:center;
-    background-color: #588FA0;
+    text-align: center;
+    background-color: #588FA0; /* Color de fondo azul */
     height: 40px;
     top: 0;
-    position:fixed;
-    font-size: x-large;
+    position: fixed;
+    font-size: x-large; /* Tamaño de fuente extra grande */
 }
-nav{
+
+/* Estilo de la barra de navegación */
+nav {
     width: 100%;
-    text-align:center;
-    background-color: #36C8F5;
+    text-align: center;
+    background-color: #36C8F5; /* Color de fondo azul claro */
     height: 45px;
     top: 40;
-    position:fixed;
-    border: 1px solid black;
+    position: fixed;
 }
+
+/* Estilos de la lista de navegación */
 nav ul {
     list-style-type: none;
     text-align: center;
     line-height: 5px;
 }
+
+/* Estilos de los elementos de la lista de navegación */
 nav li {
     display: inline-block;
     margin-right: 30px;
     font-size: 13px;
 }
+
+/* Estilos de los enlaces de navegación */
 nav a {
     text-decoration: none;
     color: black;
@@ -41,33 +52,34 @@ nav a {
     padding: 0;
     transition: color 0.3s;
 }
+
+/* Estilos al pasar el ratón sobre los enlaces de navegación */
 nav a:hover {
     background-color: #588FA0;
     color: white;
     font-size: 18px;
 }
-footer{
+
+/* Estilo del pie de página */
+footer {
     width: 100%;
-    text-align:center;
-    background-color: #588FA0;
+    text-align: center;
+    background-color: #588FA0; /* Color de fondo azul */
     position: fixed;
     height: 40px;
     bottom: 0;
 }
-footer p{
-    margin: 0;
-    margin-top: 5px;
-}
-main{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    display:flex;
+
+/* Estilos del contenido principal */
+main {
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-main form{
+/* Estilos del formulario dentro del contenido principal */
+main form {
     min-width: 57.3vh;
     min-height: 68.5vh;
     border: 1px solid black;
@@ -76,110 +88,183 @@ main form{
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
 }
-input{
+
+/* Estilos generales para los campos de entrada */
+input {
     margin: 20px;
     width: 50%;
     font-size: 40px;
     font-family: 'Agbalumo';
 }
-input[type="text"]{
+
+/* Estilos específicos para el campo de texto */
+input[type="text"] {
     font-size: 30px;
     text-align: center;
 }
-label{
-    font-size: 40px;
+
+/* Estilos para las etiquetas del formulario */
+label {
+    font-size: 30px;
 }
-input[type="submit"], .submit{
-    display: inline-block;
+
+/* Estilos para los botones de envío y selectores */
+input[type="submit"], select {
     font-family: 'Agbalumo';
-    background-color: #36C8F5;
+    background-color: #36C8F5; /* Color de fondo azul claro */
     border-radius: 15px;
-    border: 1px solid black;
+    border: 2px solid black;
     width: 133px;
     height: 50px;
     font-size: large;
 }
-input[type="submit"]:hover, .submit:hover{
-    background-color:#368ff5;
-}
-input[type="submit"]:active, .submit:active{
-    background-color:#588FA0;
+
+/* Estilos al pasar el ratón sobre el botón de envío */
+input[type="submit"]:hover {
+    background-color: #368ff5;
 }
 
-#botones{
+/* Estilos al hacer clic en el botón de envío */
+input[type="submit"]:active {
+    background-color: #588FA0;
+}
+
+/* Estilos específicos para el bloque con id 'botones' */
+#botones {
     margin-top: 20%;
 }
-.inputPeq{
+
+/* Estilos específicos para las entradas pequeñas */
+.inputPeq {
     width: 10%;
     height: 10%;
 }
 
-input[type="checkbox"]{
-    transform: scale(4);
+/* Estilos para los checkboxes */
+input[type="checkbox"] {
+    transform: scale(4); /* Aumenta el tamaño del checkbox */
 }
 
-#contenido{
+/* Estilos específicos para el bloque con id 'contenido' */
+#contenido {
     margin-top: 10%;
 }
 
-table{
-	width: 87.7%;
-	border-collapse: collapse;
-	color: black;
-	background-color: #e6e6e6;
-	margin: 4.0% 6.0%;
+/* Estilos para las tablas */
+table {
+    width: 87.7%;
+    border-collapse: collapse;
+    color: black;
+    background-color: #e6e6e6; /* Color de fondo gris claro */
+    margin: 2.0% 6.0%;
+    
 }
 
-td{
-	border: 2px solid black;
-	height: 40px;
-	text-align: center;
+/* Estilos para las celdas de la tabla */
+td, thead {
+    border: 2px solid black;
+    height: 40px;
+    text-align: center;
 }
 
-#azul td{
-	background-color: #44caf3;
+/* Estilos para las celdas de la tabla con fondo azul */
+#azul td, thead {
+    background-color: #44caf3;
     height: 50px;
 }
 
+/* Estilos para los enlaces */
 a {
-	padding: 10px 20px;
-	background-color: #44caf3;;
-	color: black;
-	text-decoration: none;
-	border: 2px solid black;
-	border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #44caf3; /* Color de fondo azul claro */
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
-
-
-#volver{
-    margin-top: 20%;
-}
-#imagenTabla img{
+/* Estilos para las imágenes dentro de la tabla */
+#imagenTabla img {
     width: 25%;
     border: 1px solid black;
 }
 
-.tamFuenteGrande{
+/* Estilos para el texto con fuente grande */
+.tamFuenteGrande {
     font-size: 40px;
 }
 
-.botonAbajo{
+/* Estilos para el botón de abajo */
+.botonAbajo {
     margin-top: 10%;
 }
 
-.botonAbajo input[type="submit"]{
+/* Estilos específicos para el ancho del botón de abajo */
+.botonAbajo input[type="submit"] {
     width: 250px;
 }
 
-.icono{
-    width:10%;
+/* Estilos para los iconos */
+.icono {
+    width: 10%;
 }
-.sinEstilo{
+
+/* Estilos para elementos sin estilo */
+.sinEstilo {
     padding: none;
-	background-color: transparent;
-	color: none;
-	text-decoration: none;
-	border: none;
-	border-radius: 0px;
+    background-color: transparent;
+    color: none;
+    text-decoration: none;
+    border: none;
+    border-radius: 0px;
+}
+
+/* Estilos para los selectores */
+select {
+    margin-bottom: 10px; /* Ajusta el valor según tu preferencia */
+}
+
+/* Estilos para el bloque con id 'noFixed' */
+#noFixed {
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+    position: fixed;
+}
+
+/* Estilos para el objeto con id 'objeto' */
+#objeto {
+    width: 42.8%;
+}
+
+/* Estilos para el bloque con id 'respuesta' */
+/* #respuesta {
+    position: static;
+} */
+
+/* Estilos para aumentar el margen en 100px */
+.aumentarMargin100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* Estilos para aumentar el margen en 25px */
+.aumentarMargin25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#listaPreguntas {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    right: 0%;
+    top: 11%;
+    left: 75%;
+    bottom: 0%;
+    background-color: #588fa098;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
 }
