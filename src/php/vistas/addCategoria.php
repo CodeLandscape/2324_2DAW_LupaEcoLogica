@@ -8,7 +8,7 @@
         <header>
             Crear Categoría y Tablero
             <?php
-                include 'template/navegacion.php';
+                include 'template/navegacion.html';
             ?>
         </header>
         <main>

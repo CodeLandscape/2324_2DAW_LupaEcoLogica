@@ -26,7 +26,7 @@
                 else{
                     echo 'ERROR';
                 }
-                include 'template/navegacion.php';
+                include 'template/navegacion.html';
             ?>
         </header>
         <main>

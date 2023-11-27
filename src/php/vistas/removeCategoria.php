@@ -8,7 +8,7 @@
         <header>
             Eliminar Categoría
             <?php
-                include 'template/navegacion.php';
+                include 'template/navegacion.html';
             ?>
         </header>
         <main>
@@ -22,7 +22,7 @@
                                 $Control = new Controlador();
                                 echo $Control->nombreCategoria($id);
                             }
-                        ?>
+                        ?>  
                         ?
                     </p>
                     <input type="hidden" name="idCategoria" value=<?php if(isset($_GET['id'])){echo $_GET['id'];}   ?>>
