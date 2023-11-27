@@ -1,6 +1,6 @@
 <!--Aarón Izquierdo Cordero y Leandro José Paniagua Balbuena-->
 <?php
-    include 'template/cabezera.html';
+    include 'template/cabecera.html';
 ?>
         <title>Administración</title>
     </head>

@@ -1,6 +1,6 @@
 <!--Aarón Izquierdo Cordero y Oscar Arroyo Aguadero-->
 <?php
-    include 'template/cabezera.html';
+    include 'template/cabecera.html';
 ?>
         <title> Modificar Tablero</title>
     </head>

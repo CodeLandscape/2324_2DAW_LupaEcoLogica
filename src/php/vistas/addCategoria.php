@@ -1,6 +1,6 @@
 <!--Oscar Arroyo Aguadero y Aarón Izquierdo Cordero-->
 <?php
-    include 'template/cabezera.html';
+    include 'template/cabecera.html';
 ?>
 		<title>Crear Categoría y Tablero</title>
 	</head>
