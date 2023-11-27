@@ -1,14 +1,9 @@
 <!-- Aarón Izquierdo Cordero y Oscar Arroyo Aguadero -->
-<?php
-    include 'template/cabecera.html';
-?>
-		<title>
-            <?php
-                require '../controladores/controlador.php';
+Categorias
+            <?php        
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
-                    $Control = new Controlador();
-                    echo $Control->nombreCategoria($id);
+                    echo $controlador->nombreCategoria($id);
                 }
                 else{
                     echo 'ERROR';
@@ -35,20 +30,17 @@
                 <?php
                 /* Nombre e imagen del Tablero */
                     if(isset($_GET['id'])){
-                        echo '<p class="tamFuenteGrande">'.$Control->nombreTablero($id).'</p>';
+                        echo '<p class="tamFuenteGrande">'.$controlador->nombreTablero($id).'</p>';
                         echo '<div id="imagenTabla">
-                            <img src="data:image/jpeg;base64,'.$Control->fondoTablero($id).'" alt="Fondo del tablero">
+                            <img src="data:image/jpeg;base64,'.$controlador->fondoTablero($id).'" alt="Fondo del tablero">
                         </div>';
                     }
                     else{
                         echo '<p class="tamFuenteGrande">ERROR</p>';
                     }
                 ?>
-                    <a class="submit" href="../index.php?ruta=modTablero&id=<?php echo $id; ?>">Modificar</a>
+                    <a class="submit" href="index.php?controlador=Controlador&accion=modTablero">Modificar</a>
                 <!--Contenido de la tabla-->
-                <div class="botonAbajo">
-                    <a class="submit">Añadir Pregunta</a>
-                </div>
 
                 <table>
                     <tr>
@@ -65,14 +57,14 @@
                     <?php
                     /* Tablas de las Preguntas */
                         if(isset($_GET['id'])){
-                            foreach($Control->tablaPregunta($id) as $fila){
+                            foreach($controlador->tablaPregunta($id) as $fila){
                                 echo '<tr>
                                     <td>'.$fila['texto'].'</td>
                                     <td>'.$fila['reflexionAcierto'].'</td>
                                     <td>'.$fila['reflexionFallo'].'</td>
                                     <td>'.$fila['puntuacion'].'</td>
-                                    <td><a href="" class="sinEstilo"><img src="../../img/IonBan.svg" class="icono"></a></td>
-                                    <td><a href="" class="sinEstilo"><img src="../../img/IonPencil.svg" class="icono"></a></td>
+                                    <td><a href="" class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
+                                    <td><a href="" class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
                                 </tr>';
                             }
                         }
@@ -100,7 +92,7 @@
                     <?php
                     /* Tablas de los Objetos */
                         if(isset($_GET['id'])){
-                            foreach($Control->tablaObjeto($id) as $fila){
+                            foreach($controlador->tablaObjeto($id) as $fila){
                                 $punt = (int)$fila['puntuacion'];
 
                                 if(!$fila['valoracion']){
@@ -111,8 +103,8 @@
                                     <td>'.$fila['nombre'].'</td>
                                     <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'"></td>
                                     <td>'.$punt.'</td>
-                                    <td><a href="" class="sinEstilo"><img src="../../img/IonBan.svg" class="icono"></a></td>
-                                    <td><a href="" class="sinEstilo"><img src="../../img/IonPencil.svg" class="icono"></a></td>
+                                    <td><a href="" class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
+                                    <td><a href="" class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
                                 </tr>';
                             }
                         }
@@ -121,10 +113,7 @@
                         }
                     ?>
                 </table>
-                <a href="../index.php">Volver</a>
+                <a href="index.php">Volver</a>
             </div>
             </form>
         </main>
-<?php
-    include 'template/pie.html';
-?>
