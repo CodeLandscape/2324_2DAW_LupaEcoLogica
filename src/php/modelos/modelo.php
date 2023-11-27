@@ -1,6 +1,6 @@
 <?php
     /* Aarón Izquierdo Cordero */
-    require_once '../config/configBD.php';
+    require_once '../php/config/configBD.php';
 
     /**
      * Clase Modelo para la interacción con la base de datos.
@@ -177,7 +177,8 @@
             try {
                 $Resultado=$this->Conexion->query($sqlTablero);
             } catch (mysqli_sql_exception $e) {
-                if ($errorCode == 1062) {
+                $errorCode = $e->getCode();
+                if ($c == 1062) {
                     //Error de clave secundaria duplicada
                     return 2;
                 } else {
@@ -220,7 +221,7 @@
             return $tabla;
         }
         /**
-         * Método que devuelve la configuración del juego.$Conexion
+         * Método que devuelve la configuración del juego.
          * 
          * @return array Un array con la configuración.
          */
@@ -244,3 +245,4 @@
             return $fila;
         }
     }
+?>
