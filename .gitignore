@@ -1,0 +1,8 @@
+# Evitar archivos nodejs y eslint
+.eslintrc.json
+/node_modules
+
+# Evitar configuracion contraseña BBDD
+
+/src/php/config/configBD.php
+
