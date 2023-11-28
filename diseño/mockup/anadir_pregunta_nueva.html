@@ -22,7 +22,9 @@
         <div id="contenidoPregunta">
             <form method='post'>
                 <div id="contenido">
+                    <h1>Añadir Pregunta</h1>
                     <div id="pregunta">
+                        <hr>
                         <label for='texto'>Texto: </label>
                         <input type='text' name='texto' required><br>
                     
@@ -44,11 +46,35 @@
                         </div>
                     </div>
                 </div>
-                <div> 
-                    <input type='submit' value='Añadir'>
-                    <a href="" id="submit">Volver</a>
-                </div>
+                    <!-- <div id="contenido">
+                        <h2>Añadir Pregunta</h2>
+                        <label for='pregunta'>Pregunta </label>
+                        <input type='text' maxlength="100" name='pregunta' required><br>
+                        <div id="respuesta">
+                            <label for='resp'>Respuesta</label>
+                            <p>
+                                <label for='si'>Sí</label>
+                                <input type="radio" name="opcion" value="si">
+                            </p>
+                            <p>
+                                <label for='no'>No</label>
+                                <input type="radio" name="opcion" value="no">
+                            </p>
+                        </div>
+                        <label for='ref1'>Reflexion Positiva: </label>
+                    
+                        <input type='text' maxlength="255" name='ref1' required><br>
+                    
+                        <label for='ref2'>Reflexión Negativa: </label>
+                        <input type='text' maxlength="255" name='ref2' required><br>
+                    </div> -->
+
+                
             </form>
+            <div>
+                <input type='submit' value='+' id="btnMas">
+                <input type='submit' value='Enviar'>
+            </div>
         </div>
         <aside id="listaPreguntas">
             <p>
@@ -70,7 +96,7 @@
         'use strict'
         // Obtener referencia al botón, al formulario y al div que se clonará
         this.btnMas = document.getElementById('btnMas');
-        this.contenidoDiv = document.querySelector('contenido');
+        this.contenidoDiv = document.getElementById('contenido');
         this.preguntaDiv = document.getElementById('pregunta');
         this.listaPreguntas = document.getElementById('listaPreguntas');
     
@@ -79,7 +105,7 @@
     
         this.btnMas.onclick = () => {
             // Clonar el div con id "contenido"
-            let nuevaPregunta = preguntaDiv.cloneNode(true);
+            let nuevoContenido = preguntaDiv.cloneNode(true);
     
             // Incrementar el contador y agregar el número de pregunta al aside
             this.contadorPregunta++;
@@ -89,7 +115,7 @@
             listaPreguntas.appendChild(nuevaPreguntaElemento);
     
             // Agregar el nuevo div como hijo del formulario
-            contenidoDiv.appendChild(nuevaPregunta);
+            contenidoDiv.appendChild(nuevoContenido);
         }
     </script>
 

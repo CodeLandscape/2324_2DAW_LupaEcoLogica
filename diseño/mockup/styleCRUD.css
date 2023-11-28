@@ -129,9 +129,15 @@ input[type="submit"]:active {
     background-color: #588FA0;
 }
 
+hr{
+    height: 1px;
+    background-color: black;
+    border-color: #F59436;
+}
+
 /* Estilos específicos para el bloque con id 'botones' */
 #botones {
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 /* Estilos específicos para las entradas pequeñas */
