@@ -279,15 +279,13 @@ function actualizarConfiguracion($tiempoCrono, $nPregunta, $nObjetosBuenos)
 {
     $this->conectar();
 
-    // Realizar la inserción en la tabla config
-    $sql = "UPDATE config (tiempoCrono, nPregunta, nObjetosBuenos) VALUES (?, ?, ?)";
+    // Realizar la actualización en la tabla config
+    $sql = "UPDATE config SET tiempoCrono = ?, nPregunta = ?, nObjetosBuenos = ?";
     $stmt = $this->Conexion->prepare($sql);
     $stmt->bind_param("iii", $tiempoCrono, $nPregunta, $nObjetosBuenos);
     $stmt->execute();
     $stmt->close();
     $this->Conexion->close();
 }
-
-
 }
 ?>
