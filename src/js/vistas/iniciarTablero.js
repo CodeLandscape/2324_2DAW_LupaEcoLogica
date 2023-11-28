@@ -81,29 +81,28 @@ export class IniciarTablero extends Vista {
 
     // Agregar botón de pausa
     const botonPausa = document.createElement('button');
-    botonPausa.textContent = 'Pausar';
+    botonPausa.textContent = 'Pausar'
     botonPausa.addEventListener('click', () => {
       if (this.cuentaRegresivaEnPausa) {
-        reanudarCuentaRegresiva();
-      } 
-      else {
-        pausarCuentaRegresiva();
+        this.reanudarCuentaRegresiva() // Llamar a la función con "this"
+      } else {
+        this.pausarCuentaRegresiva() // Llamar a la función con "this"
       }
       // Cambiar el texto del botón después de cambiar el estado
-      this.cuentaRegresivaEnPausa = !this.cuentaRegresivaEnPausa;
-      botonPausa.textContent = this.cuentaRegresivaEnPausa ? 'Reanudar' : 'Pausar';
+      this.cuentaRegresivaEnPausa = !this.cuentaRegresivaEnPausa
+      botonPausa.textContent = this.cuentaRegresivaEnPausa ? 'Reanudar' : 'Pausar'
     });
     
-    document.body.appendChild(botonPausa);
+    document.body.appendChild(botonPausa)
 
     // Función para pausar la cuenta regresiva
-    const pausarCuentaRegresiva = () => {
-      clearInterval(cuentaRegresiva);
+    this.pausarCuentaRegresiva = () => {
+      clearInterval(this.cuentaRegresiva);
     };
 
     // Función para reanudar la cuenta regresiva
-    const reanudarCuentaRegresiva = () => {
-      cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+    this.reanudarCuentaRegresiva = () => {
+      this.cuentaRegresiva = setInterval(() => this.actualizarTiempo(), 1000);
     };
   }
 
@@ -296,15 +295,21 @@ export class IniciarTablero extends Vista {
     this.objetoBueno3.appendChild(imgB3)
   }
 
-  /**
-   * Verifica si se han capturado los tres objetos malos y cambia a la vista 3 si es así.
-  */
-  verificarObjetosPulsados () {
-    if (
-      this.objetomalo1.style.display === 'none' && this.objetomalo2.style.display === 'none' && this.objetomalo3.style.display === 'none') {
+  verificarObjetosPulsados() {
+    this.objetosPulsados++;
+  
+    const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display');
+    const estiloMalo2 = window.getComputedStyle(this.objetomalo2).getPropertyValue('display');
+    const estiloMalo3 = window.getComputedStyle(this.objetomalo3).getPropertyValue('display');
+  
+    if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
       // Los tres objetos malos han sido capturados
       this.pausarCuentaRegresiva(); // Detener el cronómetro
       this.controlador.verVista(Vista.VISTA3);
     }
+  }
+  
+  pausarCuentaRegresiva() {
+    clearInterval(this.cuentaRegresiva); // Detener la cuenta regresiva
   }
 }
