@@ -4,6 +4,9 @@
     <body>
         <header>
             Eliminar Categoría
+            <?php
+                include 'template/navegacion.html';
+            ?>
         </header>
         <main>
         <form action="index.php?accion=borrarCategoria&controlador=Controlador" method="post">

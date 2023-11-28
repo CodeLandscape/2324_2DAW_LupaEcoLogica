@@ -111,10 +111,40 @@
             return $tabla;
         }
 
-        function agregarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria) {
-            $Modelo = new Modelo();
-            $Modelo->insertarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
-        }
+        /**
+             * Método que agrega una pregunta.
+             */
+            public function agregarPregunta()
+            {
+                $Modelo = new Modelo();
+            
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Acceder a los valores del formulario
+                    $preguntas = isset($_POST['pregunta']) ? $_POST['pregunta'] : array();
+                    $respuestas = isset($_POST['opcion']) ? $_POST['opcion'] : array();
+                    $reflexionesAcierto = isset($_POST['ref1']) ? $_POST['ref1'] : array();
+                    $reflexionesFallo = isset($_POST['ref2']) ? $_POST['ref2'] : array();
+                    $idCategoria = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
+                // Agregar cada pregunta utilizando el modelo
+                foreach ($preguntas as $index => $pregunta) {
+                    // Obtener la respuesta correcta para la pregunta actual
+                    $respuesta = isset($respuestas[$index]) ? $respuestas[$index] : '';
+
+                    // Si la respuesta es un array, toma el primer elemento (puede ser '1' o '0')
+                    if (is_array($respuesta)) {
+                        $respuesta = isset($respuesta[0]) ? $respuesta[0] : '';
+                    }
+
+                    $refAcierto = isset($reflexionesAcierto[$index][0]) ? $reflexionesAcierto[$index][0] : '';
+                    $refFallo = isset($reflexionesFallo[$index][0]) ? $reflexionesFallo[$index][0] : '';
+
+                    $Modelo->agregarPregunta($pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
+                }
+                }
+            }
+            
+            
+            
             
         /**
          * Método que devuelve las 10 filas con mayor puntuación de la tabla de partidas.
@@ -154,4 +184,31 @@
             $Modelo->insertarCategoria($_POST["categoria"], $_POST["tablero"], $_POST["img"]);
             $this->vista = 'addCategoria';
         }
+
+
+        // En tu Controlador.php
+function actualizarConfiguracion()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion']) && $_POST['accion'] == 'actualizarConfiguracion') {
+        $Modelo = new Modelo();
+        
+        // Recuperar los valores del formulario
+        $parametro1 = $_POST['parametro1'];
+        $parametro2 = $_POST['parametro2'];
+        $parametro3 = $_POST['parametro3'];
+        // Agregar más variables según los parámetros que existan en la tabla config
+
+        // Actualizar la configuración en la base de datos
+        $Modelo->actualizarConfiguracion($parametro1, $parametro2,$parametro3);
+        // Agregar más llamadas al método de actualización según los parámetros
+
+       
+        
+    }
+    // Redirigir a la vista de configuración
+    $this->vista = 'modConfig';
+}
+
+
+        
 }

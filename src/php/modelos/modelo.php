@@ -244,5 +244,50 @@
             $this->Conexion->close();
             return $fila;
         }
-    }
+/**
+ * Método que agrega una pregunta a la base de datos.
+ *
+ * @param string $texto Pregunta.
+ * @param string $reflexionAcierto Reflexión positiva.
+ * @param string $reflexionFallo Reflexión negativa.
+ * @param int $respuesta Respuesta (0 o 1).
+ * @param int $idCategoria ID de la categoría a la que pertenece la pregunta.
+ */
+public function agregarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria)
+{
+    $this->conectar();
+
+    // Asegurarse de que $respuesta sea 0 o 1
+    $respuesta = ($respuesta == '1') ? 1 : 0;
+
+    var_dump($respuesta);
+
+
+    // Realizar la inserción en la tabla pregunta
+    $sql = "INSERT INTO pregunta (texto, reflexionAcierto, reflexionFallo, respuesta, idCategoria) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $this->Conexion->prepare($sql);
+    $stmt->bind_param("sssii", $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
+    $stmt->execute();
+    $stmt->close();
+    $this->Conexion->close();
+}
+
+
+
+// En tu Modelo.php
+function actualizarConfiguracion($tiempoCrono, $nPregunta, $nObjetosBuenos)
+{
+    $this->conectar();
+
+    // Realizar la inserción en la tabla config
+    $sql = "UPDATE config (tiempoCrono, nPregunta, nObjetosBuenos) VALUES (?, ?, ?)";
+    $stmt = $this->Conexion->prepare($sql);
+    $stmt->bind_param("iii", $tiempoCrono, $nPregunta, $nObjetosBuenos);
+    $stmt->execute();
+    $stmt->close();
+    $this->Conexion->close();
+}
+
+
+}
 ?>
