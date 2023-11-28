@@ -78,6 +78,33 @@ export class IniciarTablero extends Vista {
     // Mostrar inicialmente el tiempo restante y actualizar cada segundo
     actualizarTiempo()
     const cuentaRegresiva = setInterval(actualizarTiempo, 1000)
+
+    // Agregar botón de pausa
+    const botonPausa = document.createElement('button');
+    botonPausa.textContent = 'Pausar';
+    botonPausa.addEventListener('click', () => {
+      if (this.cuentaRegresivaEnPausa) {
+        reanudarCuentaRegresiva();
+      } 
+      else {
+        pausarCuentaRegresiva();
+      }
+      // Cambiar el texto del botón después de cambiar el estado
+      this.cuentaRegresivaEnPausa = !this.cuentaRegresivaEnPausa;
+      botonPausa.textContent = this.cuentaRegresivaEnPausa ? 'Reanudar' : 'Pausar';
+    });
+    
+    document.body.appendChild(botonPausa);
+
+    // Función para pausar la cuenta regresiva
+    const pausarCuentaRegresiva = () => {
+      clearInterval(cuentaRegresiva);
+    };
+
+    // Función para reanudar la cuenta regresiva
+    const reanudarCuentaRegresiva = () => {
+      cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+    };
   }
 
   /**
@@ -141,6 +168,8 @@ export class IniciarTablero extends Vista {
     this.nuevoContenido.style.display = 'block'
     this.nuevoContenido.id = 'objeto1'
     this.aside.appendChild(this.nuevoContenido)
+
+    this.verificarObjetosPulsados();
   }
 
   /**
@@ -268,13 +297,14 @@ export class IniciarTablero extends Vista {
   }
 
   /**
-     * Verifica si todos los objetos han sido pulsados y cambia a la vista 3 si es así.
-     */
+   * Verifica si se han capturado los tres objetos malos y cambia a la vista 3 si es así.
+  */
   verificarObjetosPulsados () {
-    this.objetosPulsados++
-
-    if (this.objetosPulsados >= 6) {
-      this.controlador.verVista(Vista.VISTA3)
+    if (
+      this.objetomalo1.style.display === 'none' && this.objetomalo2.style.display === 'none' && this.objetomalo3.style.display === 'none') {
+      // Los tres objetos malos han sido capturados
+      this.pausarCuentaRegresiva(); // Detener el cronómetro
+      this.controlador.verVista(Vista.VISTA3);
     }
   }
 }
