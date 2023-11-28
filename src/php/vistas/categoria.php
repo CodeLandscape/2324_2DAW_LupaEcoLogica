@@ -64,7 +64,7 @@ Categorias
                                     <td>'.$fila['reflexionAcierto'].'</td>
                                     <td>'.$fila['reflexionFallo'].'</td>
                                     <td>'.$fila['puntuacion'].'</td>
-                                    <td><a href="" class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
+                                    <td><a href=index.php?id='.$fila['idPregunta'].'&accion=remove_categoria&controlador=Controlador&funcion=Pregunta class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
                                     <td><a href="" class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
                                 </tr>';
                             }
@@ -104,8 +104,8 @@ Categorias
                                     <td>'.$fila['nombre'].'</td>
                                     <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'" class="imagenObjeto"></td>
                                     <td>'.$punt.'</td>
-                                    <td><a href="" class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
-                                    <td><a href="" class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
+                                    <td><a href=index.php?id='.$fila['idObjeto'].'&accion=remove_categoria&controlador=Controlador&funcion=Objeto class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
+                                    <td><a href=index.php?idCategoria='.$_GET['id'].'&id='.$fila['idObjeto'].'&accion=modificar_objeto&controlador=Controlador&funcion=Objeto class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
                                 </tr>';
                             }
                         }

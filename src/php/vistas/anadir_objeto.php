@@ -1,103 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
 
-    <title>Añadir Pregunta</title>
+<head>
+    <title>Crear Objeto</title>
 </head>
+
 <body>
+    <!--Cabecera de la página-->
     <header>
-        Añadir Pregunta
+        Crear Objeto
         <?php include 'template/navegacion.html'; ?>
     </header>
-    <main class="aumentarMargin100">
-        <form method='post' action="index.php?accion=agregarPregunta&controlador=Controlador">
-            <?php
+    <main class="aumentarMargin25">
+        <form method='post' action="index.php?accion=agregarObjeto&controlador=Controlador" enctype="multipart/form-data">
+            <div id="contenido">
+                <?php
                 $categoriaSeleccionada = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
-                
+
                 // Separar el idCategoria y el nombre
                 list($idCategoria, $nombreCategoria) = explode('|', $categoriaSeleccionada);
-            ?>
-            <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $idCategoria; ?>">
-            <?php
-                    echo '<label>Categoría Seleccionada:</label>';
-                    echo '<p>' . $nombreCategoria . '</p>';
-            ?>
-            <div id="preguntasContainer">
-                <div id="pregunta1" class="pregunta">
-                    <label for='pregunta1'>Pregunta 1</label>
-                    <input type='text' maxlength="100" name='pregunta[1]' required><br>
-                    <div class="respuesta">
-                        <label for='resp'>Respuesta</label>
-                        <p>
-                            <label for='si1'>Sí</label>
-                            <input type="radio" name="opcion[1]" value="1">
-                        </p>
-                        <p>
-                            <label for='no1'>No</label>
-                            <input type="radio" name="opcion[1]" value="0">
-                        </p>
+                ?>
+                <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $idCategoria; ?>">
+                <?php
+                echo '<label>Categoría Seleccionada:</label>';
+                echo '<p>' . $nombreCategoria . '</p>';
+                ?>
+                <div id="objetosContainer">
+                    <div id="objeto1" class="contenedores">
+                        <h3>Objeto 1</h3>
+                        <label for='nombre1'>Nombre:</label>
+                        <input type='text' id='nombre1' name='nombre[1]' required><br>
+
+                        <label for='descripcion1'>Descripción:</label>
+                        <input type='text' id='descripcion1' name='descripcion[1]' required><br>
+
+                        <label for='img1'>Añadir imagen:</label>
+                        <input type='file' id='img1' name='img[1]' required><br>
+
+                        <label for='punt1'>Puntuación:</label>
+                        <input type='text' id='punt1' name='punt[1]' class="inputPeq"><br>
+
+                        <label for='bueno1'>Bueno:</label>
+                        <input type='checkbox' id='bueno1' name='bueno[1]' class="inputPeq"><br>
                     </div>
-                    <label for='ref1'>Reflexion Positiva: </label>
-                    <input type='text' maxlength="255" name='ref1[1][]' required><br>
-                    <label for='ref2'>Reflexión Negativa: </label>
-                    <input type='text' maxlength="255" name='ref2[1][]' required><br>
+                </div>
+                <div id="botones">
+                    <input type='button' value='+' id="btnMas">
+                    <input type='submit' value='Añadir'>
+                    <input type='submit' value='Volver'>
                 </div>
             </div>
-            <div id="botonesPregunta">
-                <input type='button' value='+' id="btnMas">
-                <input type='submit' value='Enviar'>
-            </div>
         </form>
-
-        <aside id="listaPreguntas">
-            <!-- Aquí se mostrarán las preguntas agregadas dinámicamente -->
-        </aside>
 
         <script>
             'use strict';
 
             // Obtener referencia al botón, al formulario y al div que se clonará
-            this.btnMas = document.getElementById('btnMas');
-            this.formulario = document.querySelector('form');
-            this.preguntasContainer = document.getElementById('preguntasContainer');
-            this.listaPreguntas = document.getElementById('listaPreguntas');
+            const btnMas = document.getElementById('btnMas');
+            const formulario = document.querySelector('form');
+            const objetosContainer = document.getElementById('objetosContainer');
 
-            // Contador para asignar un número de pregunta único
-            this.contadorPregunta = 1;
+            // Contador para asignar un número de objeto único
+            let contadorObjeto = 1;
 
-            this.btnMas.onclick = () => {
+            btnMas.onclick = () => {
                 // Incrementar el contador
-                this.contadorPregunta++;
+                contadorObjeto++;
 
-                // Crear un nuevo div para la pregunta
-                let nuevaPreguntaDiv = document.createElement('div');
-                nuevaPreguntaDiv.id = `pregunta${this.contadorPregunta}`;
-                nuevaPreguntaDiv.className = 'pregunta';
+                // Crear un nuevo div para el objeto
+                let nuevoObjetoDiv = document.createElement('div');
+                nuevoObjetoDiv.id = `objeto${contadorObjeto}`;
+                nuevoObjetoDiv.className = 'contenedores';
 
-                // Agregar la pregunta al aside
-                let numeroPregunta = `Pregunta ${this.contadorPregunta}`;
-                let nuevaPreguntaElemento = document.createElement('div');
-                nuevaPreguntaElemento.innerHTML = numeroPregunta;
-                listaPreguntas.appendChild(nuevaPreguntaElemento);
+                // Agregar los elementos del objeto al nuevo div
+                nuevoObjetoDiv.innerHTML = `
+                    <h3>Objeto ${contadorObjeto}</h3>
+                    <label for='nombre${contadorObjeto}'>Nombre:</label>
+                    <input type='text' id='nombre${contadorObjeto}' name='nombre[${contadorObjeto}]' required><br>
 
-                // Agregar los elementos de la pregunta al nuevo div
-                nuevaPreguntaDiv.innerHTML = `
-                    <label for='pregunta${this.contadorPregunta}'>${numeroPregunta}</label>
-                    <input type='text' maxlength="100" name='pregunta[${this.contadorPregunta}]' required><br>
-                    <div class="respuesta">
-                        <label for='si${this.contadorPregunta}'>Sí</label>
-                        <input type="radio" name="opcion[${this.contadorPregunta}]" value="1">
-                        <label for='no${this.contadorPregunta}'>No</label>
-                        <input type="radio" name="opcion[${this.contadorPregunta}]" value="0">
-                    </div>
-                    <label for='ref1'>Reflexion Positiva: </label>
-                    <input type='text' maxlength="255" name='ref1[${this.contadorPregunta}][]' required><br>
-                    <label for='ref2'>Reflexión Negativa: </label>
-                    <input type='text' maxlength="255" name='ref2[${this.contadorPregunta}][]' required><br>
+                    <label for='descripcion${contadorObjeto}'>Descripción:</label>
+                    <input type='text' id='descripcion${contadorObjeto}' name='descripcion[${contadorObjeto}]' required><br>
+
+                    <label for='img${contadorObjeto}'>Añadir imagen:</label>
+                    <input type='file' id='img${contadorObjeto}' name='img[${contadorObjeto}]' required><br>
+
+                    <label for='punt${contadorObjeto}'>Puntuación:</label>
+                    <input type='text' id='punt${contadorObjeto}' name='punt[${contadorObjeto}]' class="inputPeq"><br>
+
+                    <label for='bueno${contadorObjeto}'>Bueno:</label>
+                    <input type='checkbox' id='bueno${contadorObjeto}' name='bueno[${contadorObjeto}]' class="inputPeq"><br>
                 `;
 
-                // Agregar el nuevo div como hijo del contenedor de preguntas
-                preguntasContainer.appendChild(nuevaPreguntaDiv);
-                formulario.appendChild(document.getElementById('botonesPregunta'));
+                // Agregar el nuevo div como hijo del contenedor de objetos
+                objetosContainer.appendChild(nuevoObjetoDiv);
+                formulario.appendChild(document.getElementById('botones'));
             }
         </script>
     </main>
 </body>
+
 </html>

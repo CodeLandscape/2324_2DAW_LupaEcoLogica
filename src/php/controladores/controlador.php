@@ -26,6 +26,9 @@
         public function anadir_pregunta(){
             $this->vista = 'anadir_pregunta';
         }
+        public function anadir_objeto(){
+            $this->vista = 'anadir_objeto';
+        }
         public function categoria(){
             $this->vista = 'categoria';
         }
@@ -34,6 +37,9 @@
             $this->vista = 'modTablero';
         }
 
+        public function modificar_objeto(){
+            $this->vista = 'modificar_objeto';
+        }
         public function remove_Categoria(){
             $this->vista = 'remove_Categoria';
         }
@@ -60,12 +66,19 @@
             return $fila['nombre'];
         }
         function borrarCategoria(){
-            // if(isset($_POST['idCategoria'])){
-                $Modelo=new Modelo();
-                // $id=$_POST['idCategoria'];
-                $Modelo->borrarCategoria($_POST["id"]);
-                $this->vista = 'admin';
-            // }
+            $Modelo=new Modelo();
+            $Modelo->borrarCategoria($_POST["id"]);
+            $this->vista = 'admin';
+        }
+        function borrarPregunta(){
+            $Modelo=new Modelo();
+            $Modelo->borrarPregunta($_POST["id"]);
+            // $this->vista = 'categoria';
+        }
+        function borrarObjeto(){
+            $Modelo=new Modelo();
+            $Modelo->borrarObjeto($_POST["id"]);
+            $this->vista = 'categoria';
         }
         /**
          * Método que devuelve el nombre del tablero de una categoría.
@@ -112,6 +125,11 @@
             return $tabla;
         }
 
+        function verObjeto($idObjeto){
+            $Modelo = new Modelo();
+            $fila = $Modelo->verObjeto($idObjeto);
+            return $fila;
+        }
         /**
              * Método que agrega una pregunta.
              */
@@ -195,24 +213,105 @@
 
 
         // En tu Controlador.php
-function actualizarConfiguracion()
-{
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion']) && $_POST['accion'] == 'actualizarConfiguracion') {
-        $Modelo = new Modelo();
-        
-        // Recuperar los valores del formulario
-        $parametro1 = $_POST['parametro1'];
-        $parametro2 = $_POST['parametro2'];
-        $parametro3 = $_POST['parametro3'];
-        // Agregar más variables según los parámetros que existan en la tabla config
+        function actualizarConfiguracion()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion']) && $_POST['accion'] == 'actualizarConfiguracion') {
+                $Modelo = new Modelo();
+                
+                // Recuperar los valores del formulario
+                $parametro1 = $_POST['parametro1'];
+                $parametro2 = $_POST['parametro2'];
+                $parametro3 = $_POST['parametro3'];
+                // Agregar más variables según los parámetros que existan en la tabla config
 
-        // Actualizar la configuración en la base de datos
-        $Modelo->actualizarConfiguracion($parametro1, $parametro2,$parametro3);
+                // Actualizar la configuración en la base de datos
+                $Modelo->actualizarConfiguracion($parametro1, $parametro2,$parametro3);
+            }
+            // Redirigir a la vista de configuración
+            $this->vista = 'modConfig';
+        }
+
+        public function agregarObjeto()
+        {
+            $Modelo = new Modelo();
+        
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Acceder a los valores del formulario
+                $nombres = isset($_POST['nombre']) ? $_POST['nombre'] : array();
+                $descripciones = isset($_POST['descripcion']) ? $_POST['descripcion'] : array();
+                $imgs = isset($_FILES['img']) ? $_FILES['img'] : array();
+                $puntuaciones = isset($_POST['punt']) ? $_POST['punt'] : array();
+                $buenos = isset($_POST['bueno']) ? $_POST['bueno'] : array();
+                $idCategoria = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
+        
+                // Agregar cada objeto utilizando el modelo
+                foreach ($nombres as $index => $nombre) {
+                    // Verificar si se ha subido una imagen y es del tipo correcto
+                    if (!empty($imgs['tmp_name'][$index]) && in_array($imgs['type'][$index], array('image/png', 'image/jpg', 'image/jpeg'))) {
+                        $imagenTmp = $imgs['tmp_name'][$index];
+
+                        // Leer el contenido de la imagen
+                        $contenido = file_get_contents($imagenTmp);
+                        $base64 = base64_encode($contenido);
+        
+        
+                        $descripcion = isset($descripciones[$index]) ? $descripciones[$index] : '';
+                        $puntuacion = isset($puntuaciones[$index]) ? $puntuaciones[$index] : '';
+        
+                        // Verificar si el checkbox está marcado
+                        $bueno = isset($buenos[$index]) ? 1 : 0;
+        
+                        $Modelo->agregarObjeto($nombre, $descripcion, $base64, $puntuacion, $bueno, $idCategoria);
+                    }
+                }
+        
+                // Redireccionar después de procesar los objetos
+                header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
+            }
+        }
+        
+        public function actualizarObjeto(){
+
+            $Modelo = new Modelo();
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Acceder a los valores del formulario
+                $ids = isset($_POST['id']) ? $_POST['id'] : array();
+                $nombres = isset($_POST['nombre']) ? $_POST['nombre'] : array();
+                $descripciones = isset($_POST['descripcion']) ? $_POST['descripcion'] : array();
+                $imgs = isset($_FILES['img']) ? $_FILES['img'] : array();
+                $puntuaciones = isset($_POST['punt']) ? $_POST['punt'] : array();
+                $buenos = isset($_POST['bueno']) ? $_POST['bueno'] : array();
+                $idCategoria = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
+
+                // Modificar cada objeto utilizando el modelo
+                foreach ($ids as $index => $id) {
+                    // Verificar si se ha subido una imagen y es del tipo correcto
+                    if (!empty($imgs['tmp_name'][$index]) && in_array($imgs['type'][$index], array('image/png', 'image/jpg', 'image/jpeg'))) {
+                        $imagenTmp = $imgs['tmp_name'][$index];
+
+                        // Leer el contenido de la imagen
+                        $contenido = file_get_contents($imagenTmp);
+                        $base64 = base64_encode($contenido);
+
+                        $nombre = isset($nombres[$index]) ? $nombres[$index] : '';
+                        $descripcion = isset($descripciones[$index]) ? $descripciones[$index] : '';
+                        $puntuacion = isset($puntuaciones[$index]) ? $puntuaciones[$index] : '';
+
+                        // Verificar si el checkbox está marcado
+                        $bueno = isset($buenos[$index]) ? 1 : 0;
+
+                        $Modelo->modificarObjeto($id, $nombre, $descripcion, $base64, $puntuacion, $bueno, $idCategoria);
+                    }
+                }
+
+                // Redireccionar después de procesar las modificaciones de los objetos
+                header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
+            }
+        
+        
+        
+
+
+        }
     }
-    // Redirigir a la vista de configuración
-    $this->vista = 'modConfig';
-}
-
-
-        
-}

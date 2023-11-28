@@ -11,7 +11,7 @@
     <?php
     $configuracion=$controlador->configuracion();
     ?>
-    <form action="index.php?accion=actualizarConfiguracion&controlador=Controlador" method="post" enctype="multipart/form-data"><form action="index.php?" method="post">
+    <form action="index.php?accion=actualizarConfiguracion&controlador=Controlador" method="post" enctype="multipart/form-data">
         <label for="parametro1">Tiempo Cronometro:</label>
         <input type="text" id="parametro1" name="parametro1" value="<?php echo $configuracion['tiempoCrono']; ?>"><br><br>
 
@@ -20,8 +20,6 @@
 
         <label for="parametro3">Numero de objetos buenos:</label>
         <input type="text" id="parametro3" name="parametro3" value="<?php echo $configuracion['nObjetosBuenos']; ?>"><br><br>
-
-        <!-- Agregar más campos según los parámetros que existan en la tabla config -->
 
         <input type="hidden" name="accion" value="actualizarConfiguracion">
         <input type="submit" value="Guardar Cambios">
