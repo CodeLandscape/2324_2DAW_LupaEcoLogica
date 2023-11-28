@@ -284,9 +284,9 @@ header h1 {
     max-height: 100%;
     padding: 20px;
     margin: 0 auto;
-    margin-top: 5%;
     background-color: bisque;
     border-radius: 40px;
+    position: relative;
 }
 
 #inicioRanking {
@@ -295,7 +295,7 @@ header h1 {
 }
 
 #tablaRanking {
-    width: 1000px;
+    width: 90%;
     max-height: 100%;
 }
 
