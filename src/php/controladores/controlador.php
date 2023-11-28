@@ -64,6 +64,7 @@
                 $Modelo=new Modelo();
                 // $id=$_POST['idCategoria'];
                 $Modelo->borrarCategoria($_POST["id"]);
+                $this->vista = 'admin';
             // }
         }
         /**
@@ -140,6 +141,7 @@
 
                     $Modelo->agregarPregunta($pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
                 }
+                header('location:index.php?id='.$idCategoria.'&accion=categoria&controlador=Controlador');
                 }
             }
             
@@ -181,8 +183,14 @@
 
         function insertarCategoria(){
             $Modelo = new Modelo();
-            $Modelo->insertarCategoria($_POST["categoria"], $_POST["tablero"], $_POST["img"]);
-            $this->vista = 'addCategoria';
+            $fondo = $_FILES['img']['tmp_name'];
+            $tipo = $_FILES['img']['type'];
+            if($tipo=='image/png' || $tipo=='image/jpg' || $tipo=='image/jpeg'){
+                $contenido = file_get_contents($fondo);
+                $base64 = base64_encode($contenido);
+            }
+            $Modelo->insertarCategoria($_POST["categoria"], $_POST["tablero"], $base64);
+            $this->vista = 'admin';
         }
 
 
@@ -200,10 +208,6 @@ function actualizarConfiguracion()
 
         // Actualizar la configuración en la base de datos
         $Modelo->actualizarConfiguracion($parametro1, $parametro2,$parametro3);
-        // Agregar más llamadas al método de actualización según los parámetros
-
-       
-        
     }
     // Redirigir a la vista de configuración
     $this->vista = 'modConfig';
