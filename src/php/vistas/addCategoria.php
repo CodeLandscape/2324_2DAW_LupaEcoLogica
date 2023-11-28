@@ -9,7 +9,7 @@
             ?>
         </header>
         <main>
-            <form action="index.php?accion=addCategoria&controlador=Controlador" method="post" enctype="multipart/form-data">
+            <form action="index.php?accion=insertarCategoria&controlador=Controlador" method="post" enctype="multipart/form-data">
                 <div id="contenido">
                     <label for='categoria'>Nombre de la categoría:</label>
                     <input type='text' id='categoria' name='categoria' required><br>

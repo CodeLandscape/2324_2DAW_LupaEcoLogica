@@ -148,4 +148,10 @@
             $fila = $Modelo->randomTablero();
             return $fila;
         }
+
+        function insertarCategoria(){
+            $Modelo = new Modelo();
+            $Modelo->insertarCategoria($_POST["categoria"], $_POST["tablero"], $_POST["img"]);
+            $this->vista = 'addCategoria';
+        }
 }

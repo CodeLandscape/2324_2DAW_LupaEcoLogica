@@ -160,6 +160,10 @@ a {
     border: 1px solid black;
 }
 
+.imagenObjeto{
+    width: 25%;
+}
+
 .tamFuenteGrande{
     font-size: 40px;
 }

@@ -16,7 +16,7 @@ Categorias
 		<header>
             <?php
                 if(isset($_GET['id'])){
-                    echo $Control->nombreCategoria($id);
+                    echo $controlador->nombreCategoria($id);
                 }
                 else{
                     echo 'ERROR';
@@ -101,7 +101,7 @@ Categorias
 
                                 echo '<tr>
                                     <td>'.$fila['nombre'].'</td>
-                                    <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'"></td>
+                                    <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'" class="imagenObjeto"></td>
                                     <td>'.$punt.'</td>
                                     <td><a href="" class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
                                     <td><a href="" class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
