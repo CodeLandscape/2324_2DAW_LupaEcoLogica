@@ -58,54 +58,59 @@ export class IniciarTablero extends Vista {
   /**
      * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
      */
-  iniciarCuentaRegresiva () {
-    const tiempoLimite = Vista.config.tiempoCrono // 5 segundos de cuenta regresiva
-    let tiempoRestante = tiempoLimite
-    this.tiempoRestante.setAttribute('id', 'tiempo')
-
+  iniciarCuentaRegresiva() {
+    const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
+    let tiempoRestante = tiempoLimite;
+    let cuentaRegresivaEnPausa = false;
+    let tiempoPausado = 0;
+  
+    this.tiempoRestante.setAttribute('id', 'tiempo');
+  
     const actualizarTiempo = () => {
-      this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`
-
+      this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
+  
       if (tiempoRestante === 0) {
-        clearInterval(cuentaRegresiva)
-        // Cuando la cuenta regresiva llega a cero, pasar a la vista 3
-        this.controlador.verVista(Vista.VISTA3)
+        clearInterval(cuentaRegresiva);
+        this.controlador.verVista(Vista.VISTA3);
       }
-
-      tiempoRestante--
-    }
-
+  
+      if (!cuentaRegresivaEnPausa) {
+        tiempoRestante--;
+      }
+    };
+  
     // Mostrar inicialmente el tiempo restante y actualizar cada segundo
-    actualizarTiempo()
-    const cuentaRegresiva = setInterval(actualizarTiempo, 1000)
-
+    actualizarTiempo();
+    let cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+  
     // Agregar botón de pausa
-    const botonPausa = document.createElement('button');
+    const botonPausa = document.createElement('button')
     botonPausa.textContent = 'Pausar'
+    botonPausa.id = 'botonPausa'
     botonPausa.addEventListener('click', () => {
-      if (this.cuentaRegresivaEnPausa) {
-        this.reanudarCuentaRegresiva() // Llamar a la función con "this"
-      } else {
-        this.pausarCuentaRegresiva() // Llamar a la función con "this"
+      if (!cuentaRegresivaEnPausa) {
+        clearInterval(cuentaRegresiva)
+        cuentaRegresivaEnPausa = true
+        tiempoPausado = Date.now()
+        botonPausa.textContent = 'Reanudar'
       }
-      // Cambiar el texto del botón después de cambiar el estado
-      this.cuentaRegresivaEnPausa = !this.cuentaRegresivaEnPausa
-      botonPausa.textContent = this.cuentaRegresivaEnPausa ? 'Reanudar' : 'Pausar'
-    });
+      else {
+        cuentaRegresivaEnPausa = false
+        const tiempoPausaActual = Date.now()
+        const tiempoPausadoMilisegundos = tiempoPausaActual - tiempoPausado
+        tiempoPausado = 0
     
-    document.body.appendChild(botonPausa)
+        tiempoRestante += Math.floor(tiempoPausadoMilisegundos / 1000)
+        cuentaRegresiva = setInterval(actualizarTiempo, 1000)
+        botonPausa.textContent = 'Pausar'
+      }
+    })
 
-    // Función para pausar la cuenta regresiva
-    this.pausarCuentaRegresiva = () => {
-      clearInterval(this.cuentaRegresiva);
-    };
-
-    // Función para reanudar la cuenta regresiva
-    this.reanudarCuentaRegresiva = () => {
-      this.cuentaRegresiva = setInterval(() => this.actualizarTiempo(), 1000);
-    };
+    
+    
+    document.body.appendChild(botonPausa);
   }
-
+  
   /**
      * Captura los eventos de clic en objetos y actualiza el contador de objetos pulsados.
      */
@@ -114,6 +119,7 @@ export class IniciarTablero extends Vista {
 
     this.objetomalo1.onclick = () => {
       console.log('Objeto malo 1 capturado')
+      objetomalo1.style.poin
       this.añadirObjetoAside(this.objetomalo1)
       this.verificarObjetosPulsados()
     }
@@ -296,20 +302,23 @@ export class IniciarTablero extends Vista {
   }
 
   verificarObjetosPulsados() {
-    this.objetosPulsados++;
+    this.objetosPulsados++
   
-    const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display');
-    const estiloMalo2 = window.getComputedStyle(this.objetomalo2).getPropertyValue('display');
-    const estiloMalo3 = window.getComputedStyle(this.objetomalo3).getPropertyValue('display');
+    const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display')
+    const estiloMalo2 = window.getComputedStyle(this.objetomalo2).getPropertyValue('display')
+    const estiloMalo3 = window.getComputedStyle(this.objetomalo3).getPropertyValue('display')
   
     if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
       // Los tres objetos malos han sido capturados
-      this.pausarCuentaRegresiva(); // Detener el cronómetro
-      this.controlador.verVista(Vista.VISTA3);
+      this.ocultarBotonPausa()
+      this.controlador.verVista(Vista.VISTA3)
     }
   }
   
-  pausarCuentaRegresiva() {
-    clearInterval(this.cuentaRegresiva); // Detener la cuenta regresiva
+  ocultarBotonPausa() {
+    const botonPausa = document.getElementById('botonPausa')
+    if (botonPausa) {
+      botonPausa.style.display = 'none'
+    }
   }
 }
