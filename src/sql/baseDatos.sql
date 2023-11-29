@@ -8,7 +8,7 @@ CREATE TABLE partida(
   `idPartida` int UNSIGNED NOT NULL auto_increment,
   `nombre` varchar(8) NOT NULL,
   `localidad` varchar(8) NOT NULL,
-  `puntuación` smallint UNSIGNED NOT NULL DEFAULT 0,
+  `puntuacion` smallint UNSIGNED NOT NULL DEFAULT 0,
   `objetosAcertados` tinyint UNSIGNED NOT NULL,
   `preguntasAcertadas` tinyint UNSIGNED NOT NULL,
   `fechaHora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

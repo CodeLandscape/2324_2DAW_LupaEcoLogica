@@ -146,6 +146,7 @@
         
         /**
          * Método que devuleve todos los objetos de una categoría con consulta preparada.
+         * Método que devuleve todos los objetos de una categoría con consulta preparada.
          * 
          * @param string $id Id de la categoría.
          * @return array Un array bidimensional con las filas de la tabla objeto.
@@ -158,9 +159,15 @@
             $stmt->bind_param("i",$id);
             $stmt->execute();
             $Resultado=$stmt->get_result();
+            $sqlObjeto="SELECT * FROM objeto WHERE idCategoria=? ;";
+            $stmt = $this->Conexion->prepare($sqlObjeto);
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $Resultado=$stmt->get_result();
             while($fila = $Resultado->fetch_assoc()){
                 array_push($tabla,$fila);
             }
+            $stmt->close();
             $stmt->close();
             $this->Conexion->close();
 
