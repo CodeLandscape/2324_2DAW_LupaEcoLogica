@@ -25,7 +25,7 @@ Categorias
                 include 'template/navegacion.html';
             ?>
         </header>
-        <main>
+        <main class="aumentarMargin100">
             <form method='post'>
                 <div id="contenido">
                 <?php
@@ -111,7 +111,6 @@ Categorias
                         }
                     ?>
                 </table>
-                <a href="index.php">Volver</a>
             </div>
             </form>
         </main>
