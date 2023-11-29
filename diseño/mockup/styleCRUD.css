@@ -39,7 +39,8 @@ nav ul {
 /* Estilos de los elementos de la lista de navegación */
 nav li {
     display: inline-block;
-    margin-right: 30px;
+    margin: 0 0.5%;
+    padding: 0 0.5%;
     font-size: 13px;
 }
 
@@ -51,13 +52,14 @@ nav a {
     border: none;
     padding: 0;
     transition: color 0.3s;
+    font-size: 18px;
+    position: relative;
 }
 
 /* Estilos al pasar el ratón sobre los enlaces de navegación */
 nav a:hover {
     background-color: #588FA0;
     color: white;
-    font-size: 18px;
 }
 
 /* Estilo del pie de página */
