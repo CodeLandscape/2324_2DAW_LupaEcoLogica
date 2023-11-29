@@ -152,19 +152,6 @@
 
             return $tabla;
         }
-        function verObjeto($id){
-            $this->conectar();
-            $sqlObjeto="SELECT * FROM objeto WHERE idObjeto=? ;";
-            $stmt = $this->Conexion->prepare($sqlObjeto);
-            $stmt->bind_param("i",$id);
-            $stmt->execute();
-            $resultado=$stmt->get_result();
-            $objeto = $resultado->fetch_assoc();
-            $stmt->close();
-            $this->Conexion->close();
-
-            return $objeto;
-        }
         /**
          * Método que borra una categoria. (Se debe modificar este método para que los objetos que tengan categoría pasen a tener idCategoria=NULL)
          * 
@@ -172,36 +159,10 @@
          */
         function borrarCategoria($id){
             $this->conectar();
-            $sqlCategoria = "DELETE FROM categoria WHERE idCategoria = ?";
-            $stmt = $this->Conexion->prepare($sqlCategoria);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $stmt->close();
+            $sqlCategoria="DELETE FROM categoria WHERE idCategoria = ".$id.";";
+            $Resultado = $this->Conexion->query($sqlCategoria);
             $this->Conexion->close();
         }
-
-        function borrarObjeto($id){
-            $this->conectar();
-            $sqlCategoria = "DELETE FROM objeto WHERE idObjeto = ?";
-            $stmt = $this->Conexion->prepare($sqlCategoria);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $stmt->close();
-            $this->Conexion->close();
-        }
-
-        function borrarPregunta($id)
-        {
-            $this->conectar();
-            $sqlCategoria = "DELETE FROM pregunta WHERE idPregunta = ?";
-            $stmt = $this->Conexion->prepare($sqlCategoria);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $stmt->close();
-            $this->Conexion->close();
-        }
-        
-
         /**
          * Método que modifica un tablero de una categoría.
          * 
@@ -217,7 +178,7 @@
                 $Resultado=$this->Conexion->query($sqlTablero);
             } catch (mysqli_sql_exception $e) {
                 $errorCode = $e->getCode();
-                if ($c == 1062) {
+                if ($errorCode == 1062) {
                     //Error de clave secundaria duplicada
                     return 2;
                 } else {
@@ -267,13 +228,8 @@
         function configuracion(){
             $this->conectar();
             $sql = "SELECT * FROM config";
-            $stmt = $this->Conexion->prepare($sql);
-            $stmt->execute();
-            $resultado = $stmt->get_result();
-            $configuracion = $resultado->fetch_assoc();
-            $stmt->close();
-            $this->Conexion->close();
-            return $configuracion;
+            $Resultado = $this->Conexion->query($sql);
+            return $Resultado->fetch_assoc();
         }
         /**
          * Método que selecciona un tablero al azar.
@@ -288,100 +244,48 @@
             $this->Conexion->close();
             return $fila;
         }
-        /**
-         * Método que agrega una pregunta a la base de datos.
-         *
-         * @param string $texto Pregunta.
-         * @param string $reflexionAcierto Reflexión positiva.
-         * @param string $reflexionFallo Reflexión negativa.
-         * @param int $respuesta Respuesta (0 o 1).
-         * @param int $idCategoria ID de la categoría a la que pertenece la pregunta.
-         */
-        public function agregarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria)
-        {
-            $this->conectar();
+/**
+ * Método que agrega una pregunta a la base de datos.
+ *
+ * @param string $texto Pregunta.
+ * @param string $reflexionAcierto Reflexión positiva.
+ * @param string $reflexionFallo Reflexión negativa.
+ * @param int $respuesta Respuesta (0 o 1).
+ * @param int $idCategoria ID de la categoría a la que pertenece la pregunta.
+ */
+public function agregarPregunta($texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria)
+{
+    $this->conectar();
 
-            // Asegurarse de que $respuesta sea 0 o 1
-            $respuesta = ($respuesta == '1') ? 1 : 0;
+    // Asegurarse de que $respuesta sea 0 o 1
+    $respuesta = ($respuesta == '1') ? 1 : 0;
+
+    var_dump($respuesta);
 
 
-
-            // Realizar la inserción en la tabla pregunta
-            $sql = "INSERT INTO pregunta (texto, reflexionAcierto, reflexionFallo, respuesta, idCategoria) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $this->Conexion->prepare($sql);
-            $stmt->bind_param("sssii", $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
-            $stmt->execute();
-            $stmt->close();
-            $this->Conexion->close();
-        }
-        public function agregarObjeto($nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria)
-        {
-            $this->conectar();
-
-            // Realizar la inserción en la tabla objeto
-            $sql = "INSERT INTO objeto (nombre, descripcion, imagen, puntuacion, valoracion, idCategoria) VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $this->Conexion->prepare($sql);
-            $stmt->bind_param("sssiii", $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria);
-            $stmt->execute();
-            $stmt->close();
-            $this->Conexion->close();
-        }
-
-        public function modificarPregunta($id, $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria)
-        {
-            $this->conectar();
-
-            // Asegurarse de que $respuesta sea 0 o 1
-            $respuesta = ($respuesta == '1') ? 1 : 0;
-
-            // Realizar la actualización en la tabla pregunta
-            $sql = "UPDATE pregunta SET texto = ?, reflexionAcierto = ?, reflexionFallo = ?, respuesta = ?, idCategoria = ? WHERE id = ?";
-            $stmt = $this->Conexion->prepare($sql);
-
-            // Ajustar los tipos de datos en bind_param, considerando el booleano como un entero
-            $stmt->bind_param("sssiii", $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria, $id);
-            $stmt->execute();
-            $stmt->close();
-            $this->Conexion->close();
-        }
+    // Realizar la inserción en la tabla pregunta
+    $sql = "INSERT INTO pregunta (texto, reflexionAcierto, reflexionFallo, respuesta, idCategoria) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $this->Conexion->prepare($sql);
+    $stmt->bind_param("sssii", $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
+    $stmt->execute();
+    $stmt->close();
+    $this->Conexion->close();
+}
 
 
 
-        // En tu Modelo.php
-        function actualizarConfiguracion($tiempoCrono, $nPregunta, $nObjetosBuenos)
-        {
-            $this->conectar();
+// En tu Modelo.php
+function actualizarConfiguracion($tiempoCrono, $nPregunta, $nObjetosBuenos)
+{
+    $this->conectar();
 
-            // Realizar la actualización en la tabla config
-            $sql = "UPDATE config SET tiempoCrono = ?, nPregunta = ?, nObjetosBuenos = ?";
-            $stmt = $this->Conexion->prepare($sql);
-            $stmt->bind_param("iii", $tiempoCrono, $nPregunta, $nObjetosBuenos);
-            $stmt->execute();
-            $stmt->close();
-            $this->Conexion->close();
-        }
-
-
-    public function actualizarObjeto($id, $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria)
-    {
-        $this->conectar();
-
-        // Convertir el booleano a un entero (0 o 1)
-        $esBueno = $esBueno ? 1 : 0;
-
-        // Realizar la actualización en la tabla objeto
-        $sql = "UPDATE objeto SET nombre = ?, descripcion = ?, imagen = ?, puntuacion = ?, valoracion = ?, idCategoria = ? WHERE id = ?";
-        $stmt = $this->Conexion->prepare($sql);
-
-        // Ajustar los tipos de datos en bind_param, considerando el booleano como un entero
-        $stmt->bind_param("sssiiii", $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria, $id);
-
-        $stmt->execute();
-        $stmt->close();
-        $this->Conexion->close();
-    }
-
-
-
+    // Realizar la actualización en la tabla config
+    $sql = "UPDATE config SET tiempoCrono = ?, nPregunta = ?, nObjetosBuenos = ?";
+    $stmt = $this->Conexion->prepare($sql);
+    $stmt->bind_param("iii", $tiempoCrono, $nPregunta, $nObjetosBuenos);
+    $stmt->execute();
+    $stmt->close();
+    $this->Conexion->close();
+}
 }
 ?>
