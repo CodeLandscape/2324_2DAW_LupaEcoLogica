@@ -39,7 +39,7 @@ require_once '../php/modelos/categoria.php';
 
     function nombreCategoria($id)
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $fila = $Modelo->verCategoria($id);
         return $fila['nombre'];
     }
@@ -48,35 +48,35 @@ require_once '../php/modelos/categoria.php';
 
     function nombreTablero($idCategoria)
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila['nombre'];
     }
 
     function fondoTablero($idCategoria)
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila['imagenFondo'];
     }
 
     function verTablero($idCategoria)
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila;
     }
 
     function randomTablero()
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $fila = $Modelo->randomTablero();
         return $fila;
     }
 
     function insertarCategoria()
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $fondo = $_FILES['img']['tmp_name'];
         $tipo = $_FILES['img']['type'];
         if ($tipo == 'image/png' || $tipo == 'image/jpg' || $tipo == 'image/jpeg') {
@@ -88,7 +88,7 @@ require_once '../php/modelos/categoria.php';
     }
     public function actualizarTablero()
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
     
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Acceder a los valores del formulario
@@ -130,7 +130,7 @@ require_once '../php/modelos/categoria.php';
     }
     function borrarCategoria()
     {
-        $Modelo = new Modelo();
+        $Modelo = new CategoriaModelo();
         $Modelo->borrarCategoria($_POST["id"]);
         header('location:index.php');
     }

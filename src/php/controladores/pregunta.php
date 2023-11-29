@@ -30,7 +30,7 @@ class Pregunta
      */
     public function agregarPregunta()
     {
-        $Modelo = new Modelo();
+        $Modelo = new PreguntaModelo();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Acceder a los valores del formulario
@@ -69,7 +69,7 @@ class Pregunta
      */
     public function tablaPregunta($idCategoria)
     {
-        $Modelo = new Modelo();
+        $Modelo = new PreguntaModelo();
         $tabla = $Modelo->verPreguntas($idCategoria);
         return $tabla;
     }
@@ -77,7 +77,7 @@ class Pregunta
 
     public function borrarPregunta()
     {
-        $Modelo = new Modelo();
+        $Modelo = new PreguntaModelo();
         $Modelo->borrarPregunta($_POST["id"]);
         header('location:index.php?id=' . $_POST["idCategoria"] .'&accion=categoria&controlador=Controlador');
     }
@@ -86,7 +86,7 @@ class Pregunta
     public function actualizarPregunta()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['accion']) && $_GET['accion'] == 'actualizarPregunta') {
-            $Modelo = new Modelo();
+            $Modelo = new PreguntaModelo();
     
             // Recuperar los valores del formulario
             $idPregunta = $_POST['idPregunta'];
@@ -105,7 +105,7 @@ class Pregunta
 
     function pregunta($id)
     {
-        $Modelo = new Modelo();
+        $Modelo = new PreguntaModelo();
         $fila = $Modelo->verPregunta($id);
         return $fila;
     }
