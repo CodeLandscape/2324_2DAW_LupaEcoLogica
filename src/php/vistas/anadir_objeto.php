@@ -47,7 +47,7 @@
                 <div id="botones">
                     <input type='button' value='+' id="btnMas">
                     <input type='submit' value='Añadir'>
-                    <input type='submit' value='Volver'>
+                    <a href="index.php?accion=selectCategoria&controlador=Controlador&funcion=objeto" class="submit">Volver</a>
                 </div>
             </div>
         </form>

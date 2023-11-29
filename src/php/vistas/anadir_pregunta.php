@@ -43,6 +43,7 @@
             <div id="botonesPregunta">
                 <input type='button' value='+' id="btnMas">
                 <input type='submit' value='Enviar'>
+                <a href="index.php?accion=selectCategoria&controlador=Controlador&funcion=pregunta" class="submit">Volver</a>
             </div>
         </form>
 

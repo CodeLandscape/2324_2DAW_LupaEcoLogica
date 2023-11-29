@@ -39,7 +39,8 @@ nav ul {
 /* Estilos de los elementos de la lista de navegación */
 nav li {
     display: inline-block;
-    margin-right: 30px;
+    margin: 0 0.5%;
+    padding: 0 0.5%;
     font-size: 13px;
 }
 
@@ -51,13 +52,16 @@ nav a {
     border: none;
     padding: 0;
     transition: color 0.3s;
+    font-size: 18px;
+    position: relative;
 }
 
 /* Estilos al pasar el ratón sobre los enlaces de navegación */
 nav a:hover {
     background-color: #588FA0;
     color: white;
-    font-size: 18px;
+    font-size:25px;
+    transition: 0.3s;
 }
 
 /* Estilo del pie de página */
@@ -109,23 +113,23 @@ label {
 }
 
 /* Estilos para los botones de envío y selectores */
-input[type="submit"], select, input[type="button"] {
+input[type="submit"], select, input[type="button"], .submit{
     font-family: 'Agbalumo';
     background-color: #36C8F5; /* Color de fondo azul claro */
     border-radius: 15px;
     border: 2px solid black;
     width: 133px;
-    height: 50px;
+    height: 40px;
     font-size: large;
 }
 
 /* Estilos al pasar el ratón sobre el botón de envío */
-input[type="submit"]:hover {
+input[type="submit"]:hover , .submit:hover{
     background-color: #368ff5;
 }
 
 /* Estilos al hacer clic en el botón de envío */
-input[type="submit"]:active {
+input[type="submit"]:active , .submit:active{
     background-color: #588FA0;
 }
 
@@ -280,4 +284,10 @@ select {
     border-radius: 30px;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.submit{
+    display: inline-block;
+    margin: 30px;
+    height: auto;
 }

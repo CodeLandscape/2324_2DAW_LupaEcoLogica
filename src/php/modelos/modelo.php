@@ -308,12 +308,19 @@
          */
         function rankingTabla(){
             $this->conectar();
+
             $sql = "SELECT nombre,localidad,puntuacion FROM partida ORDER BY puntuacion DESC LIMIT 10;";
-            $Resultado = $this->Conexion->query($sql);
+            $stmt = $this->Conexion->prepare($sql);
+
+            $stmt->execute();
+
+            $resultado = $stmt->get_result();
             $tabla = array();
-            while($fila = $Resultado->fetch_assoc()){
+
+            while($fila = $resultado->fetch_assoc()){
                 array_push($tabla,$fila);
             }
+            $stmt->close();
             $this->Conexion->close();
             return $tabla;
         }

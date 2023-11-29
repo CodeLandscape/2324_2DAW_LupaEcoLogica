@@ -44,7 +44,7 @@
                     <input type="hidden" name="tipo" value="add">
                     <div id="botones">
                         <input type='submit' value='Añadir'>
-                        <a href="index.php">Volver</a>
+                        <a href="index.php" class="submit">Volver</a>
                     </div>
                 </div>
             </form>
