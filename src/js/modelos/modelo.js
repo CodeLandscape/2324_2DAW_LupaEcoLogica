@@ -1,13 +1,17 @@
-export class Modelo {
-  constructor () {
-    this.mapa = new Map()
-  }
+export class Modelo{
 
-  guardar (clave, valor) {
-    this.mapa.set(clave, valor)
-  }
+    constructor()
+    {
+        this.mapa= new Map()
+    }
 
-  ver (clave) {
-    return this.mapa.get(clave)
-  }
+    guardar(clave,valor){
+        this.mapa.set(clave,valor)
+    }
+
+    ver(clave)
+    {
+        return this.mapa.get(clave)
+    }
+    
 }
