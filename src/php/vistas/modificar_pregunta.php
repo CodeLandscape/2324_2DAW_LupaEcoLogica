@@ -12,7 +12,7 @@
         <?php include 'template/navegacion.html'; ?>
     </header>
     <main class="aumentarMargin25">
-        <form method='post' action="index.php?accion=actualizarPregunta&controlador=Controlador" enctype="multipart/form-data">
+        <form method='post' action="index.php?accion=actualizarPregunta&controlador=Pregunta" enctype="multipart/form-data">
             <div id="contenido">
                 <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $_GET['idCategoria']; ?>">
                 <?php
@@ -32,7 +32,7 @@
                         <label for='reflexionFallo'>Reflexión en caso de fallo:</label>
                         <input type='text' id='reflexionFallo' name='reflexionFallo' required value="<?php echo $datos['reflexionFallo']; ?>"><br>
 
-                        <label for='respuesta'>Respuesta (0 o 1):</label>
+                        <label for='respuesta'>Respuesta:</label>
                         <input type='text' id='respuesta' name='respuesta' class="inputPeq" value="<?php echo $datos['respuesta']; ?>"><br><br>
 
                         <label for='idCategoria'>ID de la categoría:</label>

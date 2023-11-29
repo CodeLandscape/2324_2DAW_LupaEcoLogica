@@ -7,7 +7,7 @@
         <?php include 'template/navegacion.html'; ?>
     </header>
     <main class="aumentarMargin100">
-        <form method='post' action="index.php?accion=agregarPregunta&controlador=Controlador">
+        <form method='post' action="index.php?accion=agregarPregunta&controlador=Pregunta">
             <?php
                 $categoriaSeleccionada = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
                 

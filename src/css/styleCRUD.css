@@ -291,3 +291,15 @@ select {
     margin: 30px;
     height: auto;
 }
+
+.correcto{
+    color:green;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.error{
+    color:rgb(243, 27, 27);
+    font-weight: bolder;
+    font-size: xx-large;
+}

@@ -14,7 +14,7 @@
                     if (empty($tabla)) {
                         echo "No se encontraron categorías";
                     } else {
-                        echo '<form action="index.php?accion=anadir_pregunta&controlador=Controlador" method="post">
+                        echo '<form action="index.php?accion=anadir_pregunta&controlador=Pregunta" method="post">
                         <label for="opciones">Selecciona una categoría:</label></br></br></br></br></br></br></br></br></br>
                         <select id="opciones" name="idCategoria_seleccionada">';  // Cambiado el nombre del campo
                 
@@ -32,7 +32,7 @@
                     if (empty($tabla)) {
                         echo "No se encontraron categorías";
                     } else {
-                        echo '<form action="index.php?accion=anadir_objeto&controlador=Controlador" method="post"> 
+                        echo '<form action="index.php?accion=anadir_objeto&controlador=Objeto" method="post"> 
                         <label for="opciones">Selecciona una categoría:</label></br></br></br></br></br></br></br></br></br>
                         <select id="opciones" name="idCategoria_seleccionada">';  // Cambiado el nombre del campo
                 

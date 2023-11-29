@@ -12,7 +12,7 @@
         <?php include 'template/navegacion.html'; ?>
     </header>
     <main class="aumentarMargin25">
-        <form method='post' action="index.php?accion=agregarObjeto&controlador=Controlador" enctype="multipart/form-data">
+        <form method='post' action="index.php?accion=agregarObjeto&controlador=Objeto" enctype="multipart/form-data">
             <div id="contenido">
                 <?php
                 $categoriaSeleccionada = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';

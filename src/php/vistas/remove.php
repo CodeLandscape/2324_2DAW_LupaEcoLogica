@@ -13,7 +13,7 @@
         if (isset($_GET['funcion']) && isset($_GET['id'])) {
             $funcion = $_GET['funcion'];
             $id = $_GET['id'];
-            echo "<form action='index.php?accion=borrar{$funcion}&controlador=Controlador' method='post'>
+            echo "<form action='index.php?accion=borrar{$funcion}&controlador={$funcion}' method='post'>
                 <div>
                     <p class='tamFuenteGrande'>¿Desea eliminar el/la $funcion";
                     

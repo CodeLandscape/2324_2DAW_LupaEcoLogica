@@ -17,7 +17,7 @@
     <?php
                 $datos = $controlador->verTablero($_GET['id']);
                 ?>
-        <form action="index.php?accion=actualizarTablero&controlador=Controlador" method="post" enctype="multipart/form-data">
+        <form action="index.php?accion=actualizarTablero&controlador=Categoria" method="post" enctype="multipart/form-data">
             <div>
 
                 <label for='tablero'>Nombre del tablero:</label>
