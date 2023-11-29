@@ -24,7 +24,7 @@
                                 echo "<tr>
                                         <td id=azul>".$fila['nombre']."</td>
                                         <td><a href=index.php?id=".$fila['idCategoria']."&accion=categoria&controlador=Controlador class=sinEstilo><img src='../img/IonEye.svg' class=icono></a></td>
-                                        <td><a href=index.php?id=".$fila['idCategoria']."&accion=remove_categoria&controlador=Controlador&funcion=categoria class=sinEstilo><img src='../img/IonIosRemoveCircle.svg' class=icono></a></td>
+                                        <td><a href=index.php?id=".$fila['idCategoria']."&accion=remove&controlador=Controlador&funcion=categoria class=sinEstilo><img src='../img/IonIosRemoveCircle.svg' class=icono></a></td>
                                       </tr>";
                             }
                         ?>

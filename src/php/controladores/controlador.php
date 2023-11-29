@@ -58,9 +58,9 @@ class Controlador
         $this->vista = 'modificar_pregunta';
     }
 
-    public function remove_Categoria()
+    public function remove()
     {
-        $this->vista = 'remove_Categoria';
+        $this->vista = 'remove';
     }
 
     /**

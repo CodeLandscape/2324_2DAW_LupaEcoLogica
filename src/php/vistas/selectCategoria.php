@@ -14,8 +14,8 @@
                     if (empty($tabla)) {
                         echo "No se encontraron categorías";
                     } else {
-                        echo '<form action="index.php?accion=anadir_pregunta&controlador=Controlador" method="post"> 
-                        <label for="opciones">Selecciona una categoría:</label>
+                        echo '<form action="index.php?accion=anadir_pregunta&controlador=Controlador" method="post">
+                        <label for="opciones">Selecciona una categoría:</label></br></br></br></br></br></br></br></br></br>
                         <select id="opciones" name="idCategoria_seleccionada">';  // Cambiado el nombre del campo
                 
                         foreach ($tabla as $fila) {
@@ -23,7 +23,7 @@
                         }
                         
                     
-                    echo '</select> <input type="submit" value="Enviar"> </form>';
+                    echo '</select> </br></br></br></br></br></br></br></br></br></br><input type="submit" value="Enviar"> </form>';
                     
                     }    
                 }
@@ -33,7 +33,7 @@
                         echo "No se encontraron categorías";
                     } else {
                         echo '<form action="index.php?accion=anadir_objeto&controlador=Controlador" method="post"> 
-                        <label for="opciones">Selecciona una categoría:</label>
+                        <label for="opciones">Selecciona una categoría:</label></br></br></br></br></br></br></br></br></br>
                         <select id="opciones" name="idCategoria_seleccionada">';  // Cambiado el nombre del campo
                 
                         foreach ($tabla as $fila) {
@@ -41,7 +41,7 @@
                         }
                         
                     
-                    echo '</select> <input type="submit" value="Enviar"> </form>';
+                        echo '</select> </br></br></br></br></br></br></br></br></br></br><input type="submit" value="Enviar"> </form>';
                     
                     }    
                 }
