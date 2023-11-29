@@ -72,15 +72,31 @@
          */
         function tablaCategoria(){
             $this->conectar();
-            $sql="SELECT * FROM categoria";
-            $Resultado = $this->Conexion->query($sql);
+            
+            // Preparar la consulta
+            $sql = "SELECT * FROM categoria";
+            $stmt = $this->Conexion->prepare($sql);
+        
+            // Ejecutar la consulta
+            $stmt->execute();
+        
+            // Obtener los resultados
+            $resultado = $stmt->get_result();
+            
             $tabla = array();
-            while($fila = $Resultado->fetch_assoc()){
+            
+            // Obtener los datos de la consulta preparada
+            while($fila = $resultado->fetch_assoc()){
                 array_push($tabla,$fila);
             }
+        
+            // Cerrar la conexión y devuelve los resultados
+            $stmt->close();
             $this->Conexion->close();
+        
             return $tabla;
         }
+        
         /**
          * Método que devuelve una categoría.
          * 
@@ -89,9 +105,21 @@
          */
         function verCategoria($id){
             $this->conectar();
-            $sqlCategoria="SELECT * FROM categoria WHERE idCategoria = ".$id.";"; 
-            $Resultado = $this->Conexion->query($sqlCategoria);
-            $fila = $Resultado->fetch_assoc();
+
+            //preparacion de la consulta
+            $sqlCategoria= "SELECT * FROM categoria WHERE idCategoria = ?";
+             
+            $stmt = $this->Conexion->prepare($sqlCategoria);
+
+            $stmt->bind_param("i",$id);
+
+            $stmt->execute();
+
+            $resultado = $stmt->get_result();
+
+            $fila = $resultado->fetch_assoc();
+
+            $stmt->close();
             $this->Conexion->close();
 
             return $fila;
@@ -104,9 +132,13 @@
          */
         function verTablero($id){
             $this->conectar();
-            $sqlTablero="SELECT * FROM tablero WHERE idCategoria = ".$id.";";
-            $Resultado = $this->Conexion->query($sqlTablero);
-            $fila = $Resultado->fetch_assoc();
+            $sqlTablero="SELECT * FROM tablero WHERE idCategoria = ?";
+            $stmt = $this->Conexion->prepare($sqlTablero);
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            $fila = $resultado->fetch_assoc();
+            $stmt->close();
             $this->Conexion->close();
 
             return $fila;
@@ -121,13 +153,17 @@
             $tabla=array();
 
             $this->conectar();
-            $sqlPregunta="SELECT * FROM pregunta WHERE idCategoria = ".$id.";";
-            $Resultado = $this->Conexion->query($sqlPregunta);
-            while($fila = $Resultado->fetch_assoc()){
-                array_push($tabla,$fila);
+            $sqlPregunta="SELECT * FROM pregunta WHERE idCategoria = ?";
+            $stmt = $this->Conexion->prepare($sqlPregunta);
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $Resultado = $stmt->get_result();
+            while ($fila = $Resultado->fetch_assoc()) {
+                array_push($tabla, $fila);
             }
+            $stmt->close();
             $this->Conexion->close();
-
+        
             return $tabla;
         }
         function verPregunta($id){
@@ -248,11 +284,19 @@
         function tablaObjetos(){
             $tabla=array();
             $this->conectar();
-            $sqlObjeto="SELECT * FROM objeto WHERE idCategoria IS NULL;";
-            $Resultado = $this->Conexion->query($sqlObjeto);
-            while($fila = $Resultado->fetch_assoc()){
+
+            $sqlObjeto= "SELECT * FROM objeto WHERE idCategoria IS NULL";
+            $stmt = $this->Conexion->prepare($sqlObjeto);
+
+            $stmt->execute();
+
+            $resultado = $stmt->get_result();
+
+            while($fila = $resultado->fetch_assoc()){
                 array_push($tabla,$fila);
             }
+
+            $stmt->close();
             $this->Conexion->close();
 
             return $tabla;
