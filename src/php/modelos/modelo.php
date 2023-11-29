@@ -130,6 +130,20 @@
 
             return $tabla;
         }
+        function verPregunta($id){
+            $this->conectar();
+            $sqlPregunta = "SELECT * FROM pregunta WHERE idPregunta = ?";
+            $stmt = $this->Conexion->prepare($sqlPregunta);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            $objeto = $resultado->fetch_assoc();
+            $stmt->close();
+            $this->Conexion->close();
+        
+            return $objeto;
+        }
+        
         /**
          * Método que devuleve todos los objetos de una categoría con consulta preparada.
          * 
@@ -335,7 +349,7 @@
             $respuesta = ($respuesta == '1') ? 1 : 0;
 
             // Realizar la actualización en la tabla pregunta
-            $sql = "UPDATE pregunta SET texto = ?, reflexionAcierto = ?, reflexionFallo = ?, respuesta = ?, idCategoria = ? WHERE id = ?";
+            $sql = "UPDATE pregunta SET texto = ?, reflexionAcierto = ?, reflexionFallo = ?, respuesta = ?, idCategoria = ? WHERE idPregunta = ?";
             $stmt = $this->Conexion->prepare($sql);
 
             // Ajustar los tipos de datos en bind_param, considerando el booleano como un entero
@@ -347,7 +361,7 @@
 
 
 
-        // En tu Modelo.php
+        
         function actualizarConfiguracion($tiempoCrono, $nPregunta, $nObjetosBuenos)
         {
             $this->conectar();
@@ -370,11 +384,29 @@
         $esBueno = $esBueno ? 1 : 0;
 
         // Realizar la actualización en la tabla objeto
-        $sql = "UPDATE objeto SET nombre = ?, descripcion = ?, imagen = ?, puntuacion = ?, valoracion = ?, idCategoria = ? WHERE id = ?";
+        $sql = "UPDATE objeto SET nombre = ?, descripcion = ?, imagen = ?, puntuacion = ?, valoracion = ?, idCategoria = ? WHERE idObjeto = ?";
         $stmt = $this->Conexion->prepare($sql);
 
         // Ajustar los tipos de datos en bind_param, considerando el booleano como un entero
         $stmt->bind_param("sssiiii", $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria, $id);
+
+        $stmt->execute();
+        $stmt->close();
+        $this->Conexion->close();
+    }
+
+
+    public function actualizarTablero($id, $nombre, $imagen)
+    {
+        $this->conectar();
+
+      
+        // Realizar la actualización en la tabla tablero
+        $sql = "UPDATE tablero SET nombre = ?, imagenFondo = ? WHERE idTablero = ? ";
+        $stmt = $this->Conexion->prepare($sql);
+
+        // Ajustar los tipos de datos en bind_param, considerando el booleano como un entero
+        $stmt->bind_param("ssi", $nombre, $imagen, $id);
 
         $stmt->execute();
         $stmt->close();
