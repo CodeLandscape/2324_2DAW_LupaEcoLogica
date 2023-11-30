@@ -49,11 +49,19 @@ export class Preguntas extends Vista {
       console.log('Hola?')
       this.controlador.verVista(Vista.VISTA3_1)
     }
+
+    this.respuestaNo.onclick = () => {
+      console.log('Hola?')
+      this.controlador.verVista(Vista.VISTA3_1)
+    }
     // Asignar evento al botón de registro
     this.registro.onclick = () => {
       this.controlador.verVista(Vista.VISTA4)
     }
   }
+
+  
+
   // llamarAJAXPregunta = () => {
   // 	//Recojo los valores... validaciones... si todo está bien
   // 	const params ={};

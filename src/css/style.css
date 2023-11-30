@@ -242,7 +242,7 @@ input[type="submit"]:active {
     width: 40%;
     height: 40%;
 }
-#preguntaJuego {
+.pregunta {
     position: relative;
     max-width: 80%;
     margin: 0 auto;
@@ -256,12 +256,12 @@ input[type="submit"]:active {
     padding: 20px;
 }
 
-#preguntaJuego p {
+.pregunta p {
     margin: 0;
     font-size: large;
 }
 
-#preguntaJuego img {
+.pregunta img {
     max-width: 40%;
     max-height: 40%;
     position: static;

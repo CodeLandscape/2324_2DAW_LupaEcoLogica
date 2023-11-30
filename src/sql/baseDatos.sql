@@ -40,6 +40,10 @@ CREATE TABLE objeto(
   CONSTRAINT pkObjeto PRIMARY KEY (idObjeto)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+/* esta parte de la base de datos porque quiero que en la vista de preguntas.js
+  aparezca su texto y su respuesta de momento y también quiero que uses el numPreguntas
+  para hacer el bucle y eso estará en la parte de config.
+*/
 CREATE TABLE pregunta(
   `idPregunta` tinyint UNSIGNED NOT NULL auto_increment,
   `texto` varchar(150) NOT NULL,

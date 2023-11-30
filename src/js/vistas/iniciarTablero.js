@@ -93,6 +93,7 @@ export class IniciarTablero extends Vista {
         cuentaRegresivaEnPausa = true
         tiempoPausado = Date.now()
         botonPausa.textContent = 'Reanudar'
+        this.pausa = true
       }
       else {
         cuentaRegresivaEnPausa = false
@@ -103,11 +104,10 @@ export class IniciarTablero extends Vista {
         tiempoRestante += Math.floor(tiempoPausadoMilisegundos / 1000)
         cuentaRegresiva = setInterval(actualizarTiempo, 1000)
         botonPausa.textContent = 'Pausar'
+        this.pausa = false
       }
     })
 
-    
-    
     document.body.appendChild(botonPausa);
   }
   
@@ -118,45 +118,56 @@ export class IniciarTablero extends Vista {
     this.objetomalo1 = document.getElementById('objetoMalo1')
 
     this.objetomalo1.onclick = () => {
-      console.log('Objeto malo 1 capturado')
-      objetomalo1.style.poin
-      this.añadirObjetoAside(this.objetomalo1)
-      this.verificarObjetosPulsados()
+      if (!this.pausa){
+        console.log('Objeto malo 1 capturado')
+        this.añadirObjetoAside(this.objetomalo1)
+        this.verificarObjetosPulsados()
+      }
     }
     this.objetomalo2 = document.getElementById('objetoMalo2')
 
     this.objetomalo2.onclick = () => {
-      console.log('Objeto malo 2 capturado')
-      this.añadirObjetoAside(this.objetomalo2)
-      this.verificarObjetosPulsados()
+      if (!this.pausa){
+        console.log('Objeto malo 2 capturado')
+        this.añadirObjetoAside(this.objetomalo2)
+        this.verificarObjetosPulsados()
+      }
     }
     this.objetomalo3 = document.getElementById('objetoMalo3')
 
     this.objetomalo3.onclick = () => {
-      console.log('Objeto malo 3 capturado')
-      this.añadirObjetoAside(this.objetomalo3)
-      this.verificarObjetosPulsados()
+      if (!this.pausa){
+        console.log('Objeto malo 3 capturado')
+        this.añadirObjetoAside(this.objetomalo3)
+        this.verificarObjetosPulsados()
+      }
     }
     this.objetoBueno1 = document.getElementById('objetoBueno1')
 
     this.objetoBueno1.onclick = () => {
-      console.log('Objeto bueno 1 capturado')
-      this.añadirObjetoAside(this.objetoBueno1)
-      this.verificarObjetosPulsados()
+      if (!this.pausa){
+        console.log('Objeto bueno 1 capturado')
+        this.añadirObjetoAside(this.objetoBueno1)
+        this.verificarObjetosPulsados()
+      }
     }
     this.objetoBueno2 = document.getElementById('objetoBueno2')
 
     this.objetoBueno2.onclick = () => {
-      console.log('Objeto bueno 2 capturado')
-      this.añadirObjetoAside(this.objetoBueno2)
-      this.verificarObjetosPulsados()
+      if (!this.pausa){
+        console.log('Objeto bueno 2 capturado')
+        this.añadirObjetoAside(this.objetoBueno2)
+        this.verificarObjetosPulsados()
+      }
     }
     this.objetoBueno3 = document.getElementById('objetoBueno3')
 
     this.objetoBueno3.onclick = () => {
-      console.log('Objeto bueno 3 capturado')
-      this.añadirObjetoAside(this.objetoBueno3)
-      this.verificarObjetosPulsados()
+      if (!this.pausa){
+        console.log('Objeto bueno 3 capturado')
+        this.añadirObjetoAside(this.objetoBueno3)
+        this.verificarObjetosPulsados()
+      }
     }
   }
 
@@ -174,7 +185,6 @@ export class IniciarTablero extends Vista {
     this.nuevoContenido.id = 'objeto1'
     this.aside.appendChild(this.nuevoContenido)
 
-    this.verificarObjetosPulsados();
   }
 
   /**
@@ -192,6 +202,7 @@ export class IniciarTablero extends Vista {
     Vista.idCategoria = objeto.idCategoria
     Vista.nomTablero = objeto.nombre
     this.llamarAJAXFondo()
+    this.llamarAJAXPregunta()
   }
 
   /**
@@ -319,6 +330,35 @@ export class IniciarTablero extends Vista {
     const botonPausa = document.getElementById('botonPausa')
     if (botonPausa) {
       botonPausa.style.display = 'none'
+    }
+  }
+
+  llamarAJAXPregunta = () => {
+    const params = {
+      id: Vista.idCategoria
+    }
+
+    Rest.post('php/controladores/ajaxPregunta.php', params, this.verResultadoAJAXPregunta);
+  }
+
+  verResultadoAJAXPregunta = (Pregunta) => {
+    Vista.pregunta = Pregunta;
+    console.log(Pregunta);
+
+    const contenedorPregunta = document.getElementById('rondaPreguntas');
+    
+    let nPregunta = Vista.config.nPregunta;
+    for(let i=0;i<nPregunta;i++){
+      let divPregunta = document.createElement('div');
+      divPregunta.setAttribute('id', 'preguntaJuego'+i);
+      divPregunta.setAttribute('class', 'pregunta');
+      divPregunta.style.display = 'none';
+
+      let p = document.createElement('p');
+      p.textContent = Pregunta[i].texto;
+      divPregunta.appendChild(p);
+
+      contenedorPregunta.appendChild(divPregunta);
     }
   }
 }

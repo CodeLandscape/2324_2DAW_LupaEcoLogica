@@ -51,6 +51,16 @@ export class Reflexiones extends Vista {
     this.irIndex.onclick = () => {
       this.controlador.verVista(Vista.VISTA4)
     }
+
+    // Selecciona el botón por su ID
+    const botonContinuar = document.getElementById('botonContinuar');
+
+    // Agrega un evento de clic al botón
+    botonContinuar.addEventListener('click', () => {
+        console.log('Hola?');
+        // Cambia a la vista deseada (VISTA3 en este caso)
+        this.controlador.verVista(Vista.VISTA3);
+    })
   }
 
   /**

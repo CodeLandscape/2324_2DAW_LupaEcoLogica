@@ -68,7 +68,7 @@ export class Inicio extends Vista {
     Vista.config = objeto
     console.log(Vista.config.nPregunta)
 
-    // console.log(objeto);
+    console.log(objeto);
     // console.log(this.nPregunta);
   }
 }

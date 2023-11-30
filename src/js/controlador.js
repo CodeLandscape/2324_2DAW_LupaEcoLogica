@@ -18,6 +18,7 @@ class Controlador {
   constructor () {
     this.vistas = new Map()
     this.modelo = new Modelo()
+    this.contador = false
 
     // Obtener los contenedores de las vistas
     const divVista1 = document.getElementById('menuInicio')
@@ -44,8 +45,20 @@ class Controlador {
      * Muestra una vista específica.
      * @param {Symbol} vista - El símbolo que identifica a la vista a mostrar.
      */
-  verVista (vista) {
+    verVista(vista) {
     this.ocultarVistas()
+  
+    if (vista === Vista.VISTA3) {
+      
+      if (this.contador === false) {
+        this.contador = -1;
+      } 
+      else {
+        this.contador++
+      }
+      if (this.contador == Vista.config.nPregunta)
+        vista = Vista.VISTA4
+    }
     this.vistas.get(vista).mostrar(true)
   }
 
