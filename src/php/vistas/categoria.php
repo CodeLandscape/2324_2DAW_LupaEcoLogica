@@ -59,8 +59,6 @@ Categorias
                         <td>Reflexión +</td>
                         <td>Reflexión -</td>
                         <td>Puntuación</td>
-                        <td>Borrar</td>
-                        <td>Modificar</td>
                     </tr>
                     <?php
                     /* Tablas de las Preguntas */
@@ -71,9 +69,6 @@ Categorias
                                     <td>'.$fila['reflexionAcierto'].'</td>
                                     <td>'.$fila['reflexionFallo'].'</td>
                                     <td>'.$fila['puntuacion'].'</td>
-                                    <td><a href=index.php?id='.$fila['idPregunta'].'&accion=remove&controlador=Pregunta&funcion=Pregunta&idCategoria='.$_GET['id'].' class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
-                                    <td><a href=index.php?idPregunta='.$fila['idPregunta'].'&accion=modificar_pregunta&controlador=Pregunta&funcion=actualizarPregunta&idCategoria='.$_GET['id'].' class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
-
                                 </tr>';
                             }
                         }
@@ -105,7 +100,7 @@ Categorias
                                 }
 
                                 echo '<tr>
-                                    <td>'.$fila['nombre'].'</td>
+                                    <td class="nombreObjeto">'.$fila['nombre'].'</td>
                                     <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'" class="imagenObjeto"></td>
                                     <td>'.$punt.'</td>
                                     <td><a href=index.php?id='.$fila['idObjeto'].'&accion=remove&controlador=Objeto&funcion=Objeto&idCategoria='.$_GET['id'].' class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>

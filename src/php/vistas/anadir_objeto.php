@@ -22,8 +22,7 @@
                 ?>
                 <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $idCategoria; ?>">
                 <?php
-                echo '<label>Categoría Seleccionada:</label>';
-                echo '<p>' . $nombreCategoria . '</p>';
+                echo '<h1>' . $nombreCategoria . '</h1>';
                 ?>
                 <div id="objetosContainer">
                     <div id="objeto1" class="contenedores">

@@ -26,42 +26,6 @@ class Pregunta
 
 
     /**
-     * Método que agrega una pregunta.
-     */
-    public function agregarPregunta()
-    {
-        $Modelo = new PreguntaModelo();
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Acceder a los valores del formulario
-            $preguntas = isset($_POST['pregunta']) ? $_POST['pregunta'] : array();
-            $respuestas = isset($_POST['opcion']) ? $_POST['opcion'] : array();
-            $reflexionesAcierto = isset($_POST['ref1']) ? $_POST['ref1'] : array();
-            $reflexionesFallo = isset($_POST['ref2']) ? $_POST['ref2'] : array();
-            $idCategoria = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
-
-            // Agregar cada pregunta utilizando el modelo
-            foreach ($preguntas as $index => $pregunta) {
-                // Obtener la respuesta correcta para la pregunta actual
-                $respuesta = isset($respuestas[$index]) ? $respuestas[$index] : '';
-
-                // Si la respuesta es un array, toma el primer elemento (puede ser '1' o '0')
-                if (is_array($respuesta)) {
-                    $respuesta = isset($respuesta[0]) ? $respuesta[0] : '';
-                }
-
-                $refAcierto = isset($reflexionesAcierto[$index][0]) ? $reflexionesAcierto[$index][0] : '';
-                $refFallo = isset($reflexionesFallo[$index][0]) ? $reflexionesFallo[$index][0] : '';
-
-                $Modelo->agregarPregunta($pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
-            }
-
-            // Redireccionar después de procesar las preguntas
-            header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
-        }
-    }
-
-    /**
      * Método que devuelve las filas de las preguntas de una categoría.
      *
      * @param int $idCategoria El ID de la categoría.
@@ -83,26 +47,6 @@ class Pregunta
     }
 
 
-    public function actualizarPregunta()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['accion']) && $_GET['accion'] == 'actualizarPregunta') {
-            $Modelo = new PreguntaModelo();
-    
-            // Recuperar los valores del formulario
-            $idPregunta = $_POST['idPregunta'];
-            $textoPregunta = $_POST['textoPregunta'];
-            $reflexionAcierto = $_POST['reflexionAcierto'];
-            $reflexionFallo = $_POST['reflexionFallo'];
-            $respuesta = $_POST['respuesta'];
-            $idCategoria = $_POST['idCategoria_seleccionada'];
-    
-            // Actualizar la pregunta en la base de datos
-            $Modelo->modificarPregunta($idPregunta, $textoPregunta, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
-        }
-        // Redirigir a la vista de configuración
-        header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
-    }
-
     function pregunta($id)
     {
         $Modelo = new PreguntaModelo();
@@ -110,4 +54,58 @@ class Pregunta
         return $fila;
     }
 
+
+
+// Método para agregar o actualizar preguntas
+public function agregar_actualizar_pregunta()
+{
+    $Modelo = new PreguntaModelo();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $idCategoria = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
+
+        // Acceder a los valores del formulario
+        $preguntas = isset($_POST['pregunta']) ? $_POST['pregunta'] : array();
+        $respuestas = isset($_POST['opcion']) ? $_POST['opcion'] : array();
+        $reflexionesAcierto = isset($_POST['ref1']) ? $_POST['ref1'] : array();
+        $reflexionesFallo = isset($_POST['ref2']) ? $_POST['ref2'] : array();
+
+        // Iterar sobre cada pregunta
+        foreach ($preguntas as $index => $preguntaData) {
+            // Obtener la pregunta actual
+            $pregunta = $preguntaData['texto'];
+
+            // Obtener el ID de la pregunta actual
+            $idPregunta = $preguntaData['idPregunta'];
+
+            // Obtener la respuesta correcta para la pregunta actual
+            $respuesta = isset($respuestas[$index]) ? $respuestas[$index] : '';
+
+            // Si la respuesta es un array, tomar el primer elemento (puede ser '1' o '0')
+            if (is_array($respuesta)) {
+                $respuesta = isset($respuesta[0]) ? $respuesta[0] : '';
+            }
+
+            $refAcierto = isset($reflexionesAcierto[$index][0]) ? $reflexionesAcierto[$index][0] : '';
+            $refFallo = isset($reflexionesFallo[$index][0]) ? $reflexionesFallo[$index][0] : '';
+
+            // Intentar actualizar la pregunta directamente
+            $Modelo->modificarPregunta($idPregunta, $pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
+
+            // Verificar si la pregunta fue actualizada correctamente
+            $preguntaActualizada = $Modelo->verPregunta($idPregunta);
+
+            if (!$preguntaActualizada) {
+                // La pregunta no existía, agregar
+                $Modelo->agregarPregunta($pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
+            }
+        }
+
+        // Cerrar la conexión después de procesar todas las preguntas
+        $Modelo->cerrarConexion();
+
+        // Redireccionar después de procesar las preguntas
+        header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
+    }
+}
 }

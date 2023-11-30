@@ -210,7 +210,7 @@ a {
 
 /* Estilos para los iconos */
 .icono {
-    width: 10%;
+    width: 45%;
 }
 
 /* Estilos para elementos sin estilo */
@@ -240,8 +240,6 @@ select {
 #objeto {
     width: 42.8%;
 }
-
-
 
 /* Estilos para el bloque con id 'respuesta' */
 /* #respuesta {
@@ -276,7 +274,8 @@ select {
 }
 
 .imagenObjeto{
-    width: 25%;
+    width: 80%;
+    max-width: 150px;
 }
 
 .contenedores {
@@ -302,4 +301,8 @@ select {
     color:rgb(243, 27, 27);
     font-weight: bolder;
     font-size: xx-large;
+}
+/* Celda del nombre de los objetos de la tabla */
+.nombreObjeto{
+    width: 30%;
 }

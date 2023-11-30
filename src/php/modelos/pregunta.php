@@ -1,8 +1,8 @@
 <?php
-    require_once 'conexion.php';
+require_once 'conexion.php';
 
-    class PreguntaModelo extends Conexion{
-
+class PreguntaModelo extends Conexion
+{
     function verPreguntas($id)
     {
         $tabla = array();
@@ -19,6 +19,7 @@
 
         return $tabla;
     }
+
     function verPregunta($id)
     {
         $sqlPregunta = "SELECT * FROM pregunta WHERE idPregunta = ?";
@@ -28,7 +29,6 @@
         $resultado = $stmt->get_result();
         $objeto = $resultado->fetch_assoc();
         $stmt->close();
-        $this->conexion->close();
 
         return $objeto;
     }
@@ -54,13 +54,11 @@
         $stmt->bind_param("sssii", $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria);
         $stmt->execute();
         $stmt->close();
-        $this->conexion->close();
+        // No cierres la conexión aquí
     }
 
     public function modificarPregunta($id, $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria)
     {
-
-
         // Asegurarse de que $respuesta sea 0 o 1
         $respuesta = ($respuesta == '1') ? 1 : 0;
 
@@ -72,9 +70,15 @@
         $stmt->bind_param("sssiii", $texto, $reflexionAcierto, $reflexionFallo, $respuesta, $idCategoria, $id);
         $stmt->execute();
         $stmt->close();
+        // No cierres la conexión aquí
+    }
+    public function obtenerConexion()
+    {
+        return $this->conexion;
+    }
+    public function cerrarConexion()
+    {
         $this->conexion->close();
     }
-
 }
-
 ?>
