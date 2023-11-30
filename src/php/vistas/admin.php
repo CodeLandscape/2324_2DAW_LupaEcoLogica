@@ -23,13 +23,13 @@
                             foreach ($tabla as $fila) {
                                 echo "<tr>
                                         <td id=azul>".$fila['nombre']."</td>
-                                        <td><a href=index.php?id=".$fila['idCategoria']."&accion=categoria&controlador=Controlador class=sinEstilo><img src='../img/IonEye.svg' class=icono></a></td>
-                                        <td><a href=index.php?id=".$fila['idCategoria']."&accion=remove&controlador=Categoria&funcion=Categoria class=sinEstilo><img src='../img/IonIosRemoveCircle.svg' class=icono></a></td>
+                                        <td><a href=index.php?id=".$fila['idCategoria']."&accion=categoria&controlador=controlador class=sinEstilo><img src='../img/IonEye.svg' class=icono></a></td>
+                                        <td><a href=index.php?id=".$fila['idCategoria']."&accion=remove&controlador=categoria&funcion=Categoria class=sinEstilo><img src='../img/IonIosRemoveCircle.svg' class=icono></a></td>
                                       </tr>";
                             }
                         ?>
                     </table>
-                    <a href="index.php?controlador=Categoria&accion=addCategoria" class="submit">Añadir Categoría</a>
+                    <a href="index.php?controlador=categoria&accion=addCategoria" class="submit">Añadir Categoría</a>
                 </div>
             </form>
 		</main>

@@ -6,7 +6,7 @@
         <?php include 'template/navegacion.html'; ?>
     </header>
     <main class="aumentarMargin100">
-        <form method='post' action="index.php?accion=agregar_actualizar_pregunta&controlador=Pregunta">
+        <form method='post' action="index.php?accion=agregar_actualizar_pregunta&controlador=pregunta">
             <?php
             $categoriaSeleccionada = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
 
@@ -55,17 +55,17 @@
             
             <div id="botonesPregunta">
                 <input type='submit' value='Guardar'>
-                <a href="index.php?accion=selectCategoria&controlador=Controlador&funcion=pregunta" class="submit">Volver</a>
+                <a href="index.php?accion=selectCategoria&controlador=controlador&funcion=pregunta" class="submit">Volver</a>
             </div>
         </form>
 
-        <aside id="listaPreguntas">
+        <!-- <aside id="listaPreguntas">
             <?php
-            foreach ($preguntas as $pregunta) {
-                echo '<div>Pregunta ' . $pregunta['idPregunta'] . '</div>';
-            }
+            // foreach ($preguntas as $pregunta) {
+            //     echo '<div>Pregunta ' . $pregunta['idPregunta'] . '</div>';
+            // }
             ?>
-        </aside>
+        </aside> -->
 
 <!-- Agregar el siguiente script al final de la vista -->
 <script>

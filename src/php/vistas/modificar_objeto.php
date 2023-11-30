@@ -12,7 +12,7 @@
         <?php include 'template/navegacion.html'; ?>
     </header>
     <main class="aumentarMargin25">
-        <form method='post' action="index.php?accion=actualizarObjeto&controlador=Objeto" enctype="multipart/form-data">
+        <form method='post' action="index.php?accion=actualizarObjeto&controlador=objeto" enctype="multipart/form-data">
             <div id="contenido">
                 <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $_GET['idCategoria']; ?>">
                 <?php

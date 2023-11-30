@@ -72,6 +72,19 @@ class PreguntaModelo extends Conexion
         $stmt->close();
         // No cierres la conexión aquí
     }
+    
+    public function preguntaExiste($pregunta, $idCategoria)
+{
+    $sql = "SELECT idPregunta FROM pregunta WHERE texto = ? AND idCategoria = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("si", $pregunta, $idCategoria);
+    $stmt->execute();
+    $stmt->store_result();
+    $existe = $stmt->num_rows > 0;
+    $stmt->close();
+    return $existe;
+}
+
     public function obtenerConexion()
     {
         return $this->conexion;
@@ -81,4 +94,3 @@ class PreguntaModelo extends Conexion
         $this->conexion->close();
     }
 }
-?>

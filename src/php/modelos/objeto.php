@@ -53,7 +53,7 @@ class ObjetoModelo extends Conexion{
             $stmt->bind_param("sssiii", $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria);
             $stmt->execute();
             $stmt->close();
-            $this->conexion->close();
+          
         }
 
         public function actualizarObjeto($id, $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria) {
@@ -69,6 +69,14 @@ class ObjetoModelo extends Conexion{
 
         $stmt->execute();
         $stmt->close();
-        $this->conexion->close();
+        }
+
+        public function obtenerConexion()
+        {
+            return $this->conexion;
+        }
+        public function cerrarConexion()
+        {
+            $this->conexion->close();
         }
 }

@@ -183,7 +183,4 @@ class Controlador
         // Redirigir a la vista de configuración
         $this->vista = 'modConfig';
     }
-
 }
-
-?>

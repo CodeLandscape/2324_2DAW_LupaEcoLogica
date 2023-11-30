@@ -28,10 +28,8 @@ Categorias
         <main class="aumentarMargin100">
             <form method='post'>
             <?php
-                if (isset($_GET['codigo'])){
-                    if ($_GET['codigo'] == 1){
-                        echo "<p class='correcto'>Añadido correctamente</p>";
-                    }
+                if(isset($_GET['msg'])){
+                    echo '<p>'.$_GET['msg'].'</p>';
                 }
             ?>
                 <div id="contenido">
@@ -47,7 +45,7 @@ Categorias
                         echo '<p class="tamFuenteGrande">ERROR</p>';
                     }
                 ?>
-                    <a class="submit" href="index.php?controlador=Categoria&accion=modTablero&id=<?php echo $_GET['id'];?>">Modificar</a>
+                    <a class="submit" href="index.php?controlador=categoria&accion=modTablero&id=<?php echo $_GET['id'];?>">Modificar</a>
                 <!--Contenido de la tabla-->
 
                 <table>
@@ -103,8 +101,8 @@ Categorias
                                     <td class="nombreObjeto">'.$fila['nombre'].'</td>
                                     <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'" class="imagenObjeto"></td>
                                     <td>'.$punt.'</td>
-                                    <td><a href=index.php?id='.$fila['idObjeto'].'&accion=remove&controlador=Objeto&funcion=Objeto&idCategoria='.$_GET['id'].' class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
-                                    <td><a href=index.php?idCategoria='.$_GET['id'].'&id='.$fila['idObjeto'].'&accion=modificar_objeto&controlador=Objeto&funcion=Objeto class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
+                                    <td><a href=index.php?id='.$fila['idObjeto'].'&accion=remove&controlador=objeto&funcion=Objeto&idCategoria='.$_GET['id'].' class="sinEstilo"><img src="../img/IonBan.svg" class="icono"></a></td>
+                                    <td><a href=index.php?idCategoria='.$_GET['id'].'&id='.$fila['idObjeto'].'&accion=modificar_objeto&controlador=objeto&funcion=Objeto class="sinEstilo"><img src="../img/IonPencil.svg" class="icono"></a></td>
                                 </tr>';
                             }
                         }

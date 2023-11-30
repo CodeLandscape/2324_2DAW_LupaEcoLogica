@@ -85,6 +85,7 @@ require_once '../php/modelos/categoria.php';
         }
         $Modelo->insertarCategoria($_POST["categoria"], $_POST["tablero"], $base64);
         header("location:index.php");
+        exit; 
     }
     public function actualizarTablero()
     {
@@ -125,7 +126,8 @@ require_once '../php/modelos/categoria.php';
             }
     
             // Redireccionar después de procesar las modificaciones de los objetos
-            header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
+            header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=controlador');
+            exit; 
         }
     }
     function borrarCategoria()
@@ -133,6 +135,6 @@ require_once '../php/modelos/categoria.php';
         $Modelo = new CategoriaModelo();
         $Modelo->borrarCategoria($_POST["id"]);
         header('location:index.php');
+        exit; 
     }
-    }
-?>
+}

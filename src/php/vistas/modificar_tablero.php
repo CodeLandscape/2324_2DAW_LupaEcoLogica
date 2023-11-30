@@ -17,7 +17,7 @@
     <?php
                 $datos = $controlador->verTablero($_GET['id']);
                 ?>
-        <form action="index.php?accion=actualizarTablero&controlador=Categoria" method="post" enctype="multipart/form-data">
+        <form action="index.php?accion=actualizarTablero&controlador=categoria" method="post" enctype="multipart/form-data">
             <div>
 
                 <label for='tablero'>Nombre del tablero:</label>
@@ -33,7 +33,7 @@
             </div>
             <div id="botones">
                 <input type='submit' value='Añadir'>
-                <a href="index.php?id=<?php if (isset($_GET['id'])) { echo $_GET['id']; } ?>accion=categoria&controlador=Controlador">Volver</a>
+                <a href="index.php?id=<?php if (isset($_GET['id'])) { echo $_GET['id']; } ?>accion=categoria&controlador=controlador">Volver</a>
             </div>
         </form>
     </main>

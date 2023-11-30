@@ -43,7 +43,9 @@ class Pregunta
     {
         $Modelo = new PreguntaModelo();
         $Modelo->borrarPregunta($_POST["id"]);
-        header('location:index.php?id=' . $_POST["idCategoria"] .'&accion=categoria&controlador=Controlador');
+        $mensaje = 'Pregunta borrada correctamente';
+        header('location:index.php?id=' . $_POST["idCategoria"] .'&accion=categoria&controlador=controlador&msg=' . $mensaje.'');
+        exit; 
     }
 
 
@@ -60,6 +62,7 @@ class Pregunta
 public function agregar_actualizar_pregunta()
 {
     $Modelo = new PreguntaModelo();
+    $mensaje = '';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $idCategoria = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
@@ -73,7 +76,19 @@ public function agregar_actualizar_pregunta()
         // Iterar sobre cada pregunta
         foreach ($preguntas as $index => $preguntaData) {
             // Obtener la pregunta actual
-            $pregunta = $preguntaData['texto'];
+            $pregunta = isset($preguntaData['texto']) ? $this->sanitizarEntrada($preguntaData['texto']) : '';
+
+            // Verificar si la pregunta está vacía después de la sanitización
+            if (empty($pregunta)) {
+                $mensaje = 'Error: La pregunta no puede estar vacía. No se pueden introducir caracteres especiales.';
+                break; // Detener el bucle si hay un error
+            }
+
+            // Verificar si la pregunta ya existe al añadir
+            if (empty($preguntaData['idPregunta']) && $Modelo->preguntaExiste($pregunta, $idCategoria)) {
+                $mensaje = 'Error: La pregunta ya existe. Por favor, elige otro nombre.';
+                break; // Detener el bucle si hay un error
+            }
 
             // Obtener el ID de la pregunta actual
             $idPregunta = $preguntaData['idPregunta'];
@@ -86,8 +101,8 @@ public function agregar_actualizar_pregunta()
                 $respuesta = isset($respuesta[0]) ? $respuesta[0] : '';
             }
 
-            $refAcierto = isset($reflexionesAcierto[$index][0]) ? $reflexionesAcierto[$index][0] : '';
-            $refFallo = isset($reflexionesFallo[$index][0]) ? $reflexionesFallo[$index][0] : '';
+            $refAcierto = isset($reflexionesAcierto[$index][0]) ? $this->sanitizarEntrada($reflexionesAcierto[$index][0]) : '';
+            $refFallo = isset($reflexionesFallo[$index][0]) ? $this->sanitizarEntrada($reflexionesFallo[$index][0]) : '';
 
             // Intentar actualizar la pregunta directamente
             $Modelo->modificarPregunta($idPregunta, $pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
@@ -98,14 +113,29 @@ public function agregar_actualizar_pregunta()
             if (!$preguntaActualizada) {
                 // La pregunta no existía, agregar
                 $Modelo->agregarPregunta($pregunta, $refAcierto, $refFallo, $respuesta, $idCategoria);
+                $mensaje = 'Preguntas agregadas o actualizadas correctamente';
+            } else {
+                $mensaje = 'Preguntas actualizadas correctamente';
             }
         }
 
         // Cerrar la conexión después de procesar todas las preguntas
         $Modelo->cerrarConexion();
-
-        // Redireccionar después de procesar las preguntas
-        header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=Controlador');
     }
+
+    // Redireccionar después de procesar las preguntas
+    header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=controlador&msg=' . $mensaje);
+    exit;
 }
+
+
+// Agrega la siguiente función en tu controlador para sanitizar la entrada
+private function sanitizarEntrada($input)
+{
+    // Eliminar etiquetas HTML, emojis y otros caracteres especiales
+    $sanitizedInput = preg_replace('/[^\p{L}\p{N}\s\p{P}]/u', '', strip_tags($input));
+    return $sanitizedInput;
+}
+
+
 }
