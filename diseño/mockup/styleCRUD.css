@@ -131,6 +131,13 @@ input[type="submit"]:active , .submit:active{
     background-color: #588FA0;
 }
 
+/* Estilos para los select */
+select{
+    display: block;
+    width: 45%;
+    margin: 20px 28.5%;
+}
+
 /* Estilos específicos para el bloque con id 'botones' */
 #botones {
     margin-top: 20%;
