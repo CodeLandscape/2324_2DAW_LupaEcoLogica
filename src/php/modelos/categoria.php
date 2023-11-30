@@ -143,13 +143,23 @@ class CategoriaModelo extends Conexion{
          * @param string $id Id de la categoría.
          */
         function borrarCategoria($id){
+            // Eliminar objetos asociados a la categoría
+            $sqlEliminarObjetos = "DELETE FROM objeto WHERE idCategoria = ?";
+            $stmtEliminarObjetos = $this->conexion->prepare($sqlEliminarObjetos);
+            $stmtEliminarObjetos->bind_param("i", $id);
+            $stmtEliminarObjetos->execute();
+            $stmtEliminarObjetos->close();
+        
+            // Eliminar la categoría
             $sqlCategoria = "DELETE FROM categoria WHERE idCategoria = ?";
             $stmt = $this->conexion->prepare($sqlCategoria);
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $stmt->close();
+            
             $this->conexion->close();
         }
+        
 
     /**
     * Método que selecciona un tablero al azar.
