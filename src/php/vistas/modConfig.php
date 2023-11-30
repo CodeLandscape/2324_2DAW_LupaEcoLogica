@@ -22,7 +22,7 @@
         <input type="text" id="parametro3" name="parametro3" value="<?php echo $configuracion['nObjetosBuenos']; ?>"><br><br>
 
         <input type="hidden" name="accion" value="actualizarConfiguracion">
-        <input type="submit" value="Guardar Cambios">
+        <input type="submit" value="Guardar">
     </form>
     </main>
 </body>
