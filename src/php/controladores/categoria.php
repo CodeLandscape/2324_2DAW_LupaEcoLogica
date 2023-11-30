@@ -37,44 +37,42 @@ require_once '../php/modelos/categoria.php';
     }
 
 
-    function nombreCategoria($id)
+    public function nombreCategoria($id)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verCategoria($id);
         return $fila['nombre'];
     }
 
-   
-
-    function nombreTablero($idCategoria)
+    public function nombreTablero($idCategoria)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila['nombre'];
     }
 
-    function fondoTablero($idCategoria)
+    public function fondoTablero($idCategoria)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila['imagenFondo'];
     }
 
-    function verTablero($idCategoria)
+    public function verTablero($idCategoria)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila;
     }
 
-    function randomTablero()
+    public function randomTablero()
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->randomTablero();
         return $fila;
     }
 
-    function insertarCategoria()
+    public function insertarCategoria()
     {
         $Modelo = new CategoriaModelo();
         $fondo = $_FILES['img']['tmp_name'];
@@ -130,11 +128,18 @@ require_once '../php/modelos/categoria.php';
             exit; 
         }
     }
-    function borrarCategoria()
+    public function borrarCategoria()
     {
         $Modelo = new CategoriaModelo();
         $Modelo->borrarCategoria($_POST["id"]);
         header('location:index.php');
         exit; 
     }
+    
+    private function sanitizarEntrada($input)
+{
+    // Eliminar etiquetas HTML, emojis y otros caracteres especiales
+    $sanitizedInput = preg_replace('/[^\p{L}\p{N}\s\p{P}]/u', '', strip_tags($input));
+    return $sanitizedInput;
+}
 }

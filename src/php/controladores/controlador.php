@@ -40,7 +40,7 @@ class Controlador
      *
      * @return array Un array bidimensional con las filas de la tabla categoría.
      */
-    function tablaCategoria()
+    public function tablaCategoria()
     {
         $Modelo = new CategoriaModelo();
         $tabla = $Modelo->tablaCategoria();
@@ -53,7 +53,7 @@ class Controlador
      * @param int $id El ID de la categoría.
      * @return string El nombre de la categoría.
      */
-    function nombreCategoria($id)
+    public function nombreCategoria($id)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verCategoria($id);
@@ -66,7 +66,7 @@ class Controlador
      * @param int $idCategoria El ID de la categoría.
      * @return string El nombre del tablero de la categoría.
      */
-    function nombreTablero($idCategoria)
+    public function nombreTablero($idCategoria)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
@@ -79,14 +79,14 @@ class Controlador
      * @param int $idCategoria El ID de la categoría.
      * @return string La ruta de la imagen de fondo del tablero.
      */
-    function fondoTablero($idCategoria)
+    public function fondoTablero($idCategoria)
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila['imagenFondo'];
     }
 
-    function verTablero($idCategoria){
+    public function verTablero($idCategoria){
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila;
@@ -97,7 +97,7 @@ class Controlador
      * @param int $idCategoria El ID de la categoría.
      * @return array Un array bidimensional con las filas de la tabla pregunta.
      */
-    function tablaPregunta($idCategoria)
+    public function tablaPregunta($idCategoria)
     {
         $Modelo = new PreguntaModelo();
         $tabla = $Modelo->verPreguntas($idCategoria);
@@ -110,14 +110,14 @@ class Controlador
      * @param int $idCategoria El ID de la categoría.
      * @return array Un array bidimensional con las filas de la tabla objeto.
      */
-    function tablaObjeto($idCategoria)
+    public function tablaObjeto($idCategoria)
     {
         $Modelo = new ObjetoModelo();
         $tabla = $Modelo->verObjetos($idCategoria);
         return $tabla;
     }
 
-    function verObjeto($idObjeto)
+    public function verObjeto($idObjeto)
     {
         $Modelo = new ObjetoModelo();
         $fila = $Modelo->verObjeto($idObjeto);
@@ -129,7 +129,7 @@ class Controlador
      * 
      * @return array Un array bidimensional con las filas de las partidas.
      */
-    function rankingTabla()
+    public function rankingTabla()
     {
         $Modelo = new Modelo();
         $tabla = $Modelo->rankingTabla();
@@ -141,14 +141,14 @@ class Controlador
      * 
      * @return array Un array con la configuración.
      */
-    function configuracion()
+    public function configuracion()
     {
         $Modelo = new Modelo();
         $fila = $Modelo->configuracion();
         return $fila;
     }
 
-    function pregunta($id)
+    public function pregunta($id)
     {
         $Modelo = new PreguntaModelo();
         $fila = $Modelo->verPregunta($id);
@@ -160,13 +160,14 @@ class Controlador
      * 
      * @return array Un array con la fila de la tabla Tablero seleccionada aleatoriamente.
      */
-    function randomTablero()
+    public function randomTablero()
     {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->randomTablero();
         return $fila;
     }
-    function actualizarConfiguracion()
+    
+    public function actualizarConfiguracion()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion']) && $_POST['accion'] == 'actualizarConfiguracion') {
             $Modelo = new Modelo();
@@ -182,5 +183,79 @@ class Controlador
         }
         // Redirigir a la vista de configuración
         $this->vista = 'modConfig';
+    }
+
+    public function ajaxPregunta(){
+        try {
+            $id=$_POST['id'];
+            $datos = $this->tablaPregunta($id);
+            header('Content-Type: application/json');
+            echo json_encode($datos);
+
+        } catch (Exception $e) {
+            // Manejar errores y devolver un mensaje JSON
+            header('Content-Type: application/json');
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function ajaxObjeto(){
+        try {
+            $id=$_POST['id'];
+            $datos = $this->tablaObjeto($id);
+                header('Content-Type: application/json');
+                echo json_encode($datos);
+        } catch (Exception $e) {
+            // Manejar errores y devolver un mensaje JSON
+            header('Content-Type: application/json');
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function ajaxFondo(){
+        try {
+            $id=$_POST['id'];
+            $datos = $this->fondoTablero($id);
+            // Verifica si $datos es una cadena (BLOB)
+            if (is_string($datos)) {
+                $imagen=base64_decode($datos);
+                header('Content-Type: application/json');
+                echo json_encode(['imagen' => base64_encode($imagen)]);
+            } else {
+                // Manejar el caso en que $datos no es una cadena
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Los datos no son válidos']);
+            }
+        } catch (Exception $e) {
+            // Manejar errores y devolver un mensaje JSON
+            header('Content-Type: application/json');
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function ajaxConfig(){
+        // Obtener datos desde la base de datos utilizando el controlador
+    $datos = $this->configuracion();  // Ajusta el nombre del método según tu lógica
+
+    // Devolver los datos como respuesta JSON
+    header('Content-Type: application/json');
+    echo json_encode($datos);
+    }
+
+    public function ajaxCateg(){
+        $datos = $this->randomTablero();  // Ajusta el nombre del método según tu lógica
+
+        // Devolver los datos como respuesta JSON
+        header('Content-Type: application/json');
+        echo json_encode($datos);
+    }
+
+    public function ajaxRanking(){
+        // Obtener datos desde la base de datos utilizando el controlador
+        $datos = $this->rankingTabla();  // Ajusta el nombre del método según tu lógica
+
+        // Devolver los datos como respuesta JSON
+        header('Content-Type: application/json');
+        echo json_encode($datos);
     }
 }
