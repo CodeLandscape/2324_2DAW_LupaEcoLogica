@@ -169,21 +169,33 @@ class Controlador
     
     public function actualizarConfiguracion()
     {
+        $mensaje = ''; // Variable para almacenar el mensaje
+    
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion']) && $_POST['accion'] == 'actualizarConfiguracion') {
             $Modelo = new Modelo();
-
-            // Recuperar los valores del formulario
-            $parametro1 = $_POST['parametro1'];
-            $parametro2 = $_POST['parametro2'];
-            $parametro3 = $_POST['parametro3'];
+    
+            // Recuperar los valores del formulario y sanitizar cada entrada permitiendo solo números
+            $parametro1 = isset($_POST['parametro1']) ? $this->sanitizarEntrada($_POST['parametro1'], true) : '';
+            $parametro2 = isset($_POST['parametro2']) ? $this->sanitizarEntrada($_POST['parametro2'], true) : '';
+            $parametro3 = isset($_POST['parametro3']) ? $this->sanitizarEntrada($_POST['parametro3'], true) : '';
             // Agregar más variables según los parámetros que existan en la tabla config
-
-            // Actualizar la configuración en la base de datos
-            $Modelo->actualizarConfiguracion($parametro1, $parametro2, $parametro3);
+    
+            // Verificar si los campos son numéricos después de la sanitización
+            if (!is_numeric($parametro1) || !is_numeric($parametro2) || !is_numeric($parametro3)) {
+                $mensaje = 'Error: Los campos deben contener solo números.';
+            } else {
+                // Los datos son válidos, proceder a actualizar la configuración en la base de datos
+                $Modelo->actualizarConfiguracion($parametro1, $parametro2, $parametro3);
+                $mensaje = 'Configuración actualizada correctamente.';
+            }
         }
-        // Redirigir a la vista de configuración
+        
+        // Redirigir a la vista de configuración con el mensaje
         $this->vista = 'modConfig';
+        header('location:index.php?&accion=modConfig&controlador=controlador&msg=' . $mensaje);
+        exit;
     }
+
 
     public function ajaxPregunta(){
         try {
@@ -258,4 +270,18 @@ class Controlador
         header('Content-Type: application/json');
         echo json_encode($datos);
     }
+
+    private function sanitizarEntrada($input, $permitirSoloNumeros = false)
+{
+    // Si se permite solo números, eliminar todo excepto los dígitos
+    if ($permitirSoloNumeros) {
+        $sanitizedInput = preg_replace('/[^\p{N}]/u', '', $input);
+    } else {
+        // Eliminar etiquetas HTML, emojis y otros caracteres especiales excepto los permitidos sin adyacencia a otros caracteres
+    $sanitizedInput = preg_replace('/(<[^>]+[\'"]>|\w(?=\w))|[^ \w"<>]+/', '', strip_tags($input));
+    }
+    return $sanitizedInput;
+}
+
+
 }
