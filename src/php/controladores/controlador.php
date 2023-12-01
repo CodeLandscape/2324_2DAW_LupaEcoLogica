@@ -192,8 +192,8 @@ class Controlador
         
         // Redirigir a la vista de configuración con el mensaje
         $this->vista = 'modConfig';
-        header('location:index.php?&accion=modConfig&controlador=controlador&msg=' . $mensaje);
-        exit;
+        // header('location:index.php?&accion=modConfig&controlador=controlador&msg=' . $mensaje);
+        // exit;
     }
 
 
