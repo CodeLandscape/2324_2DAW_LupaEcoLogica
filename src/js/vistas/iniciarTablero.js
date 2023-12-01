@@ -83,12 +83,15 @@ export class IniciarTablero extends Vista {
     actualizarTiempo();
     let cuentaRegresiva = setInterval(actualizarTiempo, 1000);
   
-    // Agregar botón de pausa
+    // Crear y configurar el botón de pausa
     const botonPausa = document.createElement('button')
     botonPausa.textContent = 'Pausar'
     botonPausa.id = 'botonPausa'
+
+    // Agregar un evento de clic al botón de pausa para manejar la pausa/reanudación
     botonPausa.addEventListener('click', () => {
       if (!cuentaRegresivaEnPausa) {
+        // Pausar la cuenta regresiva
         clearInterval(cuentaRegresiva)
         cuentaRegresivaEnPausa = true
         tiempoPausado = Date.now()
@@ -96,18 +99,22 @@ export class IniciarTablero extends Vista {
         this.pausa = true
       }
       else {
+        // Reanudar la cuenta regresiva
         cuentaRegresivaEnPausa = false
         const tiempoPausaActual = Date.now()
         const tiempoPausadoMilisegundos = tiempoPausaActual - tiempoPausado
         tiempoPausado = 0
     
-        tiempoRestante += Math.floor(tiempoPausadoMilisegundos / 1000)
+        tiempoRestante -= Math.floor(tiempoPausadoMilisegundos / 1000)
+        
+        // Reiniciar la cuenta regresiva con el nuevo tiempo restante
         cuentaRegresiva = setInterval(actualizarTiempo, 1000)
         botonPausa.textContent = 'Pausar'
         this.pausa = false
       }
     })
 
+    // Agregar el botón de pausa al cuerpo del documento HTML
     document.body.appendChild(botonPausa);
   }
   
@@ -118,6 +125,7 @@ export class IniciarTablero extends Vista {
     this.objetomalo1 = document.getElementById('objetoMalo1')
 
     this.objetomalo1.onclick = () => {
+      // Verificar si el juego no está en pausa antes de procesar el clic
       if (!this.pausa){
         console.log('Objeto malo 1 capturado')
         this.añadirObjetoAside(this.objetomalo1)
@@ -315,10 +323,12 @@ export class IniciarTablero extends Vista {
   verificarObjetosPulsados() {
     this.objetosPulsados++
   
+    // Obtener el estilo de visualización actual de los objetos malos
     const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display')
     const estiloMalo2 = window.getComputedStyle(this.objetomalo2).getPropertyValue('display')
     const estiloMalo3 = window.getComputedStyle(this.objetomalo3).getPropertyValue('display')
   
+    // Verificar si los tres objetos malos han sido capturados (display: none)
     if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
       // Los tres objetos malos han sido capturados
       this.ocultarBotonPausa()
@@ -327,38 +337,51 @@ export class IniciarTablero extends Vista {
   }
   
   ocultarBotonPausa() {
+    // Obtener el elemento del botón de pausa por su ID
     const botonPausa = document.getElementById('botonPausa')
+    // Verificar si el botón de pausa existe
     if (botonPausa) {
-      botonPausa.style.display = 'none'
+      botonPausa.style.display = 'none' // Ocultar el botón de pausa estableciendo el estilo de visualización a 'none'
     }
   }
 
   llamarAJAXPregunta = () => {
+    /**
+     * Parámetros para la solicitud AJAX, en este caso, el ID de la categoría.
+     * @constant {Object} params
+    */
     const params = {
       id: Vista.idCategoria
     }
-
-    Rest.post('php/controladores/ajaxPregunta.php', params, this.verResultadoAJAXPregunta);
+    // Realizar la solicitud POST a través de AJAX utilizando la clase Rest
+    Rest.post('php/controladores/ajaxPregunta.php', params, this.verResultadoAJAXPregunta)
   }
 
+  /**
+    * Muestra las preguntas obtenidas en la interfaz del juego después de una solicitud AJAX exitosa.
+    * @param {Array} Pregunta - Array de objetos que representan preguntas obtenidas de la solicitud AJAX.
+  */
   verResultadoAJAXPregunta = (Pregunta) => {
-    Vista.pregunta = Pregunta;
-    console.log(Pregunta);
+    Vista.pregunta = Pregunta
+    console.log(Pregunta)
 
-    const contenedorPregunta = document.getElementById('rondaPreguntas');
+    const contenedorPregunta = document.getElementById('rondaPreguntas')
     
-    let nPregunta = Vista.config.nPregunta;
+    // Número de preguntas a mostrar según la configuración.
+    let nPregunta = Vista.config.nPregunta
+    // Bucle de las preguntas
     for(let i=0;i<nPregunta;i++){
-      let divPregunta = document.createElement('div');
-      divPregunta.setAttribute('id', 'preguntaJuego'+i);
-      divPregunta.setAttribute('class', 'pregunta');
-      divPregunta.style.display = 'none';
+      //* Crea un div para cada pregunta con un ID único y establece el estilo inicial en 'none'.
+      let divPregunta = document.createElement('div')
+      divPregunta.setAttribute('id', 'preguntaJuego'+i)
+      divPregunta.setAttribute('class', 'pregunta')
+      divPregunta.style.display = 'none'
 
-      let p = document.createElement('p');
-      p.textContent = Pregunta[i].texto;
-      divPregunta.appendChild(p);
+      let p = document.createElement('p')
+      p.textContent = Pregunta[i].texto
+      divPregunta.appendChild(p)
 
-      contenedorPregunta.appendChild(divPregunta);
+      contenedorPregunta.appendChild(divPregunta)
     }
   }
 }
