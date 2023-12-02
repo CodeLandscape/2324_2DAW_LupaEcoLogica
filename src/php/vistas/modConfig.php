@@ -12,6 +12,11 @@
     $configuracion=$controlador->configuracion();
     ?>
     <form action="index.php?accion=actualizarConfiguracion&controlador=controlador" method="post" enctype="multipart/form-data">
+        <?php
+            if (isset($_GET['msg'])){
+            echo $_GET['msg'] ."</br>";
+            }
+        ?>
         <label for="parametro1">Tiempo Cronometro:</label>
         <input type="text" id="parametro1" name="parametro1" value="<?php echo $configuracion['tiempoCrono']; ?>"><br><br>
 

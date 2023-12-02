@@ -24,7 +24,10 @@ class Controlador
     {
         $this->vista = 'selectCategoria';
     }
-
+    public function modConfig()
+    {
+        $this->vista = 'modConfig';
+    }
     public function categoria()
     {
         $this->vista = 'categoria';
@@ -191,8 +194,7 @@ class Controlador
         }
         
         // Redirigir a la vista de configuración con el mensaje
-        $this->vista = 'modConfig';
-        // header('location:index.php?&accion=modConfig&controlador=controlador&msg=' . $mensaje);
+        header('location:index.php?accion=modConfig&controlador=controlador&msg=' . $mensaje);
         // exit;
     }
 
