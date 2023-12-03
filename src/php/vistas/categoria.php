@@ -84,6 +84,7 @@ Categorias
                         <td>Nombre</td>
                         <td>Imagen</td>
                         <td>Puntuación</td>
+                        <td>Descripcion</td>
                     </tr>
                     <?php
                     /* Tablas de los Objetos */
@@ -98,7 +99,8 @@ Categorias
                                 echo '<tr>
                                     <td class="nombreObjeto">'.$fila['nombre'].'</td>
                                     <td><img src="data:image/jpeg;base64,'.$fila['imagen'].'" alt="'.$fila['descripcion'].'" class="imagenObjeto"></td>
-                                    <td>'.$punt.'</td>
+                                    <td>'.$punt. '</td>
+                                    <td>' . $fila['descripcion'] . '</td>
                                 </tr>';
                             }
                         }

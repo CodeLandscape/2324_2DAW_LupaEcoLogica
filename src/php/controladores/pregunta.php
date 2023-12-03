@@ -42,6 +42,7 @@ class Pregunta
     public function borrarPregunta()
     {
         $Modelo = new PreguntaModelo();
+        echo $_POST["id"];
         $Modelo->borrarPregunta($_POST["id"]);
         $mensaje = 'Pregunta borrada correctamente';
         header('location:index.php?id=' . $_POST["idCategoria"] .'&accion=categoria&controlador=controlador&msg=' . $mensaje.'');
@@ -124,8 +125,8 @@ public function agregar_actualizar_pregunta()
     }
 
     // Redireccionar después de procesar las preguntas
-    // header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=controlador&msg=' . $mensaje);
-    // exit;
+    header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=controlador&msg=' . $mensaje);
+    exit;
 }
 
 

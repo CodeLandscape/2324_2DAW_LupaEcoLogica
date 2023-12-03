@@ -25,6 +25,11 @@ class Objeto
         $this->vista = 'eliminar_objeto';
     }
 
+    public function remove()
+    {
+        $this->vista = 'remove';
+    }
+
     public function agregar_actualizar_objeto()
 {
     $Modelo = new ObjetoModelo();
@@ -103,7 +108,7 @@ class Objeto
 }
 
 
-    public function borrar_objeto()
+    public function borrarObjeto()
     {
         $Modelo = new ObjetoModelo();
         $Modelo->borrarObjeto($_POST["id"]);

@@ -11,6 +11,11 @@
 		<main>
             <form>
                 <div id="contenido">
+                <?php
+                if(isset($_GET['msg'])){
+                    echo '<p>'.$_GET['msg'].'</p>';
+                }
+                ?>
                         <!--Contenido de la tabla-->
                     <table>
                         <tr id="azul">
