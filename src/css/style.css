@@ -266,7 +266,7 @@ table {
     width: 40%;
     height: 40%;
 }
-#preguntaJuego {
+.preguntaJuego {
     position: relative;
     max-width: 80%;
     margin: 0 auto;
@@ -280,12 +280,12 @@ table {
     padding: 20px;
 }
 
-#preguntaJuego p {
+.preguntaJuego p {
     margin: 0;
     font-size: large;
 }
 
-#preguntaJuego img {
+.preguntaJuego img {
     max-width: 40%;
     max-height: 40%;
     position: static;
@@ -449,7 +449,7 @@ header h1 {
         height: 60px;
         font-size: 25px;
     }
-    #titulo, #jugar{
+    #titulo, #botonJuego{
         visibility: hidden;
     }
     #menuInicio img{
@@ -457,7 +457,7 @@ header h1 {
         top: -200px;
         width: 30%;
     }
-    #ranking{
+    #botonRanking{
         width: 50%;
         position: absolute;
         left: 25%;

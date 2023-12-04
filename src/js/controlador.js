@@ -13,9 +13,10 @@ class Controlador {
     /**
      * Crea una instancia del Controlador.
      */
-    constructor() {
-        this.vistas = new Map();
-        this.modelo = new Modelo();
+  constructor () {
+    this.vistas = new Map()
+    this.modelo = new Modelo()
+    this.contador = false
 
         // Obtener los contenedores de las vistas
         const divVista1 = document.getElementById("menuInicio");
@@ -40,21 +41,47 @@ class Controlador {
      * @param {Symbol} vista - El símbolo que identifica a la vista a mostrar.
      */
     verVista(vista) {
-        this.ocultarVistas();
-        this.vistas.get(vista).mostrar(true);
+    this.ocultarVistas()
+  
+    if (vista === Vista.VISTA3) {
+      
+      if (this.contador === false) {
+        this.contador = 0;
+      } 
+      else {
+        this.contador++
+      }
+      if(this.contador != Vista.config.nPregunta){
+        this.ocultarPreguntas();
+        this.pregunta = document.getElementById('preguntaJuego'+this.contador)
+        this.pregunta.style.display= 'block';
+      }
+      if (this.contador == Vista.config.nPregunta)
+        vista = Vista.VISTA4
     }
+    this.vistas.get(vista).mostrar(true)
+  }
 
     /**
      * Oculta todas las vistas.
      */
-    ocultarVistas() {
-        for (let vista of this.vistas.values()) {
-            vista.mostrar(false);
-        }
+  ocultarVistas () {
+    for (const vista of this.vistas.values()) {
+      vista.mostrar(false)
     }
+  }
+  ocultarPreguntas(){
+    this.pregunta1=document.getElementById('preguntaJuego0')
+    this.pregunta1.style.display = 'none';
+    this.pregunta2=document.getElementById('preguntaJuego1')
+    this.pregunta2.style.display = 'none';
+    this.pregunta3=document.getElementById('preguntaJuego2')
+    this.pregunta3.style.display = 'none';
+  }
+  
 }
 
 // Inicializar el controlador al cargar la página
 window.onload = () => {
-    new Controlador();
-};
+  new Controlador()
+}
