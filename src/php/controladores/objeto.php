@@ -114,8 +114,16 @@ class Objeto
                             );
                         }
                     } else {
-                        // Agregar nuevo objeto con la imagen
-                        // (código similar al utilizado para agregar objetos con imagen en el ejemplo anterior)
+                        // Objeto no existente, agregar
+                        if (!empty($imgs['tmp_name'][$index]) && in_array($imgs['type'][$index], array('image/png', 'image/jpg', 'image/jpeg'))) {
+                            $imagenTmp = $imgs['tmp_name'][$index];
+
+                            // Leer el contenido de la imagen
+                            $contenido = file_get_contents($imagenTmp);
+                            $base64 = base64_encode($contenido);
+
+                            $Modelo->agregarObjeto($nombreSanitizado, $descripcionSanitizada, $base64, $puntuacionSanitizada, ($buenoSanitizado ? 1 : 0), $idCategoria);
+                        }
                     }
                     $mensaje = 'Objetos agregados o actualizados correctamente';
                 } else {
