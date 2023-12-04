@@ -43,7 +43,7 @@ export class Ranking extends Vista {
     const params = {}
 
     // Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
-    Rest.getJSON('php/controladores/ajax3.php', params, this.verResultadoAJAX)
+    Rest.getJSON('php/controladores/ajax/ajaxRanking.php', params, this.verResultadoAJAX)
   }
 
   /**

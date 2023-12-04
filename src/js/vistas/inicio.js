@@ -55,7 +55,7 @@ export class Inicio extends Vista {
     const params = {}
 
     // Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
-    Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXConfig)
+    Rest.getJSON('php/controladores/ajax/ajaxConfig.php', params, this.verResultadoAJAXConfig)
   }
 
   /**

@@ -199,7 +199,8 @@ export class IniciarTablero extends Vista {
      * Realiza una llamada AJAX para obtener datos del tablero.
      */
   llamarAJAXTablero = () => {
-    Rest.getJSON('php/controladores/ajaxCateg.php', { id: Vista.idCategoria }, this.verResultadoAJAXTablero)
+    const params = {}
+    Rest.getJSON('php/controladores/ajax/ajaxCateg.php', params, this.verResultadoAJAXTablero)
   }
 
   /**
@@ -221,7 +222,7 @@ export class IniciarTablero extends Vista {
       id: Vista.idCategoria
     }
 
-    Rest.post('php/controladores/ajaxFondo.php', params, this.verResultadoAJAXFondo)
+    Rest.post('php/controladores/ajax/ajaxFondo.php', params, this.verResultadoAJAXFondo)
   }
 
   /**
@@ -247,7 +248,7 @@ export class IniciarTablero extends Vista {
       id: Vista.idCategoria
     }
 
-    Rest.post('php/controladores/ajaxObjeto.php', params, this.verResultadoAJAXObjeto)
+    Rest.post('php/controladores/ajax/ajaxObjeto.php', params, this.verResultadoAJAXObjeto)
   }
 
   /**
@@ -335,7 +336,9 @@ export class IniciarTablero extends Vista {
       this.controlador.verVista(Vista.VISTA3)
     }
   }
-  
+  /**
+   * Método que oculta el botón pausar/reanudar al cambiar de vista o si se acaba el tiempo.
+   */
   ocultarBotonPausa() {
     // Obtener el elemento del botón de pausa por su ID
     const botonPausa = document.getElementById('botonPausa')
@@ -345,16 +348,16 @@ export class IniciarTablero extends Vista {
     }
   }
 
-  llamarAJAXPregunta = () => {
-    /**
+  /**
      * Parámetros para la solicitud AJAX, en este caso, el ID de la categoría.
      * @constant {Object} params
-    */
+  */
+  llamarAJAXPregunta = () => {
     const params = {
       id: Vista.idCategoria
     }
     // Realizar la solicitud POST a través de AJAX utilizando la clase Rest
-    Rest.post('php/controladores/ajaxPregunta.php', params, this.verResultadoAJAXPregunta)
+    Rest.post('php/controladores/ajax/ajaxPregunta.php', params, this.verResultadoAJAXPregunta)
   }
 
   /**
