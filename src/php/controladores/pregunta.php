@@ -1,27 +1,49 @@
 <?php
 require_once '../php/modelos/pregunta.php';
+/**
+ * Clase Pregunta que gestiona las operaciones relacionadas con las preguntas.
+ */
 class Pregunta
 {
+    /**
+     * @var string|null $vista Nombre de la vista actual.
+     */
     public $vista;
-    
+
+    /**
+     * Constructor de la clase.
+     */
     public function __construct()
     {
         $this->vista = null;
     }
+
+    /**
+     * Establece la vista para la página de añadir pregunta.
+     */
     public function anadir_pregunta()
     {
         $this->vista = 'anadir_pregunta';
     }
+
+    /**
+     * Establece la vista para la página de modificar pregunta.
+     */
     public function modificar_pregunta()
     {
         $this->vista = 'modificar_pregunta';
     }
+
+    /**
+     * Establece la vista para la página de eliminar.
+     */
     public function remove()
     {
         $this->vista = 'remove';
     }
+
     /**
-     * Método que devuelve las filas de las preguntas de una categoría.
+     * Devuelve las filas de las preguntas de una categoría.
      *
      * @param int $idCategoria El ID de la categoría.
      * @return array Un array bidimensional con las filas de la tabla pregunta.
@@ -32,21 +54,35 @@ class Pregunta
         $tabla = $Modelo->verPreguntas($idCategoria);
         return $tabla;
     }
+
+    /**
+     * Borra una pregunta de la base de datos.
+     */
     public function borrarPregunta()
     {
         $Modelo = new PreguntaModelo();
         $Modelo->borrarPregunta($_POST["id"]);
         $mensaje = 'Pregunta borrada correctamente';
         header('location:index.php?id=' . $_POST["idCategoria"] .'&accion=categoria&controlador=controlador&msg=' . $mensaje.'');
-        exit; 
+        exit;
     }
-    function pregunta($id)
+
+    /**
+     * Obtiene la información de una pregunta por su ID.
+     *
+     * @param int $id El ID de la pregunta.
+     * @return array Información de la pregunta.
+     */
+    public function pregunta($id)
     {
         $Modelo = new PreguntaModelo();
         $fila = $Modelo->verPregunta($id);
         return $fila;
     }
-    // Método para agregar o actualizar preguntas
+
+    /**
+     * Agrega o actualiza preguntas en la base de datos.
+     */
     public function agregar_actualizar_pregunta()
     {
         $Modelo = new PreguntaModelo();
@@ -115,7 +151,13 @@ class Pregunta
         header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=controlador&msg=' . $mensaje);
         exit;
     }
-    // Agrega la siguiente función en tu controlador para sanitizar la entrada
+
+    /**
+     * Sanitiza una entrada eliminando etiquetas HTML, emojis y otros caracteres especiales.
+     *
+     * @param string $input Entrada a sanitizar.
+     * @return string Entrada sanitizada.
+     */
     private function sanitizarEntrada($input)
     {
         // Eliminar etiquetas HTML, emojis y otros caracteres especiales

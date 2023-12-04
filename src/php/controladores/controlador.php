@@ -8,31 +8,54 @@ require_once '../php/modelos/objeto.php';
  */
 class Controlador
 {
+    /**
+     * @var string|null $vista Nombre de la vista actual.
+     */
     public $vista;
 
+    /**
+     * Constructor de la clase.
+     */
     public function __construct()
     {
         $this->vista = null;
     }
 
+    /**
+     * Establece la vista para la página de inicio del administrador.
+     */
     public function inicio()
     {
         $this->vista = 'admin';
     }
 
+    /**
+     * Establece la vista para seleccionar una categoría.
+     */
     public function selectCategoria()
     {
         $this->vista = 'selectCategoria';
     }
+
+    /**
+     * Establece la vista para modificar la configuración.
+     */
     public function modConfig()
     {
         $this->vista = 'modConfig';
     }
+
+    /**
+     * Establece la vista de categoría.
+     */
     public function categoria()
     {
         $this->vista = 'categoria';
     }
 
+    /**
+     * Establece la vista para eliminar una categoría.
+     */
     public function remove()
     {
         $this->vista = 'remove';
@@ -89,11 +112,19 @@ class Controlador
         return $fila['imagenFondo'];
     }
 
-    public function verTablero($idCategoria){
+    /**
+     * Método que devuelve la información de un tablero por el ID de la categoría.
+     *
+     * @param int $idCategoria El ID de la categoría.
+     * @return array Información del tablero.
+     */
+    public function verTablero($idCategoria)
+    {
         $Modelo = new CategoriaModelo();
         $fila = $Modelo->verTablero($idCategoria);
         return $fila;
     }
+
     /**
      * Método que devuelve las filas de las preguntas de una categoría.
      *
@@ -120,6 +151,12 @@ class Controlador
         return $tabla;
     }
 
+    /**
+     * Método que devuelve la información de un objeto por su ID.
+     *
+     * @param int $idObjeto El ID del objeto.
+     * @return array Información del objeto.
+     */
     public function verObjeto($idObjeto)
     {
         $Modelo = new ObjetoModelo();
@@ -151,6 +188,12 @@ class Controlador
         return $fila;
     }
 
+    /**
+     * Método que devuelve la información de una pregunta por su ID.
+     *
+     * @param int $id El ID de la pregunta.
+     * @return array Información de la pregunta.
+     */
     public function pregunta($id)
     {
         $Modelo = new PreguntaModelo();
@@ -170,6 +213,9 @@ class Controlador
         return $fila;
     }
     
+    /**
+     * Actualiza la configuración del juego en la base de datos.
+     */
     public function actualizarConfiguracion()
     {
         $mensaje = ''; // Variable para almacenar el mensaje
@@ -198,14 +244,16 @@ class Controlador
         // exit;
     }
 
-
-    public function ajaxPregunta(){
+    /**
+     * Función AJAX que devuelve las preguntas de una categoría.
+     */
+    public function ajaxPregunta()
+    {
         try {
-            $id=$_POST['id'];
+            $id = $_POST['id'];
             $datos = $this->tablaPregunta($id);
             header('Content-Type: application/json');
             echo json_encode($datos);
-
         } catch (Exception $e) {
             // Manejar errores y devolver un mensaje JSON
             header('Content-Type: application/json');
@@ -213,12 +261,16 @@ class Controlador
         }
     }
 
-    public function ajaxObjeto(){
+    /**
+     * Función AJAX que devuelve los objetos de una categoría.
+     */
+    public function ajaxObjeto()
+    {
         try {
-            $id=$_POST['id'];
+            $id = $_POST['id'];
             $datos = $this->tablaObjeto($id);
-                header('Content-Type: application/json');
-                echo json_encode($datos);
+            header('Content-Type: application/json');
+            echo json_encode($datos);
         } catch (Exception $e) {
             // Manejar errores y devolver un mensaje JSON
             header('Content-Type: application/json');
@@ -226,13 +278,17 @@ class Controlador
         }
     }
 
-    public function ajaxFondo(){
+    /**
+     * Función AJAX que devuelve la imagen de fondo de un tablero de una categoría.
+     */
+    public function ajaxFondo()
+    {
         try {
-            $id=$_POST['id'];
+            $id = $_POST['id'];
             $datos = $this->fondoTablero($id);
             // Verifica si $datos es una cadena (BLOB)
             if (is_string($datos)) {
-                $imagen=base64_decode($datos);
+                $imagen = base64_decode($datos);
                 header('Content-Type: application/json');
                 echo json_encode(['imagen' => base64_encode($imagen)]);
             } else {
@@ -247,16 +303,24 @@ class Controlador
         }
     }
 
-    public function ajaxConfig(){
+    /**
+     * Función AJAX que devuelve la configuración del juego.
+     */
+    public function ajaxConfig()
+    {
         // Obtener datos desde la base de datos utilizando el controlador
-    $datos = $this->configuracion();  // Ajusta el nombre del método según tu lógica
+        $datos = $this->configuracion();  // Ajusta el nombre del método según tu lógica
 
-    // Devolver los datos como respuesta JSON
-    header('Content-Type: application/json');
-    echo json_encode($datos);
+        // Devolver los datos como respuesta JSON
+        header('Content-Type: application/json');
+        echo json_encode($datos);
     }
 
-    public function ajaxCateg(){
+    /**
+     * Función AJAX que devuelve un tablero seleccionado aleatoriamente.
+     */
+    public function ajaxCateg()
+    {
         $datos = $this->randomTablero();  // Ajusta el nombre del método según tu lógica
 
         // Devolver los datos como respuesta JSON
@@ -264,7 +328,11 @@ class Controlador
         echo json_encode($datos);
     }
 
-    public function ajaxRanking(){
+    /**
+     * Función AJAX que devuelve las 10 filas con mayor puntuación de la tabla de partidas.
+     */
+    public function ajaxRanking()
+    {
         // Obtener datos desde la base de datos utilizando el controlador
         $datos = $this->rankingTabla();  // Ajusta el nombre del método según tu lógica
 
@@ -273,17 +341,22 @@ class Controlador
         echo json_encode($datos);
     }
 
+    /**
+     * Sanitiza una entrada eliminando etiquetas HTML, emojis y otros caracteres especiales.
+     *
+     * @param string $input Entrada a sanitizar.
+     * @param bool $permitirSoloNumeros Indica si se deben permitir solo números en la entrada.
+     * @return string Entrada sanitizada.
+     */
     private function sanitizarEntrada($input, $permitirSoloNumeros = false)
-{
-    // Si se permite solo números, eliminar todo excepto los dígitos
-    if ($permitirSoloNumeros) {
-        $sanitizedInput = preg_replace('/[^\p{N}]/u', '', $input);
-    } else {
-        // Eliminar etiquetas HTML, emojis y otros caracteres especiales excepto los permitidos sin adyacencia a otros caracteres
-    $sanitizedInput = preg_replace('/(<[^>]+[\'"]>|\w(?=\w))|[^ \w"<>]+/', '', strip_tags($input));
+    {
+        // Si se permite solo números, eliminar todo excepto los dígitos
+        if ($permitirSoloNumeros) {
+            $sanitizedInput = preg_replace('/[^\p{N}]/u', '', $input);
+        } else {
+            // Eliminar etiquetas HTML, emojis y otros caracteres especiales excepto los permitidos sin adyacencia a otros caracteres
+            $sanitizedInput = preg_replace('/(<[^>]+[\'"]>|\w(?=\w))|[^ \w"<>]+/', '', strip_tags($input));
+        }
+        return $sanitizedInput;
     }
-    return $sanitizedInput;
-}
-
-
 }

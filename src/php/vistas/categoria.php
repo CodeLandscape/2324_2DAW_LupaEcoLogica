@@ -1,6 +1,4 @@
-<!-- Aarón Izquierdo Cordero y Oscar Arroyo Aguadero -->
-Categorias
-
+<title>
             <?php        
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
