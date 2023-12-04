@@ -3,6 +3,8 @@ require_once '../php/modelos/categoria.php';
 
 class Categoria
 {
+    public $vista;
+    
     public function __construct()
     {
         $this->vista = null;

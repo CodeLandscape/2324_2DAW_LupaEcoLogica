@@ -3,6 +3,8 @@ require_once '../php/modelos/pregunta.php';
 
 class Pregunta
 {
+    public $vista;
+    
     public function __construct()
     {
         $this->vista = null;

@@ -4,6 +4,8 @@ require_once '../php/modelos/objeto.php';
 class Objeto
 {
 
+    public $vista;
+    
     public function __construct()
     {
         $this->vista = null;
