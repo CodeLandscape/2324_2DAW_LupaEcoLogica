@@ -51,10 +51,15 @@ class Controlador {
     if (vista === Vista.VISTA3) {
       
       if (this.contador === false) {
-        this.contador = -1;
+        this.contador = 0;
       } 
       else {
         this.contador++
+      }
+      if(this.contador != Vista.config.nPregunta){
+        this.ocultarPreguntas();
+        this.pregunta = document.getElementById('preguntaJuego'+this.contador)
+        this.pregunta.style.display= 'block';
       }
       if (this.contador == Vista.config.nPregunta)
         vista = Vista.VISTA4
@@ -70,6 +75,15 @@ class Controlador {
       vista.mostrar(false)
     }
   }
+  ocultarPreguntas(){
+    this.pregunta1=document.getElementById('preguntaJuego0')
+    this.pregunta1.style.display = 'none';
+    this.pregunta2=document.getElementById('preguntaJuego1')
+    this.pregunta2.style.display = 'none';
+    this.pregunta3=document.getElementById('preguntaJuego2')
+    this.pregunta3.style.display = 'none';
+  }
+  
 }
 
 // Inicializar el controlador al cargar la página

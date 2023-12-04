@@ -25,11 +25,9 @@ export class IniciarTablero extends Vista {
      */
   crearInterfaz () {
     // Crear elementos HTML y configurar atributos
-    this.botonvista3 = document.createElement('button')
     this.botonCrono = document.createElement('button')
     this.botonCrono.textContent = '¡Comenzar partida!'
     this.botonCrono.setAttribute('id', 'botonCrono')
-    this.botonvista3.setAttribute('id', 'botonvista3')
     this.base.appendChild(this.botonCrono)
 
     this.explicacionJuego = document.createElement('p')
@@ -37,8 +35,6 @@ export class IniciarTablero extends Vista {
     this.explicacionJuego.textContent = 'En esta primera fase tu misión consiste en encontrar todos los objetos maliciosos del entorno. ¡Mucho ánimo con tu búsqueda!'
     this.base.appendChild(this.explicacionJuego)
     this.base.appendChild(this.tiempoRestante) // Agregar elemento del tiempo restante
-    this.base.appendChild(this.botonvista3)
-    this.botonvista3.textContent = 'Ir a las preguntas'
 
     // Agregar eventos a los botones
     this.botonCrono.onclick = () => {
@@ -48,10 +44,6 @@ export class IniciarTablero extends Vista {
 
       this.capturarObjetos()
       this.iniciarCuentaRegresiva()
-    }
-
-    this.botonvista3.onclick = () => {
-      this.controlador.verVista(Vista.VISTA3)
     }
   }
 
@@ -377,7 +369,7 @@ export class IniciarTablero extends Vista {
       //* Crea un div para cada pregunta con un ID único y establece el estilo inicial en 'none'.
       let divPregunta = document.createElement('div')
       divPregunta.setAttribute('id', 'preguntaJuego'+i)
-      divPregunta.setAttribute('class', 'pregunta')
+      divPregunta.setAttribute('class', 'preguntaJuego')
       divPregunta.style.display = 'none'
 
       let p = document.createElement('p')

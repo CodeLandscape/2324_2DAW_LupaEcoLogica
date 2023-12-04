@@ -37,7 +37,7 @@ export class Reflexiones extends Vista {
     // this.base.appendChild(this.pregunta);
     // this.base.appendChild(this.respuestaSi);
     // this.base.appendChild(this.respuestaNo);
-    // this.base.appendChild(this.registro);
+    // this.base.appendChild(this.registro); 
 
     // // Asignar evento al botón de registro
     // this.registro.onclick = () => {
@@ -57,7 +57,6 @@ export class Reflexiones extends Vista {
 
     // Agrega un evento de clic al botón
     botonContinuar.addEventListener('click', () => {
-        console.log('Hola?');
         // Cambia a la vista deseada (VISTA3 en este caso)
         this.controlador.verVista(Vista.VISTA3);
     })
