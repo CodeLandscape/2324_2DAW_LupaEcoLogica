@@ -46,7 +46,7 @@
                     echo "<label for='bueno{$objeto['idObjeto']}'>Bueno:</label>";
                     $checked = $objeto['valoracion'] == 1 ? 'checked' : '';
                     echo "<input type='checkbox' id='bueno{$objeto['idObjeto']}' name='bueno[]' {$checked} class='inputPeq'><br>";
-                    echo '<a href="index.php?accion=remove&id=' . $objeto['idObjeto'] . '&controlador=objeto&funcion=Objeto&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
+                    echo '<a href="index.php?accion=remove&id=' . $objeto['idObjeto'] . '&controlador=objeto&funcion=objeto&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
 
 
                     echo "</div>";

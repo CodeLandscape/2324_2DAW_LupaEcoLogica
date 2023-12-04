@@ -44,7 +44,7 @@
                     echo '<input type="text" maxlength="255" name="ref1[' . $pregunta['idPregunta'] . '][]" value="' . $pregunta['reflexionAcierto'] . '" required><br>';
                     echo '<label for="ref2">Reflexión Negativa: </label>';
                     echo '<input type="text" maxlength="255" name="ref2[' . $pregunta['idPregunta'] . '][]" value="' . $pregunta['reflexionFallo'] . '" required><br>';
-                    echo '<a href="index.php?accion=remove&id=' . $pregunta['idPregunta'] . '&controlador=controlador&funcion=Pregunta&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
+                    echo '<a href="index.php?accion=remove&id=' . $pregunta['idPregunta'] . '&controlador=pregunta&funcion=Pregunta&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
                     echo '</div>';
                 }
                 ?>
@@ -59,62 +59,53 @@
             </div>
         </form>
 
-        <!-- <aside id="listaPreguntas">
-            <?php
-            // foreach ($preguntas as $pregunta) {
-            //     echo '<div>Pregunta ' . $pregunta['idPregunta'] . '</div>';
-            // }
-            ?>
-        </aside> -->
+        <!-- Agregar el siguiente script al final de la vista -->
+        <script>
+            'use strict';
 
-<!-- Agregar el siguiente script al final de la vista -->
-<script>
-    'use strict';
+            // Obtener referencia al formulario
+            const formulario = document.querySelector('form');
 
-    // Obtener referencia al formulario
-    const formulario = document.querySelector('form');
+            // Inicializar el contador de preguntas
+            let contadorPregunta = <?php echo count($preguntas); ?>;
 
-    // Inicializar el contador de preguntas
-    let contadorPregunta = <?php echo count($preguntas); ?>;
+            function agregarPregunta() {
+                // Obtener el contenedor de preguntas
+                const preguntasContainer = document.getElementById('preguntasContainer');
 
-    function agregarPregunta() {
-        // Obtener el contenedor de preguntas
-        const preguntasContainer = document.getElementById('preguntasContainer');
+                // Incrementar el contador
+                contadorPregunta++;
 
-        // Incrementar el contador
-        contadorPregunta++;
+                // Crear un nuevo div para la pregunta
+                let nuevaPreguntaDiv = document.createElement('div');
+                nuevaPreguntaDiv.id = `pregunta${contadorPregunta}`;
+                nuevaPreguntaDiv.className = 'contenedores';
 
-        // Crear un nuevo div para la pregunta
-        let nuevaPreguntaDiv = document.createElement('div');
-        nuevaPreguntaDiv.id = `pregunta${contadorPregunta}`;
-        nuevaPreguntaDiv.className = 'contenedores';
+                // Agregar los elementos de la pregunta al nuevo div
+                nuevaPreguntaDiv.innerHTML = `
+                    <label for='pregunta${contadorPregunta}'>Pregunta ${contadorPregunta}</label>
+                    <input type='text' maxlength="100" name='pregunta[${contadorPregunta}][texto]' required><br>
+                    <div class="respuesta">
+                        <label for='resp'>Respuesta</label>
+                        <p>
+                            <label for='si${contadorPregunta}'>Sí</label>
+                            <input type="radio" name="opcion[${contadorPregunta}]" value="1">
+                        </p>
+                        <p>
+                            <label for='no${contadorPregunta}'>No</label>
+                            <input type="radio" name="opcion[${contadorPregunta}]" value="0">
+                        </p>
+                    </div>
+                    <label for='ref1'>Reflexion Positiva: </label>
+                    <input type='text' maxlength="255" name='ref1[${contadorPregunta}][]' required><br>
+                    <label for='ref2'>Reflexión Negativa: </label>
+                    <input type='text' maxlength="255" name='ref2[${contadorPregunta}][]' required><br>
+                `;
 
-        // Agregar los elementos de la pregunta al nuevo div
-        nuevaPreguntaDiv.innerHTML = `
-            <label for='pregunta${contadorPregunta}'>Pregunta ${contadorPregunta}</label>
-            <input type='text' maxlength="100" name='pregunta[${contadorPregunta}][texto]' required><br>
-            <div class="respuesta">
-                <label for='resp'>Respuesta</label>
-                <p>
-                    <label for='si${contadorPregunta}'>Sí</label>
-                    <input type="radio" name="opcion[${contadorPregunta}]" value="1">
-                </p>
-                <p>
-                    <label for='no${contadorPregunta}'>No</label>
-                    <input type="radio" name="opcion[${contadorPregunta}]" value="0">
-                </p>
-            </div>
-            <label for='ref1'>Reflexion Positiva: </label>
-            <input type='text' maxlength="255" name='ref1[${contadorPregunta}][]' required><br>
-            <label for='ref2'>Reflexión Negativa: </label>
-            <input type='text' maxlength="255" name='ref2[${contadorPregunta}][]' required><br>
-        `;
-
-        // Agregar el nuevo div como hijo del contenedor de preguntas
-        preguntasContainer.appendChild(nuevaPreguntaDiv);
-    }
-</script>
-
+                // Agregar el nuevo div como hijo del contenedor de preguntas
+                preguntasContainer.appendChild(nuevaPreguntaDiv);
+            }
+        </script>
     </main>
 </body>
 </html>
