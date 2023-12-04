@@ -46,12 +46,10 @@ export class Preguntas extends Vista {
     this.base.appendChild(this.registro)
 
     this.respuestaSi.onclick = () => {
-      console.log('Hola?')
       this.controlador.verVista(Vista.VISTA3_1)
     }
 
     this.respuestaNo.onclick = () => {
-      console.log('Hola?')
       this.controlador.verVista(Vista.VISTA3_1)
     }
     // Asignar evento al botón de registro
@@ -67,7 +65,7 @@ export class Preguntas extends Vista {
   // 	const params ={};
 
   // 	//Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
-  // 	Rest.getJSON('php/controladores/ajaxConfig.php', params, this.verResultadoAJAXPregunta);
+  // 	Rest.getJSON('php/controladores/ajax/ajaxConfig.php', params, this.verResultadoAJAXPregunta);
   // }
   // verResultadoAJAXPregunta = (objeto) => {
   //     this.pregunta=objeto;

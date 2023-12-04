@@ -25,6 +25,7 @@ export class Ranking extends Vista {
     // Crear botón para volver a la pantalla de inicio
     this.irIndex = document.createElement('button')
     this.irIndex.textContent = 'Inicio'
+    this.irIndex.setAttribute('id','inicioRanking')
     this.base.appendChild(this.irIndex)
 
     // Asignar evento al botón para volver a la vista de inicio
@@ -42,7 +43,7 @@ export class Ranking extends Vista {
     const params = {}
 
     // Rest.getJSON('php/ajax1.php', params, this.verResultadoAJAX)
-    Rest.getJSON('php/controladores/ajax3.php', params, this.verResultadoAJAX)
+    Rest.getJSON('php/controladores/ajax/ajaxRanking.php', params, this.verResultadoAJAX)
   }
 
   /**
