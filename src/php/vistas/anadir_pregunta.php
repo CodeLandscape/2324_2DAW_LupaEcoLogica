@@ -44,7 +44,7 @@
                     echo '<input type="text" maxlength="255" name="ref1[' . $pregunta['idPregunta'] . '][]" value="' . $pregunta['reflexionAcierto'] . '" required><br>';
                     echo '<label for="ref2">Reflexión Negativa: </label>';
                     echo '<input type="text" maxlength="255" name="ref2[' . $pregunta['idPregunta'] . '][]" value="' . $pregunta['reflexionFallo'] . '" required><br>';
-                    echo '<a href="index.php?accion=remove&id=' . $pregunta['idPregunta'] . '&controlador=controlador&funcion=Pregunta&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
+                    echo '<a href="index.php?accion=remove&id=' . $pregunta['idPregunta'] . '&controlador=pregunta&funcion=Pregunta&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
                     echo '</div>';
                 }
                 ?>
