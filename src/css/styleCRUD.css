@@ -224,10 +224,11 @@ a {
 }
 
 /* Estilos para los selectores */
-select {
-    margin-bottom: 10px; /* Ajusta el valor según tu preferencia */
+select{
+    display: block;
+    width: 45%;
+    margin: 20px 28.5%;
 }
-
 /* Estilos para el bloque con id 'noFixed' */
 #noFixed {
     width: 100%;
