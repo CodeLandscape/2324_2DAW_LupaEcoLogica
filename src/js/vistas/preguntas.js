@@ -29,8 +29,6 @@ export class Preguntas extends Vista {
     this.respuestaSi = document.createElement('button')
     this.respuestaNo = document.createElement('button')
     this.registro = document.createElement('button')
-    this.pregunta = document.createElement('p')
-    this.pregunta.textContent = 'Pregunta generada en base a la categoría del tablero'
 
     // Configurar texto para los botones
     this.respuestaSi.id = 'botonSiPregunta'
@@ -40,7 +38,6 @@ export class Preguntas extends Vista {
     this.registro.textContent = 'Ir al registro'
 
     // Agregar elementos al elemento base
-    this.base.appendChild(this.pregunta)
     this.base.appendChild(this.respuestaSi)
     this.base.appendChild(this.respuestaNo)
     this.base.appendChild(this.registro)
@@ -56,8 +53,8 @@ export class Preguntas extends Vista {
     this.registro.onclick = () => {
       this.controlador.verVista(Vista.VISTA4)
     }
+    //this.mostrarPregunta();
   }
-
   
 
   // llamarAJAXPregunta = () => {

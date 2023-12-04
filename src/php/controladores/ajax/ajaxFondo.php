@@ -1,9 +1,5 @@
 <?php
 require_once '../../config/configBD.php';
-// define('HOST',"13.2daw.esvirgua.com");
-// define('USER',"user2daw_ABP");
-// define('PSW',"L.=K#2AM^F7T");
-// define('BDD',"user2daw_ABP_GrupoE");
 $conexion = null;
 
 // Establecer la conexión a la base de datos
