@@ -71,31 +71,40 @@ class Categoria
     public function insertarCategoria()
     {
         $Modelo = new CategoriaModelo();
+    
         $categoria = $this->sanitizarEntrada($_POST["categoria"]);
         $tablero = $this->sanitizarEntrada($_POST["tablero"]);
-
+    
         if (empty($categoria) || empty($tablero)) {
             // Mensaje de error si la entrada se vuelve vacía después de la sanitización
             $msg = "Error: La entrada no puede estar vacía o contener solo caracteres especiales.";
             header("location:index.php?msg=" . urlencode($msg));
             exit;
         }
-
+    
         $fondo = $_FILES['img']['tmp_name'];
         $tipo = $_FILES['img']['type'];
-
-        if ($tipo == 'image/png' || $tipo == 'image/jpg' || $tipo == 'image/jpeg') {
-            $contenido = file_get_contents($fondo);
-            $base64 = base64_encode($contenido);
+    
+        // Validar tipo de extensión de imagen
+        $extensionesValidas = array('image/png', 'image/jpg', 'image/jpeg');
+        if (!in_array($tipo, $extensionesValidas)) {
+            // Mensaje de error si la extensión no es válida
+            $msg = "Error: Solo se permiten imágenes en formato PNG, JPG o JPEG.";
+            header("location:index.php?msg=" . urlencode($msg));
+            exit;
         }
-
+    
+        $contenido = file_get_contents($fondo);
+        $base64 = base64_encode($contenido);
+    
         $Modelo->insertarCategoria($categoria, $tablero, $base64);
-
+    
         // Mensaje de éxito
         $msg = "Categoría añadida correctamente";
         header("location:index.php?msg=" . urlencode($msg));
         exit;
     }
+    
 
     public function actualizarTablero()
     {
