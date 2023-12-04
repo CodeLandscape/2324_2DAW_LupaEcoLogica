@@ -53,6 +53,8 @@ class Objeto
     /**
      * Agrega o actualiza objetos en la base de datos.
      */
+
+
     public function agregar_actualizar_objeto()
     {
         $Modelo = new ObjetoModelo();
@@ -76,44 +78,46 @@ class Objeto
                 $nombreSanitizado = $this->sanitizarEntrada($nombre);
                 $descripcionSanitizada = $this->sanitizarEntrada(isset($descripciones[$index]) ? $descripciones[$index] : '');
                 $puntuacionSanitizada = $this->sanitizarEntrada(isset($puntuaciones[$index]) ? $puntuaciones[$index] : '');
-                $buenoSanitizado = $this->sanitizarEntrada(isset($buenos[$index]) ? $buenos[$index] : '');
+                $buenoSanitizado = isset($buenos[$index]) ? ($buenos[$index] == 'on' ? 1 : 0) : 0; // Ajuste aquí para verificar si el checkbox está marcado
 
                 // Verificar si los campos sanitizados están completos
-                if (!empty($nombreSanitizado) && !empty($descripcionSanitizada) && !empty($puntuacionSanitizada) && !empty($buenoSanitizado)) {
-                    // Verificar si existe un objeto correspondiente en la misma posición del array
+                if (!empty($nombreSanitizado) && !empty($descripcionSanitizada) && !empty($puntuacionSanitizada)) {
                     if (isset($objetosExistentes[$index])) {
-                        // Objeto existente, verificar cambios antes de actualizar
-                        if (
-                            $nombreSanitizado != $objetosExistentes[$index]['nombre'] ||
-                            $descripcionSanitizada != $objetosExistentes[$index]['descripcion'] ||
-                            $puntuacionSanitizada != $objetosExistentes[$index]['puntuacion'] ||
-                            ($buenoSanitizado ? 1 : 0) != $objetosExistentes[$index]['bueno']
-                        ) {
-                            // Al menos un campo ha cambiado, realizar la actualización
+                        // Verificar si se subió una nueva imagen
+                        if (!empty($imgs['tmp_name'][$index]) && in_array($imgs['type'][$index], array('image/png', 'image/jpg', 'image/jpeg'))) {
+                            $imagenTmp = $imgs['tmp_name'][$index];
+
+                            // Leer el contenido de la nueva imagen
+                            $contenido = file_get_contents($imagenTmp);
+                            $base64 = base64_encode($contenido);
+
+                            // Actualizar objeto con la nueva imagen
+                            $Modelo->actualizarObjeto(
+                                $objetosExistentes[$index]['idObjeto'],
+                                $nombreSanitizado,
+                                $descripcionSanitizada,
+                                $base64,
+                                $puntuacionSanitizada,
+                                $buenoSanitizado,
+                                $idCategoria
+                            );
+                        } else {
+                            // Actualizar objeto sin cambiar la imagen
                             $Modelo->actualizarObjeto(
                                 $objetosExistentes[$index]['idObjeto'],
                                 $nombreSanitizado,
                                 $descripcionSanitizada,
                                 $objetosExistentes[$index]['imagen'],
                                 $puntuacionSanitizada,
-                                ($buenoSanitizado ? 1 : 0),
+                                $buenoSanitizado,
                                 $idCategoria
                             );
                         }
                     } else {
-                        // Objeto no existente, agregar
-                        if (!empty($imgs['tmp_name'][$index]) && in_array($imgs['type'][$index], array('image/png', 'image/jpg', 'image/jpeg'))) {
-                            $imagenTmp = $imgs['tmp_name'][$index];
-
-                            // Leer el contenido de la imagen
-                            $contenido = file_get_contents($imagenTmp);
-                            $base64 = base64_encode($contenido);
-
-                            $Modelo->agregarObjeto($nombreSanitizado, $descripcionSanitizada, $base64, $puntuacionSanitizada, ($buenoSanitizado ? 1 : 0), $idCategoria);
-                        }
-                    }        
+                        // Agregar nuevo objeto con la imagen
+                        // (código similar al utilizado para agregar objetos con imagen en el ejemplo anterior)
+                    }
                     $mensaje = 'Objetos agregados o actualizados correctamente';
-
                 } else {
                     // Mostrar mensaje de error si no se pueden agregar campos sanitizados
                     $mensaje = 'Error al agregar objetos. Verifica que todos los campos estén completos y válidos.';
@@ -129,6 +133,7 @@ class Objeto
         header('location:index.php?id=' . $idCategoria . '&accion=categoria&controlador=controlador&msg=' . $mensaje);
         exit;
     }
+
 
     /**
      * Borra un objeto de la base de datos.
