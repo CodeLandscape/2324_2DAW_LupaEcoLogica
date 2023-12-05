@@ -56,12 +56,13 @@ export class IniciarTablero extends Vista {
     let cuentaRegresiva; // Declarar la variable del intervalo aquí
     
     this.tiempoRestante.setAttribute('id', 'tiempo');
-  
     const actualizarTiempo = () => {
       this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
   
       if (tiempoRestante === 0) {
         clearInterval(cuentaRegresiva);
+        this.iniciarCuentaRegresiva = null;
+        this.actualizarTiempo = null;
         this.controlador.verVista(Vista.VISTA3);
       }
   
@@ -298,7 +299,7 @@ export class IniciarTablero extends Vista {
     // Verificar si los tres objetos malos han sido capturados (display: none)
     if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
       // Los tres objetos malos han sido capturados
-      
+      this.iniciarCuentaRegresiva = null;
       this.controlador.verVista(Vista.VISTA3)
     }
   }
