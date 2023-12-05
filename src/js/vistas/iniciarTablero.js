@@ -47,69 +47,7 @@ export class IniciarTablero extends Vista {
     }
   }
 
-  /**
-     * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
-     */
-  // iniciarCuentaRegresiva() {
-  //   const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
-  //   let tiempoRestante = tiempoLimite;
-  //   let cuentaRegresivaEnPausa = false;
-  //   let tiempoPausado = 0;
-  
-  //   this.tiempoRestante.setAttribute('id', 'tiempo');
-  
-  //   const actualizarTiempo = () => {
-  //     this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
-  
-  //     if (tiempoRestante === 0) {
-  //       clearInterval(cuentaRegresiva);
-  //       this.controlador.verVista(Vista.VISTA3);
-  //     }
-  
-  //     if (!cuentaRegresivaEnPausa) {
-  //       tiempoRestante--;
-  //     }
-  //   };
-  
-  //   // Mostrar inicialmente el tiempo restante y actualizar cada segundo
-  //   actualizarTiempo();
-  //   let cuentaRegresiva = setInterval(actualizarTiempo, 1000);
-  
-  //   // Crear y configurar el botón de pausa
-  //   const botonPausa = document.createElement('button')
-  //   botonPausa.textContent = 'Pausar'
-  //   botonPausa.id = 'botonPausa'
 
-  //   // Agregar un evento de clic al botón de pausa para manejar la pausa/reanudación
-  //   botonPausa.addEventListener('click', () => {
-  //     if (!cuentaRegresivaEnPausa) {
-  //       // Pausar la cuenta regresiva
-  //       clearInterval(cuentaRegresiva)
-  //       cuentaRegresivaEnPausa = true
-  //       tiempoPausado = Date.now()
-  //       botonPausa.textContent = 'Reanudar'
-  //       this.pausa = true
-  //     }
-  //     else {
-  //       // Reanudar la cuenta regresiva
-  //       cuentaRegresivaEnPausa = false
-  //       const tiempoPausaActual = Date.now()
-  //       const tiempoPausadoMilisegundos = tiempoPausaActual - tiempoPausado
-  //       tiempoPausado = 0
-    
-  //       tiempoRestante -= Math.floor(tiempoPausadoMilisegundos / 1000)
-        
-  //       // Reiniciar la cuenta regresiva con el nuevo tiempo restante
-  //       // actualizarTiempo();
-  //       cuentaRegresiva = setInterval(actualizarTiempo, 1000)
-  //       botonPausa.textContent = 'Pausar'
-  //       this.pausa = false
-  //     }
-  //   })
-
-  //   // Agregar el botón de pausa al cuerpo del documento HTML
-  //   document.body.appendChild(botonPausa);
-  // }
 
   iniciarCuentaRegresiva() {
     const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
@@ -132,38 +70,17 @@ export class IniciarTablero extends Vista {
       }
     };
   
-    const pausarCuentaRegresiva = () => {
-      clearInterval(cuentaRegresiva);
-      cuentaRegresivaEnPausa = true;
-    };
-  
-    const reanudarCuentaRegresiva = () => {
-      cuentaRegresiva = setInterval(actualizarTiempo, 1000);
-      cuentaRegresivaEnPausa = false;
-    };
+   
   
     // Mostrar inicialmente el tiempo restante y actualizar cada segundo
     actualizarTiempo();
     cuentaRegresiva = setInterval(actualizarTiempo, 1000);
   
-    // Crear y configurar el botón de pausa
-    const botonPausa = document.createElement('button')
-    botonPausa.textContent = 'Pausar'
-    botonPausa.id = 'botonPausa'
   
-    botonPausa.addEventListener('click', () => {
-      if (!cuentaRegresivaEnPausa) {
-        // Pausar la cuenta regresiva
-        pausarCuentaRegresiva();
-        botonPausa.textContent = 'Reanudar';
-      } else {
-        // Reanudar la cuenta regresiva
-        reanudarCuentaRegresiva();
-        botonPausa.textContent = 'Pausar';
-      }
-    });
   
-    document.body.appendChild(botonPausa);
+  
+  
+   
   }
   
   
@@ -381,21 +298,14 @@ export class IniciarTablero extends Vista {
     // Verificar si los tres objetos malos han sido capturados (display: none)
     if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
       // Los tres objetos malos han sido capturados
-      this.ocultarBotonPausa()
+      
       this.controlador.verVista(Vista.VISTA3)
     }
   }
   /**
    * Método que oculta el botón pausar/reanudar al cambiar de vista o si se acaba el tiempo.
    */
-  ocultarBotonPausa() {
-    // Obtener el elemento del botón de pausa por su ID
-    const botonPausa = document.getElementById('botonPausa')
-    // Verificar si el botón de pausa existe
-    if (botonPausa) {
-      botonPausa.style.display = 'none' // Ocultar el botón de pausa estableciendo el estilo de visualización a 'none'
-    }
-  }
+ 
 
   /**
      * Parámetros para la solicitud AJAX, en este caso, el ID de la categoría.
