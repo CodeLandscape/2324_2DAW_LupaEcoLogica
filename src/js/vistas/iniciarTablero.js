@@ -50,12 +50,73 @@ export class IniciarTablero extends Vista {
   /**
      * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
      */
+  // iniciarCuentaRegresiva() {
+  //   const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
+  //   let tiempoRestante = tiempoLimite;
+  //   let cuentaRegresivaEnPausa = false;
+  //   let tiempoPausado = 0;
+  
+  //   this.tiempoRestante.setAttribute('id', 'tiempo');
+  
+  //   const actualizarTiempo = () => {
+  //     this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
+  
+  //     if (tiempoRestante === 0) {
+  //       clearInterval(cuentaRegresiva);
+  //       this.controlador.verVista(Vista.VISTA3);
+  //     }
+  
+  //     if (!cuentaRegresivaEnPausa) {
+  //       tiempoRestante--;
+  //     }
+  //   };
+  
+  //   // Mostrar inicialmente el tiempo restante y actualizar cada segundo
+  //   actualizarTiempo();
+  //   let cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+  
+  //   // Crear y configurar el botón de pausa
+  //   const botonPausa = document.createElement('button')
+  //   botonPausa.textContent = 'Pausar'
+  //   botonPausa.id = 'botonPausa'
+
+  //   // Agregar un evento de clic al botón de pausa para manejar la pausa/reanudación
+  //   botonPausa.addEventListener('click', () => {
+  //     if (!cuentaRegresivaEnPausa) {
+  //       // Pausar la cuenta regresiva
+  //       clearInterval(cuentaRegresiva)
+  //       cuentaRegresivaEnPausa = true
+  //       tiempoPausado = Date.now()
+  //       botonPausa.textContent = 'Reanudar'
+  //       this.pausa = true
+  //     }
+  //     else {
+  //       // Reanudar la cuenta regresiva
+  //       cuentaRegresivaEnPausa = false
+  //       const tiempoPausaActual = Date.now()
+  //       const tiempoPausadoMilisegundos = tiempoPausaActual - tiempoPausado
+  //       tiempoPausado = 0
+    
+  //       tiempoRestante -= Math.floor(tiempoPausadoMilisegundos / 1000)
+        
+  //       // Reiniciar la cuenta regresiva con el nuevo tiempo restante
+  //       // actualizarTiempo();
+  //       cuentaRegresiva = setInterval(actualizarTiempo, 1000)
+  //       botonPausa.textContent = 'Pausar'
+  //       this.pausa = false
+  //     }
+  //   })
+
+  //   // Agregar el botón de pausa al cuerpo del documento HTML
+  //   document.body.appendChild(botonPausa);
+  // }
+
   iniciarCuentaRegresiva() {
     const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
     let tiempoRestante = tiempoLimite;
     let cuentaRegresivaEnPausa = false;
-    let tiempoPausado = 0;
-  
+    let cuentaRegresiva; // Declarar la variable del intervalo aquí
+    
     this.tiempoRestante.setAttribute('id', 'tiempo');
   
     const actualizarTiempo = () => {
@@ -71,44 +132,40 @@ export class IniciarTablero extends Vista {
       }
     };
   
+    const pausarCuentaRegresiva = () => {
+      clearInterval(cuentaRegresiva);
+      cuentaRegresivaEnPausa = true;
+    };
+  
+    const reanudarCuentaRegresiva = () => {
+      cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+      cuentaRegresivaEnPausa = false;
+    };
+  
     // Mostrar inicialmente el tiempo restante y actualizar cada segundo
     actualizarTiempo();
-    let cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+    cuentaRegresiva = setInterval(actualizarTiempo, 1000);
   
     // Crear y configurar el botón de pausa
     const botonPausa = document.createElement('button')
     botonPausa.textContent = 'Pausar'
     botonPausa.id = 'botonPausa'
-
-    // Agregar un evento de clic al botón de pausa para manejar la pausa/reanudación
+  
     botonPausa.addEventListener('click', () => {
       if (!cuentaRegresivaEnPausa) {
         // Pausar la cuenta regresiva
-        clearInterval(cuentaRegresiva)
-        cuentaRegresivaEnPausa = true
-        tiempoPausado = Date.now()
-        botonPausa.textContent = 'Reanudar'
-        this.pausa = true
-      }
-      else {
+        pausarCuentaRegresiva();
+        botonPausa.textContent = 'Reanudar';
+      } else {
         // Reanudar la cuenta regresiva
-        cuentaRegresivaEnPausa = false
-        const tiempoPausaActual = Date.now()
-        const tiempoPausadoMilisegundos = tiempoPausaActual - tiempoPausado
-        tiempoPausado = 0
-    
-        tiempoRestante -= Math.floor(tiempoPausadoMilisegundos / 1000)
-        
-        // Reiniciar la cuenta regresiva con el nuevo tiempo restante
-        cuentaRegresiva = setInterval(actualizarTiempo, 1000)
-        botonPausa.textContent = 'Pausar'
-        this.pausa = false
+        reanudarCuentaRegresiva();
+        botonPausa.textContent = 'Pausar';
       }
-    })
-
-    // Agregar el botón de pausa al cuerpo del documento HTML
+    });
+  
     document.body.appendChild(botonPausa);
   }
+  
   
   /**
      * Captura los eventos de clic en objetos y actualiza el contador de objetos pulsados.
