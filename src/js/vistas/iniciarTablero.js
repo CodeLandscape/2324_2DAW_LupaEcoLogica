@@ -15,7 +15,7 @@ export class IniciarTablero extends Vista {
   constructor (controlador, base) {
     super(controlador, base)
     this.llamarAJAXTablero()
-    this.objetosPulsados = 0 // Contador para rastrear objetos pulsados
+    this.objetosPulsados = false // Contador para rastrear objetos pulsados
     this.crearInterfaz()
   }
 
@@ -55,20 +55,31 @@ export class IniciarTablero extends Vista {
     let cuentaRegresivaEnPausa = false;
     let cuentaRegresiva; // Declarar la variable del intervalo aquí
     
+    
     this.tiempoRestante.setAttribute('id', 'tiempo');
+
     const actualizarTiempo = () => {
       this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
   
-      if (tiempoRestante === 0) {
+      if (tiempoRestante === 0 ||this.objetosPulsados) {
         clearInterval(cuentaRegresiva);
+        
         this.iniciarCuentaRegresiva = null;
         this.actualizarTiempo = null;
         this.controlador.verVista(Vista.VISTA3);
       }
   
-      if (!cuentaRegresivaEnPausa) {
+
+      if (tiempoRestante != 0 && !cuentaRegresivaEnPausa)
+      {
         tiempoRestante--;
+        this.verificarObjetosPulsados()
       }
+      // if (!cuentaRegresivaEnPausa) {
+        
+      //   console.log("estoy en el if del tiempo")
+      //   this.verificarObjetosPulsados(tiempoRestante,cuentaRegresiva)
+      // }
     };
   
    
@@ -77,11 +88,6 @@ export class IniciarTablero extends Vista {
     actualizarTiempo();
     cuentaRegresiva = setInterval(actualizarTiempo, 1000);
   
-  
-  
-  
-  
-   
   }
   
   
@@ -289,7 +295,8 @@ export class IniciarTablero extends Vista {
   }
 
   verificarObjetosPulsados() {
-    this.objetosPulsados++
+    
+    
   
     // Obtener el estilo de visualización actual de los objetos malos
     const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display')
@@ -298,10 +305,16 @@ export class IniciarTablero extends Vista {
   
     // Verificar si los tres objetos malos han sido capturados (display: none)
     if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
-      // Los tres objetos malos han sido capturados
-      this.iniciarCuentaRegresiva = null;
-      this.controlador.verVista(Vista.VISTA3)
+      this.objetosPulsados = true
+      // clearInterval(cuentaRegresiva)
+      // this.iniciarCuentaRegresiva = null;
+      
+      // this.controlador.verVista(Vista.VISTA3)
     }
+
+   
+
+    
   }
   /**
    * Método que oculta el botón pausar/reanudar al cambiar de vista o si se acaba el tiempo.
