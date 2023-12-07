@@ -167,8 +167,8 @@ table {
     width: 2.5%;
     height: 5%;
     position: absolute;
-    top: 70%;
-    left: 25%;
+    /*top: 70%;
+    left: 25%;*/
     filter: blur(0.5px);
 }
 
@@ -177,8 +177,8 @@ table {
     width: 15%;
     height: 25%;
     position: absolute;
-    top: 75%;
-    left: 55%;
+   /* top: 75%;
+    left: 55%;*/
     filter: blur(0.5px);
 }
 
@@ -187,8 +187,8 @@ table {
     width: 10%;
     height: 15%;
     position: absolute;
-    top: 85%;
-    left: 40%;
+   /* top: 85%;
+    left: 40%;*/
     filter: blur(0.5px);
 }
 
@@ -197,8 +197,8 @@ table {
     width: 10%;
     height: 15%;
     position: absolute;
-    top: 45%;
-    left: 12%;
+   /* top: 45%;
+    left: 12%;*/
     filter: blur(0.5px);
 }
 
@@ -207,8 +207,8 @@ table {
     width: 5%;
     height: 10%;
     position: absolute;
-    top: 80%;
-    left: 20%;
+    /*top: 80%;
+    left: 20%;*/
     filter: blur(0.5px);
 }
 
@@ -217,8 +217,8 @@ table {
     width: 5%;
     height: 10%;
     position: absolute;
-    top: 25%;
-    left: 65%;
+   /* top: 25%;
+    left: 65%;*/
     filter: blur(0.5px);
 }
 
