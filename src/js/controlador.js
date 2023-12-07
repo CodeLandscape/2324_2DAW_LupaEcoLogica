@@ -1,7 +1,7 @@
 /* eslint-disable no-new */
 import { Vista } from './vistas/vista.js'
 import { Inicio } from './vistas/inicio.js'
-import { IniciarTablero } from './vistas/iniciarTablero.js'
+import { IniciarTablero } from './vistas/iniciar_tablero.js'
 import { Preguntas } from './vistas/preguntas.js'
 import { Registro } from './vistas/registro.js'
 import { Reflexiones } from './vistas/reflexiones.js'
