@@ -327,7 +327,7 @@ header h1 {
     left: 45%;
 }
 
-#reflexion {
+.reflexion {
     position: relative;
     max-width: 80%;
     margin: 5% auto;
@@ -341,7 +341,7 @@ header h1 {
     padding: 20px;
 }
 
-#reflexion img {
+.reflexion img {
     max-width: 10%;
     max-height: 10%;
     position: static;

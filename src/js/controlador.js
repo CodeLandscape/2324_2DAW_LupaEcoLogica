@@ -57,9 +57,11 @@ class Controlador {
         this.contador++
       }
       if(this.contador != Vista.config.nPregunta){
-        this.ocultarPreguntas();
+        this.ocultarPreguntasReflexiones();
         this.pregunta = document.getElementById('preguntaJuego'+this.contador)
         this.pregunta.style.display= 'block';
+        this.reflexion = document.getElementById('reflexion'+this.contador)
+        this.reflexion.style.display='block'
       }
       if (this.contador == Vista.config.nPregunta)
         vista = Vista.VISTA4
@@ -75,13 +77,19 @@ class Controlador {
       vista.mostrar(false)
     }
   }
-  ocultarPreguntas(){
+  ocultarPreguntasReflexiones(){
     this.pregunta1=document.getElementById('preguntaJuego0')
     this.pregunta1.style.display = 'none';
     this.pregunta2=document.getElementById('preguntaJuego1')
     this.pregunta2.style.display = 'none';
     this.pregunta3=document.getElementById('preguntaJuego2')
     this.pregunta3.style.display = 'none';
+    this.reflexion1=document.getElementById('reflexion0')
+    this.reflexion1.style.display = 'none'
+    this.reflexion2=document.getElementById('reflexion1')
+    this.reflexion2.style.display = 'none'
+    this.reflexion3=document.getElementById('reflexion2')
+    this.reflexion3.style.display = 'none'
   }
   
 }

@@ -350,9 +350,6 @@ export class IniciarTablero extends Vista {
       
       // this.controlador.verVista(Vista.VISTA3)
     }
-
-   
-
     
   }
   /**
@@ -381,7 +378,7 @@ export class IniciarTablero extends Vista {
     console.log(Pregunta)
 
     const contenedorPregunta = document.getElementById('rondaPreguntas')
-    // const contenedorReflexiones = document.getElementById('reflexionJuego')
+    const contenedorReflexiones = document.getElementById('reflexionjuego')
     // Número de preguntas a mostrar según la configuración.
     let nPregunta = Vista.config.nPregunta
     // Bucle de las preguntas
@@ -398,20 +395,25 @@ export class IniciarTablero extends Vista {
 
       contenedorPregunta.appendChild(divPregunta)
 
-      // let divReflexion = document.createElement('div')
-      // divReflexion.setAttribute('id','reflexion'+i)
-      // divReflexion.setAttribute('class','reflexion')
-      // divReflexion.style.display = 'none'
+      let divReflexion = document.createElement('div')
+      divReflexion.setAttribute('id','reflexion'+i)
+      divReflexion.setAttribute('class','reflexion')
+      divReflexion.style.display = 'none'
 
-      // let p1 = document.createElement('p')
-      // p1.textContent = Pregunta[i].reflexionAcierto
-      // divReflexion.appendChild(p1)
+      let p1 = document.createElement('p')
+      p1.setAttribute('id','acierto'+i)
+      p1.textContent = Pregunta[i].reflexionAcierto
+      p1.style.display = 'none'
 
-      // let p2 = document.createElement('p')
-      // p2.textContent = Pregunta[i].reflexionFallo
-      // divReflexion.appendChild(p2)
+      divReflexion.appendChild(p1)
 
-      // contenedorReflexiones.appendChild(divReflexion)
+      let p2 = document.createElement('div')
+      p2.setAttribute('id','fallo'+i)
+      p2.textContent = Pregunta[i].reflexionFallo
+      p2.style.display = 'none'
+      divReflexion.appendChild(p2)
+
+      contenedorReflexiones.appendChild(divReflexion)
     }
   }
 }

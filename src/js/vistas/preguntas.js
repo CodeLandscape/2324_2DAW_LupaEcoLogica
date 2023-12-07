@@ -42,6 +42,16 @@ export class Preguntas extends Vista {
 
     this.respuestaSi.onclick = () => {
       console.log(Vista.puntuacion)
+      let nPregunta = Vista.config.nPregunta
+      // Bucle de las preguntas
+      for(let i=0;i<nPregunta;i++){
+        if (Vista.pregunta[i].respuesta == 0){
+          this.reflexionPositiva = document.getElementById('acierto'+i);
+        this.reflexionPositiva.style.display = 'block'
+        }else{
+        this.reflexionNegativa = document.getElementById('fallo'+i);
+        this.reflexionNegativa.style.display = 'block'
+      }
       this.controlador.verVista(Vista.VISTA3_1)
     }
 
@@ -53,4 +63,5 @@ export class Preguntas extends Vista {
       this.controlador.verVista(Vista.VISTA4)
     }
   }
+}
 }
