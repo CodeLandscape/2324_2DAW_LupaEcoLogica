@@ -27,7 +27,7 @@ export class Ranking extends Vista {
     this.irIndex.textContent = 'Inicio'
     this.irIndex.setAttribute('id','inicioRanking')
     this.base.appendChild(this.irIndex)
-
+    
     // Asignar evento al botón para volver a la vista de inicio
     this.irIndex.onclick = () => {
       this.controlador.verVista(Vista.VISTA1)

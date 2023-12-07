@@ -12,11 +12,14 @@ export class IniciarTablero extends Vista {
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
-  constructor (controlador, base) {
-    super(controlador, base)
+  constructor (controlador, base,puntuacion) {
+    super(controlador, base,puntuacion)
     this.llamarAJAXTablero()
     this.objetosPulsados = false // Contador para rastrear objetos pulsados
     this.crearInterfaz()
+    this.objetosBuenos = []
+    this.objetosMalos = []
+    this.puntuacion = 0
   }
 
   /**
@@ -44,10 +47,25 @@ export class IniciarTablero extends Vista {
 
       this.capturarObjetos()
       this.iniciarCuentaRegresiva()
+      this.iniciarPuntuacion()
     }
   }
 
+  iniciarPuntuacion() {
+    this.verPuntuacion = document.createElement('div');
+    this.verPuntuacion.setAttribute('id','puntuacion')
+    this.base.appendChild(this.verPuntuacion)
 
+    this.actualizarPuntuacion();
+  }
+
+  actualizarPuntuacion () {
+    if (this.puntuacion < 0) {
+      this.puntuacion = 0; // Asegurar que la puntuación no sea menor que 0
+    }
+    this.verPuntuacion.textContent = `Puntuación: ${this.puntuacion}`
+    
+  }
 
   iniciarCuentaRegresiva() {
     const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
@@ -101,16 +119,23 @@ export class IniciarTablero extends Vista {
       // Verificar si el juego no está en pausa antes de procesar el clic
       if (!this.pausa){
         console.log('Objeto malo 1 capturado')
+        console.log(this.objetosMalos[0].puntuacion)
+        this.puntuacion += this.objetosMalos[0].puntuacion;
+        console.log (this.puntuacion)
         this.añadirObjetoAside(this.objetomalo1)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
       }
     }
     this.objetomalo2 = document.getElementById('objetoMalo2')
-
+    
     this.objetomalo2.onclick = () => {
       if (!this.pausa){
         console.log('Objeto malo 2 capturado')
+        this.puntuacion += this.objetosMalos[1].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo2)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
       }
     }
@@ -119,7 +144,10 @@ export class IniciarTablero extends Vista {
     this.objetomalo3.onclick = () => {
       if (!this.pausa){
         console.log('Objeto malo 3 capturado')
+        this.puntuacion += this.objetosMalos[2].puntuacion;
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo3)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
       }
     }
@@ -128,7 +156,10 @@ export class IniciarTablero extends Vista {
     this.objetoBueno1.onclick = () => {
       if (!this.pausa){
         console.log('Objeto bueno 1 capturado')
+        this.puntuacion -= this.objetosBuenos[0].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno1)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
       }
     }
@@ -137,7 +168,10 @@ export class IniciarTablero extends Vista {
     this.objetoBueno2.onclick = () => {
       if (!this.pausa){
         console.log('Objeto bueno 2 capturado')
+        this.puntuacion -= this.objetosBuenos[1].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno2)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
       }
     }
@@ -146,7 +180,10 @@ export class IniciarTablero extends Vista {
     this.objetoBueno3.onclick = () => {
       if (!this.pausa){
         console.log('Objeto bueno 3 capturado')
+        this.puntuacion -= this.objetosBuenos[2].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno3)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
       }
     }
@@ -159,6 +196,7 @@ export class IniciarTablero extends Vista {
   añadirObjetoAside (objeto) {
     this.objeto = objeto
     this.objeto.style.display = 'none'
+    Vista.puntuacion = this.puntuacion
 
     this.aside = document.getElementById('objetosEncontrados')
     this.nuevoContenido = this.objeto.cloneNode(true)
@@ -238,17 +276,17 @@ export class IniciarTablero extends Vista {
      */
   crearObjetos (tablaObjeto) {
     const nObjetosBuenos = Vista.config.nObjetosBuenos
-    const objetosBuenos = []
-    const objetosMalos = []
+    // const objetosBuenos = []
+    // const objetosMalos = []
 
     tablaObjeto.forEach(objeto => {
-      if (objeto.valoracion == '0' && objetosBuenos.length < nObjetosBuenos) {
-        objetosBuenos.push(objeto)
+      if (objeto.valoracion == '0' && this.objetosBuenos.length < nObjetosBuenos) {
+        this.objetosBuenos.push(objeto)
       } else {
-        objetosMalos.push(objeto)
+        this.objetosMalos.push(objeto)
       }
     })
-    this.visualizarObjetos(objetosBuenos, objetosMalos)
+    this.visualizarObjetos(this.objetosBuenos, this.objetosMalos)
   }
 
   /**
@@ -289,6 +327,7 @@ export class IniciarTablero extends Vista {
 
     this.objetoBueno3 = document.getElementById('objetoBueno3')
     const imgB3 = document.createElement('img')
+    console.log(buenos[2])
     imgB3.src = 'data:image/png;base64,' + buenos[2].imagen
     imgB3.alt = buenos[2].descripcion
     this.objetoBueno3.appendChild(imgB3)
@@ -342,7 +381,7 @@ export class IniciarTablero extends Vista {
     console.log(Pregunta)
 
     const contenedorPregunta = document.getElementById('rondaPreguntas')
-    
+    // const contenedorReflexiones = document.getElementById('reflexionJuego')
     // Número de preguntas a mostrar según la configuración.
     let nPregunta = Vista.config.nPregunta
     // Bucle de las preguntas
@@ -358,6 +397,21 @@ export class IniciarTablero extends Vista {
       divPregunta.appendChild(p)
 
       contenedorPregunta.appendChild(divPregunta)
+
+      // let divReflexion = document.createElement('div')
+      // divReflexion.setAttribute('id','reflexion'+i)
+      // divReflexion.setAttribute('class','reflexion')
+      // divReflexion.style.display = 'none'
+
+      // let p1 = document.createElement('p')
+      // p1.textContent = Pregunta[i].reflexionAcierto
+      // divReflexion.appendChild(p1)
+
+      // let p2 = document.createElement('p')
+      // p2.textContent = Pregunta[i].reflexionFallo
+      // divReflexion.appendChild(p2)
+
+      // contenedorReflexiones.appendChild(divReflexion)
     }
   }
 }
