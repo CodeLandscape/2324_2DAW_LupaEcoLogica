@@ -9,7 +9,7 @@
             include 'template/navegacion.html';
         ?>
     </header>
-    <main>
+    <main class="aumentarMargin100">
         <?php
         // Obtiene la configuración actual desde el controlador
         $configuracion = $controlador->configuracion();

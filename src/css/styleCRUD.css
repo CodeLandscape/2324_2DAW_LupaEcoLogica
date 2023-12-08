@@ -95,7 +95,7 @@ main form {
 
 /* Estilos generales para los campos de entrada */
 input {
-    margin: 20px;
+    margin: 5px;
     font-size: 40px;
     font-family: 'Agbalumo';
 }
@@ -133,10 +133,11 @@ input[type="submit"], select, input[type="button"], .submit{
     background-color: #36C8F5; /* Color de fondo azul claro */
     border-radius: 15px;
     border: 2px solid black;
-    width: 10%;
     font-size: large;
     padding: 10px 20px;
     height: auto;
+    margin: 10px;
+    display: inline-block;
 }
 
 /* Estilos al pasar el ratón sobre el botón de envío */
@@ -305,11 +306,6 @@ select{
     padding: 10px;
     margin-bottom: 10px;
     position: relative;
-}
-
-.submit{
-    display: inline-block;
-    height: auto;
 }
 
 .correcto{

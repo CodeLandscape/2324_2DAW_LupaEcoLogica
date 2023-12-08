@@ -1,40 +1,61 @@
-<title>Seleccionar Categorías</title>
+<!-- Etiqueta del título de la página -->
+<title>Administración</title>
+
+<!-- Cierre de la sección head del documento -->
 </head>
+
+<!-- Comienzo del cuerpo del documento -->
 <body>
+    <!-- Encabezado de la página -->
     <header>
-        <!-- Título de la página -->
-        Seleccionar Categorías
+        Administración
+
+        <!-- Incluir la barra de navegación desde un archivo externo -->
         <?php
-            // Inclusión de la navegación desde un archivo externo
             include 'template/navegacion.html';
         ?>
     </header>
-    <main>
-        <?php
-            // Obtención de la tabla de categorías desde el controlador
-            $tabla = $controlador->tablaCategoria();
-            // Verifica si la tabla de categorías está vacía
-            if (empty($tabla)) {
-                // Mensaje si no se encuentran categorías
-                echo "No se encontraron categorías";
-            } else {
-                // Formulario para añadir objetos con un selector de categorías
-                ?>
-                <form action="index.php?accion=anadir_<?php echo $_GET['funcion']; ?>&controlador=<?php echo $_GET['funcion']; ?>" method="post">
-                    <label for="opciones">Selecciona una categoría:</label>
-                    <select id="opciones" name="idCategoria_seleccionada">
-                </form>
+
+    <!-- Sección principal del contenido -->
+    <main class="aumentarMargin100">
+        <form>
+            <div id="contenido">
+                <!-- Mostrar mensaje en caso de que exista la variable 'msg' -->
                 <?php
-                // Ciclo para mostrar opciones de categorías
-                foreach ($tabla as $fila) {
-                    echo '<option value="' . $fila['idCategoria'] . '|' . $fila['nombre'] . '">' . $fila['nombre'] . '</option>';
+                if(isset($_GET['msg'])){
+                    echo '<p>'.$_GET['msg'].'</p>';
                 }
                 ?>
-                    </select>
-                    <input type="submit" value="Enviar">
-                </form>
-            <?php
-            }
-        ?>
+
+                <!-- Contenido de la tabla -->
+                <table>
+                    <!-- Encabezados de la tabla -->
+                    <tr id="azul">
+                        <td class="catNombre">Nombre</td>
+                        <td>Ver</td>
+                        <td>Borrar</td>
+                    </tr>
+
+                    <!-- Generar filas de la tabla dinámicamente -->
+                    <?php
+                        // Obtener información de la tabla de categorías
+                        $tabla = $controlador->tablaCategoria();
+
+                        // Iterar sobre cada fila de la tabla
+                        foreach ($tabla as $fila) {
+                            // Mostrar información de cada categoría en una fila de la tabla
+                            echo "<tr>
+                                    <td id=azul>".$fila['nombre']."</td>
+                                    <td><a href=index.php?id=".$fila['idCategoria']."&accion=categoria&controlador=controlador class=sinEstilo><img src='../img/IonEye.svg' class=icono></a></td>
+                                    <td><a href=index.php?id=".$fila['idCategoria']."&accion=remove&controlador=categoria&funcion=Categoria class=sinEstilo><img src='../img/IonIosRemoveCircle.svg' class=icono></a></td>
+                                  </tr>";
+                        }
+                    ?>
+                </table>
+
+                <!-- Enlace para añadir una nueva categoría -->
+                <a href="index.php?controlador=categoria&accion=addCategoria" class="submit">Añadir Categoría</a>
+            </div>
+        </form>
     </main>
 </body>
