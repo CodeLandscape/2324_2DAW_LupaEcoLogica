@@ -17,6 +17,7 @@ header {
     top: 0;
     position: fixed;
     font-size: x-large; /* Tamaño de fuente extra grande */
+    z-index: 1;
 }
 
 /* Estilo de la barra de navegación */
@@ -51,7 +52,7 @@ nav a {
     font-weight: bold;
     border: none;
     padding: 0;
-    transition: color 0.3s;
+    transition: 1s;
     font-size: 18px;
     position: relative;
 }
@@ -61,7 +62,7 @@ nav a:hover {
     background-color: #588FA0;
     color: white;
     font-size:25px;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 /* Estilo del pie de página */
@@ -79,24 +80,22 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
 /* Estilos del formulario dentro del contenido principal */
 main form {
-    min-width: 57.3vh;
     min-height: 68.5vh;
     border: 1px solid black;
     text-align: center;
     padding: 20px;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
+    width: 85%;
 }
 
 /* Estilos generales para los campos de entrada */
 input {
     margin: 20px;
-    width: 50%;
     font-size: 40px;
     font-family: 'Agbalumo';
 }
@@ -105,6 +104,22 @@ input {
 input[type="text"] {
     font-size: 30px;
     text-align: center;
+}
+form h1{
+    margin: 0;
+}
+
+#preguntasContainer input[type="text"]{
+    width: 90%;
+    margin: 5px 0;
+    font-size: 20px;
+}
+#preguntasContainer p{
+    margin: 0px;
+}
+#preguntasContainer span{
+    font-size: 30px;
+    display: block;
 }
 
 /* Estilos para las etiquetas del formulario */
@@ -118,9 +133,10 @@ input[type="submit"], select, input[type="button"], .submit{
     background-color: #36C8F5; /* Color de fondo azul claro */
     border-radius: 15px;
     border: 2px solid black;
-    width: 133px;
-    height: 40px;
+    width: 10%;
     font-size: large;
+    padding: 10px 20px;
+    height: auto;
 }
 
 /* Estilos al pasar el ratón sobre el botón de envío */
@@ -147,6 +163,11 @@ input[type="submit"]:active , .submit:active{
 /* Estilos para los checkboxes */
 input[type="checkbox"] {
     transform: scale(4); /* Aumenta el tamaño del checkbox */
+}
+
+input[type="radio"]{
+    width: 35px;
+    height: 35px;
 }
 
 /* Estilos específicos para el bloque con id 'contenido' */
@@ -179,7 +200,6 @@ td {
 
 /* Estilos para los enlaces */
 a {
-    padding: 10px 20px;
     background-color: #44caf3; /* Color de fondo azul claro */
     color: black;
     text-decoration: none;
@@ -210,7 +230,7 @@ a {
 
 /* Estilos para los iconos */
 .icono {
-    width: 45%;
+    width: 15%;
 }
 
 /* Estilos para elementos sin estilo */
@@ -284,11 +304,11 @@ select{
     border-radius: 30px;
     padding: 10px;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .submit{
     display: inline-block;
-    margin: 30px;
     height: auto;
 }
 
@@ -306,4 +326,7 @@ select{
 /* Celda del nombre de los objetos de la tabla */
 .nombreObjeto{
     width: 30%;
+}
+.catNombre{
+    width: 65%;
 }
