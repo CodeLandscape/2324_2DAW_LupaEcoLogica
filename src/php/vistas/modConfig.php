@@ -38,5 +38,3 @@
             <input type="submit" value="Guardar">
         </form>
     </main>
-</body>
-</html>

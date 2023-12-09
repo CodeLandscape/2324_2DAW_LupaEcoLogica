@@ -138,6 +138,7 @@ input[type="submit"], select, input[type="button"], .submit{
     height: auto;
     margin: 10px;
     display: inline-block;
+    cursor: pointer;
 }
 
 /* Estilos al pasar el ratón sobre el botón de envío */
@@ -150,20 +151,15 @@ input[type="submit"]:active , .submit:active{
     background-color: #588FA0;
 }
 
-/* Estilos específicos para el bloque con id 'botones' */
-#botones {
-    margin-top: 20%;
-}
-
 /* Estilos específicos para las entradas pequeñas */
 .inputPeq {
-    width: 10%;
-    height: 10%;
+    width: 8%;
 }
 
 /* Estilos para los checkboxes */
 input[type="checkbox"] {
     transform: scale(4); /* Aumenta el tamaño del checkbox */
+    width: 5%;
 }
 
 input[type="radio"]{
@@ -325,4 +321,25 @@ select{
 }
 .catNombre{
     width: 65%;
+}
+.objetoImagen{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.datosObjeto{
+    position: relative;
+    text-align: left;
+}
+.datosObjeto>input:first-child{
+    width: 30%;
+}
+.datosObjeto>input:last-child{
+    width: 55%;
+}
+.nuevoObjeto{
+    text-align: center;
+}
+input[type="file"]{
+    font-size: 30px;
 }

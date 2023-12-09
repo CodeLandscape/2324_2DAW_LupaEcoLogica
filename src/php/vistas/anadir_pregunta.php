@@ -14,9 +14,7 @@
             list($idCategoria, $nombreCategoria) = explode('|', $categoriaSeleccionada);
             ?>
             <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $idCategoria; ?>">
-            <?php
-            echo '<h1>' . $nombreCategoria . '</h1>';
-            ?>
+            <h1><?php echo $nombreCategoria; ?></h1>
             <div id="preguntasContainer">
             <?php
                 // Obtener las preguntas de la base de datos
@@ -48,7 +46,7 @@
             </div>
             
             <!-- Cambia la estructura del botón agregar -->
-            <div id="botonesPregunta">
+            <div>
                 <input type="button" value="Añadir" onclick="agregarPregunta();" class="submit">
                 <input type='submit' value='Guardar'>
                 <a href="index.php?accion=selectCategoria&controlador=controlador&funcion=pregunta" class="submit">Volver</a>
@@ -91,20 +89,16 @@
                         <label for="opcion[${contadorPregunta}]">No</label>
                         <input type="radio" name="opcion[${contadorPregunta}]" value=0>
                     </p>
-                    <input type="button" value="Quitar" onclick="quitarPregunta();" class="submit">
+                    <input type="button" value="Quitar" onclick="quitarPregunta(${contadorPregunta});" class="submit">
                 `;
 
                 // Agregar el nuevo div como hijo del contenedor de preguntas
                 preguntasContainer.appendChild(nuevaPreguntaDiv);
             }
-            function quitarPregunta(){
+            function quitarPregunta(contador){
                 const preguntasContainer = document.getElementById('preguntasContainer');
-                const preguntaDiv = document.getElementById(`pregunta${contadorPregunta}`);
+                const preguntaDiv = document.getElementById('pregunta'+contador);
                 const throwawayNode = preguntasContainer.removeChild(preguntaDiv);
-
-                contadorPregunta--;
             }
         </script>
     </main>
-</body>
-</html>
