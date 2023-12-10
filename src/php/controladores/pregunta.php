@@ -80,6 +80,11 @@ class Pregunta
         return $fila;
     }
 
+    public function verTodasPreguntas(){
+        $Modelo = new PreguntaModelo();
+        $tabla = $Modelo->verTodasPreguntas();
+        return $tabla;
+    }
     /**
      * Agrega o actualiza preguntas en la base de datos.
      */

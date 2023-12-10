@@ -39,7 +39,7 @@
                             <label for="punt[]">Puntuación</label>
                             <input type="number" name="punt[]" value="<?php echo $objeto['puntuacion']; ?>" required class="inputPeq">
                             <label for="bueno[]">Bueno</label>
-                            <input type="checkbox" name="bueno[]" <?php if($objeto['valoracion']==1){echo 'checked';} ?>>
+                            <input type="checkbox" name="bueno[]" <?php if($objeto['valoracion']==0){echo 'checked';} ?>>
                         </p>
                         <a href="index.php?accion=remove&id=<?php echo $id; ?>&controlador=objeto&funcion=objeto&idCategoria=<?php echo $idCategoria; ?>" class="submit">Borrar</a>
                     </div>
@@ -69,7 +69,6 @@
                 nuevoObjetoDiv.className = 'contenedores';
 
                 nuevoObjetoDiv.innerHTML = `
-                    <input type="hidden" name="id[]" value="<?php echo $id; ?>">
                         <p class="datosObjeto nuevoObjeto">
                             <input type="text" name="nombre[]" placeholder="Nombre del objeto" required>
                             <input type="text" name="descripcion[]" placeholder="Descripción" required class="descripcion">

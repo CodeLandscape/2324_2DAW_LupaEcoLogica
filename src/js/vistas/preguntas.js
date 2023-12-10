@@ -45,12 +45,14 @@ export class Preguntas extends Vista {
       let nPregunta = Vista.config.nPregunta
       // Bucle de las preguntas
       for(let i=0;i<nPregunta;i++){
-        if (Vista.pregunta[i].respuesta == 1){
-          this.reflexionPositiva = document.getElementById('acierto'+i);
-        this.reflexionPositiva.style.display = 'block'
-        }else{
+        this.reflexionPositiva = document.getElementById('acierto'+i);
         this.reflexionNegativa = document.getElementById('fallo'+i);
+        if (Vista.pregunta[i].respuesta == 1){
+        this.reflexionPositiva.style.display = 'block'
+        this.reflexionNegativa.style.display = 'none'
+        }else{
         this.reflexionNegativa.style.display = 'block'
+        this.reflexionPositiva.style.display = 'none'
       }
       this.controlador.verVista(Vista.VISTA3_1)
     }
@@ -60,12 +62,14 @@ export class Preguntas extends Vista {
       let nPregunta = Vista.config.nPregunta
       // Bucle de las preguntas
       for(let i=0;i<nPregunta;i++){
-        if (Vista.pregunta[i].respuesta == 0){
-          this.reflexionPositiva = document.getElementById('acierto'+i);
-        this.reflexionPositiva.style.display = 'block'
-        }else{
+        this.reflexionPositiva = document.getElementById('acierto'+i);
         this.reflexionNegativa = document.getElementById('fallo'+i);
+        if (Vista.pregunta[i].respuesta == 0){
+        this.reflexionPositiva.style.display = 'block'
+        this.reflexionNegativa.style.display = 'none'
+        }else{
         this.reflexionNegativa.style.display = 'block'
+        this.reflexionPositiva.style.display = 'none'
       }
       this.controlador.verVista(Vista.VISTA3_1)
     }

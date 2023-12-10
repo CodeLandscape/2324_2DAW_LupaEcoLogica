@@ -78,7 +78,7 @@ class Objeto
                 $nombreSanitizado = $this->sanitizarEntrada($nombre);
                 $descripcionSanitizada = $this->sanitizarEntrada(isset($descripciones[$index]) ? $descripciones[$index] : '');
                 $puntuacionSanitizada = $this->sanitizarEntrada(isset($puntuaciones[$index]) ? $puntuaciones[$index] : '');
-                $buenoSanitizado = isset($buenos[$index]) ? ($buenos[$index] == 'on' ? 1 : 0) : 0; // Ajuste aquí para verificar si el checkbox está marcado
+                $buenoSanitizado = isset($buenos[$index]) ? ($buenos[$index] == 'on') : true; // Usar directamente el valor booleano del checkbox
 
                 // Verificar si los campos sanitizados están completos
                 if (!empty($nombreSanitizado) && !empty($descripcionSanitizada) && !empty($puntuacionSanitizada)) {

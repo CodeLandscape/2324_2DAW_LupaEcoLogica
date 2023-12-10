@@ -295,74 +295,45 @@ export class IniciarTablero extends Vista {
      * @param {Array} malos - Datos de objetos malos.
      */
   visualizarObjetos (buenos, malos) {
-    // Función para obtener una posición aleatoria dentro de un rango
-    const getRandomPosition = (min, max) => Math.random() * (max - min) + min;
+    this.objetomalo1 = document.getElementById('objetoMalo1')
+    const imgM1 = document.createElement('img')
+    imgM1.src = 'data:image/png;base64,' + malos[0].imagen
+    imgM1.alt = malos[0].descripcion
+    this.objetomalo1.appendChild(imgM1)
 
-    // Visualizar objeto malo 1
-    this.objetomalo1 = document.getElementById('objetoMalo1');
-    this.objetomalo1.style.top = `${getRandomPosition(10, 70)}%`;
-    this.objetomalo1.style.left = `${getRandomPosition(10, 80)}%`;
+    this.objetomalo2 = document.getElementById('objetoMalo2')
+    const imgM2 = document.createElement('img')
+    imgM2.src = 'data:image/png;base64,' + malos[1].imagen
+    imgM2.alt = malos[1].descripcion
+    this.objetomalo2.appendChild(imgM2)
 
-    const imgM1 = document.createElement('img');
-    imgM1.src = 'data:image/png;base64,' + malos[0].imagen;
-    imgM1.alt = malos[0].descripcion;
-    this.objetomalo1.appendChild(imgM1);
+    this.objetomalo3 = document.getElementById('objetoMalo3')
+    const imgM3 = document.createElement('img')
+    imgM3.src = 'data:image/png;base64,' + malos[2].imagen
+    imgM3.alt = malos[2].descripcion
+    this.objetomalo3.appendChild(imgM3)
 
-    // Visualizar objeto malo 2
-    this.objetomalo2 = document.getElementById('objetoMalo2');
-    this.objetomalo2.style.top = `${getRandomPosition(10, 70)}%`;
-    this.objetomalo2.style.left = `${getRandomPosition(10, 80)}%`;
+    this.objetoBueno1 = document.getElementById('objetoBueno1')
+    const imgB1 = document.createElement('img')
+    imgB1.src = 'data:image/png;base64,' + buenos[0].imagen
+    imgB1.alt = buenos[0].descripcion
+    this.objetoBueno1.appendChild(imgB1)
 
-    const imgM2 = document.createElement('img');
-    imgM2.src = 'data:image/png;base64,' + malos[1].imagen;
-    imgM2.alt = malos[1].descripcion;
-    this.objetomalo2.appendChild(imgM2);
+    this.objetoBueno2 = document.getElementById('objetoBueno2')
+    const imgB2 = document.createElement('img')
+    imgB2.src = 'data:image/png;base64,' + buenos[1].imagen
+    imgB2.alt = buenos[1].descripcion
+    this.objetoBueno2.appendChild(imgB2)
 
-    // Visualizar objeto malo 3
-    this.objetomalo3 = document.getElementById('objetoMalo3');
-    this.objetomalo3.style.top = `${getRandomPosition(10, 70)}%`;
-    this.objetomalo3.style.left = `${getRandomPosition(10, 80)}%`;
-
-    const imgM3 = document.createElement('img');
-    imgM3.src = 'data:image/png;base64,' + malos[2].imagen;
-    imgM3.alt = malos[2].descripcion;
-    this.objetomalo3.appendChild(imgM3);
-
-    // Visualizar objeto bueno 1
-    this.objetoBueno1 = document.getElementById('objetoBueno1');
-    this.objetoBueno1.style.top = `${getRandomPosition(10, 70)}%`;
-    this.objetoBueno1.style.left = `${getRandomPosition(10, 80)}%`;
-
-    const imgB1 = document.createElement('img');
-    imgB1.src = 'data:image/png;base64,' + buenos[0].imagen;
-    imgB1.alt = buenos[0].descripcion;
-    this.objetoBueno1.appendChild(imgB1);
-
-    // Visualizar objeto bueno 2
-    this.objetoBueno2 = document.getElementById('objetoBueno2');
-    this.objetoBueno2.style.top = `${getRandomPosition(10, 70)}%`;
-    this.objetoBueno2.style.left = `${getRandomPosition(10, 80)}%`;
-
-    const imgB2 = document.createElement('img');
-    imgB2.src = 'data:image/png;base64,' + buenos[1].imagen;
-    imgB2.alt = buenos[1].descripcion;
-    this.objetoBueno2.appendChild(imgB2);
-
-    // Visualizar objeto bueno 3
-    this.objetoBueno3 = document.getElementById('objetoBueno3');
-    this.objetoBueno3.style.top = `${getRandomPosition(10, 70)}%`;
-    this.objetoBueno3.style.left = `${getRandomPosition(10, 80)}%`;
-
-    const imgB3 = document.createElement('img');
-    imgB3.src = 'data:image/png;base64,' + buenos[2].imagen;
-    imgB3.alt = buenos[2].descripcion;
-    this.objetoBueno3.appendChild(imgB3);
+    this.objetoBueno3 = document.getElementById('objetoBueno3')
+    const imgB3 = document.createElement('img')
+    console.log(buenos[2])
+    imgB3.src = 'data:image/png;base64,' + buenos[2].imagen
+    imgB3.alt = buenos[2].descripcion
+    this.objetoBueno3.appendChild(imgB3)
   }
 
   verificarObjetosPulsados() {
-    
-    
-  
     // Obtener el estilo de visualización actual de los objetos malos
     const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display')
     const estiloMalo2 = window.getComputedStyle(this.objetomalo2).getPropertyValue('display')
@@ -376,12 +347,7 @@ export class IniciarTablero extends Vista {
       
       // this.controlador.verVista(Vista.VISTA3)
     }
-    
   }
-  /**
-   * Método que oculta el botón pausar/reanudar al cambiar de vista o si se acaba el tiempo.
-   */
- 
 
   /**
      * Parámetros para la solicitud AJAX, en este caso, el ID de la categoría.

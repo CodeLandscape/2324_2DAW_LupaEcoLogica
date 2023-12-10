@@ -21,6 +21,10 @@
                 $preguntasModelo = new PreguntaModelo();
                 $preguntas = $preguntasModelo->verPreguntas($idCategoria);
 
+                $lastId;
+                $todasPreguntas = $preguntasModelo->verTodasPreguntas();
+                foreach($todasPreguntas as $pregunta){$lastId=$pregunta['idPregunta'];}
+
                 foreach ($preguntas as $pregunta) {
                     $id=$pregunta['idPregunta'];
                     ?>
@@ -61,7 +65,7 @@
             const formulario = document.querySelector('form');
 
             // Inicializar el contador de preguntas
-            let contadorPregunta = <?php echo count($preguntas); ?>;
+            let contadorPregunta = <?php echo $lastId; ?>;
 
             function agregarPregunta() {
                 // Obtener el contenedor de preguntas
