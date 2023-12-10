@@ -82,7 +82,7 @@
                             <label for="bueno[]">Bueno</label>
                             <input type="checkbox" name="bueno[]">
                         </p>
-                        <input type='button' value='Quitar' onclick="quitarObjeto(${contadorObjeto});" class="submit">
+                        <input type='button' value='Quitar Objeto' onclick="quitarObjeto(${contadorObjeto});" class="submit">
                 `;
                 objetosContainer.appendChild(nuevoObjetoDiv);
             }

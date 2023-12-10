@@ -78,7 +78,7 @@ class Objeto
                 $nombreSanitizado = $this->sanitizarEntrada($nombre);
                 $descripcionSanitizada = $this->sanitizarEntrada(isset($descripciones[$index]) ? $descripciones[$index] : '');
                 $puntuacionSanitizada = $this->sanitizarEntrada(isset($puntuaciones[$index]) ? $puntuaciones[$index] : '');
-                $buenoSanitizado = isset($buenos[$index]) ? ($buenos[$index] == 'on') : true; // Usar directamente el valor booleano del checkbox
+                $buenoSanitizado = isset($buenos[$index]) ? ($buenos[$index] == 'on' ? 1 : 0) : 0; // Ajuste aquí para verificar si el checkbox está marcado
 
                 // Verificar si los campos sanitizados están completos
                 if (!empty($nombreSanitizado) && !empty($descripcionSanitizada) && !empty($puntuacionSanitizada)) {
@@ -124,9 +124,8 @@ class Objeto
 
                             $Modelo->agregarObjeto($nombreSanitizado, $descripcionSanitizada, $base64, $puntuacionSanitizada, ($buenoSanitizado ? 1 : 0), $idCategoria);
                         }
-                    }        
+                    }
                     $mensaje = 'Objetos agregados o actualizados correctamente';
-
                 } else {
                     // Mostrar mensaje de error si no se pueden agregar campos sanitizados
                     $mensaje = 'Error al agregar objetos. Verifica que todos los campos estén completos y válidos.';

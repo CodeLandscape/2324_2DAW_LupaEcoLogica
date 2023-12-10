@@ -51,8 +51,8 @@
             
             <!-- Cambia la estructura del botón agregar -->
             <div>
-                <input type="button" value="Añadir" onclick="agregarPregunta();" class="submit">
-                <input type='submit' value='Guardar'>
+                <input type="button" value="Añadir Pregunta" onclick="agregarPregunta();" class="submit">
+                <input type='submit' value='Guardar Cambios'>
                 <a href="index.php?accion=selectCategoria&controlador=controlador&funcion=pregunta" class="submit">Volver</a>
             </div>
         </form>
@@ -93,7 +93,7 @@
                         <label for="opcion[${contadorPregunta}]">No</label>
                         <input type="radio" name="opcion[${contadorPregunta}]" value=0>
                     </p>
-                    <input type="button" value="Quitar" onclick="quitarPregunta(${contadorPregunta});" class="submit">
+                    <input type="button" value="Quitar Pregunta" onclick="quitarPregunta(${contadorPregunta});" class="submit">
                 `;
 
                 // Agregar el nuevo div como hijo del contenedor de preguntas
