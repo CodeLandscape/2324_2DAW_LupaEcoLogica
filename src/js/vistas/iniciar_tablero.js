@@ -84,7 +84,7 @@ export class IniciarTablero extends Vista {
         
         this.iniciarCuentaRegresiva = null;
         this.actualizarTiempo = null;
-        this.controlador.verVista(Vista.VISTA3);
+        this.controlador.verVista(Vista.VISTA3,Vista.puntuacion);
       }
   
 
@@ -117,7 +117,6 @@ export class IniciarTablero extends Vista {
 
     this.objetomalo1.onclick = () => {
       // Verificar si el juego no está en pausa antes de procesar el clic
-      if (!this.pausa){
         console.log('Objeto malo 1 capturado')
         console.log(this.objetosMalos[0].puntuacion)
         this.puntuacion += this.objetosMalos[0].puntuacion;
@@ -125,67 +124,58 @@ export class IniciarTablero extends Vista {
         this.añadirObjetoAside(this.objetomalo1)
         this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
+      
     }
     this.objetomalo2 = document.getElementById('objetoMalo2')
     
     this.objetomalo2.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto malo 2 capturado')
         this.puntuacion += this.objetosMalos[1].puntuacion
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo2)
         this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
+      
     }
     this.objetomalo3 = document.getElementById('objetoMalo3')
 
     this.objetomalo3.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto malo 3 capturado')
         this.puntuacion += this.objetosMalos[2].puntuacion;
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo3)
         this.actualizarPuntuacion();
-        this.verificarObjetosPulsados()
-      }
+        
     }
     this.objetoBueno1 = document.getElementById('objetoBueno1')
 
     this.objetoBueno1.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto bueno 1 capturado')
         this.puntuacion -= this.objetosBuenos[0].puntuacion
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno1)
         this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
     }
     this.objetoBueno2 = document.getElementById('objetoBueno2')
 
     this.objetoBueno2.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto bueno 2 capturado')
         this.puntuacion -= this.objetosBuenos[1].puntuacion
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno2)
         this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
     }
     this.objetoBueno3 = document.getElementById('objetoBueno3')
 
     this.objetoBueno3.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto bueno 3 capturado')
         this.puntuacion -= this.objetosBuenos[2].puntuacion
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno3)
         this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
     }
   }
 
@@ -203,7 +193,6 @@ export class IniciarTablero extends Vista {
     this.nuevoContenido.style.display = 'block'
     this.nuevoContenido.id = 'objeto1'
     this.aside.appendChild(this.nuevoContenido)
-
   }
 
   /**

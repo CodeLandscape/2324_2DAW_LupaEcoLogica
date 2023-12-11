@@ -1,103 +1,117 @@
 /* eslint-disable no-tabs */
 import { Vista } from './vista.js';
 // eslint-disable-next-line no-unused-vars
-import { Rest } from '../servicios/rest.js';
 
 /**
  * Clase que representa una vista específica, extendiendo la clase base Vista.
  * @extends Vista
  */
 export class Preguntas extends Vista {
-  /**
-   * Crea una instancia de Preguntas.
-   * @param {any} controlador - El controlador asociado a la vista.
-   * @param {HTMLElement} base - El elemento base de la vista.
-   */
-  constructor(controlador, base, config) {
-    super(controlador, base, config);
+  constructor(controlador, base, config,puntuacion) {
+    super(controlador, base, config,puntuacion);
     this.crearInterfaz();
+    this.i = 0;
   }
 
-  /**
-   * Crea la interfaz de la vista.
-   * Crea elementos HTML, agrega eventos y define acciones.
-   */
+  iniciarPuntuacion() {
+    this.contenedorPuntuacion = document.createElement('div');
+    // this.contenedorPuntuacion.setAttribute('id','puntuacion')
+    this.actualizarPuntuacion(this.puntuacion);
+    
+    this.base.appendChild(this.contenedorPuntuacion)
+  }
+  
   crearInterfaz() {
-    // Crear botones y párrafo de pregunta
     this.respuestaSi = document.createElement('button');
     this.respuestaNo = document.createElement('button');
     this.registro = document.createElement('button');
-
-    // Configurar texto para los botones
+ 
     this.respuestaSi.id = 'botonSiPregunta';
     this.respuestaNo.id = 'botonNoPregunta';
     this.respuestaSi.textContent = 'SI';
     this.respuestaNo.textContent = 'NO';
     this.registro.textContent = 'Ir al registro';
 
-    // Agregar elementos al elemento base
     this.base.appendChild(this.respuestaSi);
     this.base.appendChild(this.respuestaNo);
     this.base.appendChild(this.registro);
 
-    this.respuestaSi.onclick = () => {
-      this.procesarRespuesta(1);
-    };
 
-    this.respuestaNo.onclick = () => {
-      this.procesarRespuesta(0);
-    };
+    ///mostrar la puntuacion
+    // this.contenedorPuntuacion.textContent = `Puntuación:`;
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   console.log(Vista.puntuacion)
+    //   this.puntuacionActual = Vista.puntuacion;
+    //   this.actualizarPuntuacion(this.puntuacionActual);
+    // });
+    
+    // this.base.appendChild(this.contenedorPuntuacion);
+    this.iniciarPuntuacion();
 
-    // Asignar evento al botón de registro
     this.registro.onclick = () => {
       this.controlador.verVista(Vista.VISTA4);
     };
+
+    this.respuestaSi.onclick = () => this.procesarRespuestaSi();
+    this.respuestaNo.onclick = () => this.procesarRespuestaNo();
   }
 
-  /**
-   * Procesa la respuesta según el valor proporcionado.
-   * @param {number} respuesta - El valor de la respuesta (1 o 0).
-   */
-  procesarRespuesta(respuesta) {
-    let nPregunta = Vista.config.nPregunta;
+  procesarRespuestaSi() {
+    this.desactivarEventos();
+    this.procesarRespuesta(1);
+  }
 
-    // Desactivar eventos antes de procesar la respuesta
+  procesarRespuestaNo() {
+    this.desactivarEventos();
+    this.procesarRespuesta(0);
+  }
+
+  procesarRespuesta(respuesta) {
     this.desactivarEventos();
 
-    for (let i = 0; i < nPregunta; i++) {
-      this.reflexionPositiva = document.getElementById('acierto' + i);
-      this.reflexionNegativa = document.getElementById('fallo' + i);
-
-      if (Vista.pregunta[i].respuesta === respuesta) {
-        Vista.puntuacion += Vista.pregunta[i].puntuacion;
-        console.log(Vista.puntuacion);
+  
+    console.log('Entrando en procesarRespuesta');
+    console.log('Dentro del bucle. Iteración:', this.i);
+  
+      this.reflexionPositiva = document.getElementById('acierto' + this.i);
+      this.reflexionNegativa = document.getElementById('fallo' + this.i);
+  
+      console.log("Respuesta esperada:", Vista.pregunta[this.i].respuesta);
+      console.log("Respuesta proporcionada:", respuesta);
+  
+      if (Number(Vista.pregunta[this.i].respuesta) === Number(respuesta)) {
+        Vista.puntuacion += Vista.pregunta[this.i].puntuacion;
+        this.actualizarPuntuacion(Vista.puntuacion);
+        console.log("Puntuación actualizada:", Vista.puntuacion);
         this.reflexionPositiva.style.display = 'block';
         this.reflexionNegativa.style.display = 'none';
       } else {
+        console.log("Respuesta incorrecta.");
         this.reflexionNegativa.style.display = 'block';
         this.reflexionPositiva.style.display = 'none';
       }
-    }
-
+      this.i= this.i + 1;
+    
+  
+    console.log('Saliendo de procesarRespuesta');
+  
     this.controlador.verVista(Vista.VISTA3_1);
-
-    // Activar eventos después de cambiar de pregunta
     this.activarEventos();
   }
 
-  /**
-   * Desactiva los eventos de los botones de respuesta.
-   */
+  actualizarPuntuacion(puntuacion) {
+    this.contenedorPuntuacion.textContent = `Puntuación: ${puntuacion}`;
+  }
+  
+
   desactivarEventos() {
     this.respuestaSi.disabled = true;
     this.respuestaNo.disabled = true;
   }
 
-  /**
-   * Activa los eventos de los botones de respuesta.
-   */
   activarEventos() {
     this.respuestaSi.disabled = false;
     this.respuestaNo.disabled = false;
   }
 }
+
