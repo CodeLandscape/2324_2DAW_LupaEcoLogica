@@ -78,13 +78,14 @@ footer p {
 
 /* Estilos del formulario dentro del contenido principal */
 #registro form {
-    min-width: 57.3vh;
     min-height: 68.5vh;
     border: 1px solid black;
     text-align: center;
     padding: 20px;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.5); /* Opacidad del fondo del formulario */
+    width: 85%;
+    margin: auto;
 }
 
 /* Estilos generales para los campos de entrada */
@@ -107,15 +108,17 @@ label {
 }
 
 /* Estilos para los botones de envío y selectores */
-input[type="submit"],
-select {
+input[type="submit"], select, input[type="button"], .submit{
     font-family: 'Agbalumo';
     background-color: #36C8F5; /* Color de fondo azul claro */
     border-radius: 15px;
     border: 2px solid black;
-    width: 133px;
-    height: 50px;
     font-size: large;
+    padding: 10px 20px;
+    height: auto;
+    margin: 10px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 /* Estilos al pasar el ratón sobre el botón de envío */
@@ -339,6 +342,17 @@ header h1 {
     max-width: 10%;
     max-height: 10%;
     position: static;
+}
+
+.tamFuenteGrande {
+    font-size: 40px;
+    text-align: center;
+}
+
+select{
+    display: block;
+    width: 45%;
+    margin: 20px 28.5%;
 }
 
 /* Dispositivo móvil en vertical */

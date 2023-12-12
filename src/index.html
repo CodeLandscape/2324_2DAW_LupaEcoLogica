@@ -37,68 +37,34 @@
                 <p>
                     Objetos encontrados en el tablero
                 </p>
-                <!-- <div id="objeto1">
-                    <img src="img/objetos/incendios/malos/barbacoa.png"/>
-                </div>
-                <div id="objeto2">
-                    <img src="img/objetos/incendios/malos/colillas.png"/>
-                </div>
-                <div id="objeto3">
-                    <img src="img/objetos/incendios/malos/neumatico.png"/>
-                </div>
-                <div id="objeto4">
-                    <img src="img/objetos/incendios/buenos/animal.png"/>
-                </div>
-                <div id="objeto5">
-                    <img src="img/objetos/incendios/buenos/seta.png"/>
-                </div>
-                <div id="objeto6">
-                    <img src="img/objetos/incendios/buenos/panal.png"/>
-                </div> -->
             </aside>
         </div>
         <div id="rondaPreguntas">
-            <!-- <div id="puntuacion">
-                <h1>1500 puntos</h1>
-            </div> -->
         </div>
         <div id="reflexionjuego">
-            <!-- <header>
-                <h1>2500 puntos</h1>
-            </header> -->
-            <div id="reflexion">
-                <!-- <p>
-                    ¡Excelente! Reconocer los riesgos biológicos es el primer paso para proteger nuestra biodiversidad y 
-                    mantener un equilibrio saludable en la naturaleza.
-                </p> -->
-
+            <div id="reflexion"></div>
             </div>
-            <!--<div id="reflexion">
-                <p>
-                    ¡Oh no! Es crucial conocer los riesgos biológicos para cuidar de nuestra biodiversidad. Puedes
-                    explorar más sobre este tema para así comprender mejor cómo preservar la vida silvestre y garantizar
-                    la salud de nuestro planeta. ¡Sigue aprendiendo!
-                </p>
-                <img src="img/IonCloseCircle.png"/>
-            </div>-->
             <button id="botonContinuar">Continuar</button>
         </div>
         <div id="registro">
+            <header>
+                <p class="tamFuenteGrande" id="puntos">4500 puntos</p>
+            </header>
             <form method='post' id="miFormulario">
                 <div id="contenido">
                     <p class="tamFuenteGrande">¡Has aprendido a detectar riesgos medioambientales!</p>
                     <!-- Cambiar dinámicamente según el tablero a jugar -->
                     <label for="localidad">Localidad: </label>
-                    <select id="localidad">
-                        <option>Badajoz</option>
-                        <option>Mérida</option>
-                        <option>Cáceres</option>
+                    <select id="localidad" name="localidad">
+                        <option value="Badajoz">Badajoz</option>
+                        <option value="Merida">Mérida</option>
+                        <option value="Caceres">Cáceres</option>
                     </select><br>
         
                     <label for='nombre'>Nombre del jugador:</label><br>
-                    <input type='text' id='nombre' name='nombre' placeholder="3 letras y 2 números"><br>
+                    <input type='text' id='nombre' name='nombre' placeholder="Elija una localidad"><br>
         
-                    <button type='submit' id="botonEnviar">Enviar</button>
+                    <button type='submit' id="botonEnviar" class="submit">Enviar</button>
                 </div>
             </form>
         </div>

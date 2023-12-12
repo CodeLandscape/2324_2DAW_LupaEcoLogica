@@ -7,6 +7,11 @@ export class Registro extends Vista {
     this.validacionFormulario()
   }
 
+  mostrar(ver){
+    this.actualizarPuntuacion(Vista.puntuacion);
+    super.mostrar(ver); 
+  }
+
   /**
      * Crea la interfaz del formulario para guardar la partida.
      * Genera las acciones del formulario.
@@ -14,12 +19,6 @@ export class Registro extends Vista {
   crearInterfaz () {
     // Obtener los elementos HTML existentes
     this.formulario = document.getElementById('miFormulario')
-    this.explicacionRegex = document.createElement('p')
-    this.explicacionRegex.className = 'tamFuenteGrande'
-    this.explicacionRegex.textContent = 'El nombre de usuario debe contener las dos primeras iniciales de la provincia elegida. Por ejemplo, si seleccionas Badajoz, tu nombre sería BAvi123.'
-
-    this.puntos = document.createElement('h2')
-    this.puntos.textContent = '¡Has obtenido (cantidad de puntos) en tu partida!'
 
     this.irInicio = document.createElement('button')
     this.irInicio.textContent = 'Volver al Inicio'
@@ -27,11 +26,7 @@ export class Registro extends Vista {
     this.nickUsu = document.getElementById('nombre')
     this.provincia = document.getElementById('localidad')
 
-    this.nickUsu.style.backgroundColor = 'yellow'
-
     // Agregar elementos al contenedor base
-    this.base.appendChild(this.puntos)
-    this.formulario.appendChild(this.explicacionRegex)
     this.base.appendChild(this.irInicio)
 
     // Al hacer clic en el botón, mostrar la vista correspondiente
@@ -46,7 +41,9 @@ export class Registro extends Vista {
      * Validación del formulario al escribir el nombre.
      */
   validacionFormulario () {
-    this.nickUsu.style.backgroundColor = 'yellow'
+    let regexCaceres = /^(CA|ca)[A-Za-z]{2}[0-9]{3}$/;
+    let regexBadajoz = /^(BA|ba)[A-Za-z]{2}[0-9]{3}$/;
+    let regexMerida = /^(ME|me)[A-Za-z]{2}[0-9]{3}$/;
 
     const validarNombreUsuario = (texto, regex, mensajeValido, mensajeInvalido) => {
       if (!texto.match(regex)) {
@@ -64,11 +61,10 @@ export class Registro extends Vista {
       const texto = this.nickUsu.value
 
       switch (this.provincia.value) {
-        case 'Cáceres':
-          console.log('Cáceres')
+        case 'Caceres':
           validarNombreUsuario(
             texto,
-            /^(CA|ca)[A-Za-z]{2}[0-9]{3}$/,
+            regexCaceres,
             'El nombre de usuario es válido para Cáceres',
             'No es válido el nombre introducido para Cáceres'
           )
@@ -76,15 +72,15 @@ export class Registro extends Vista {
         case 'Badajoz':
           validarNombreUsuario(
             texto,
-            /^(BA|ba)[A-Za-z]{2}[0-9]{3}$/,
+            regexBadajoz,
             'El nombre de usuario es válido para Badajoz',
             'No es válido el nombre introducido para Badajoz'
           )
           break
-        case 'Mérida':
+        case 'Merida':
           validarNombreUsuario(
             texto,
-            /^(ME|me)[A-Za-z]{2}[0-9]{3}$/,
+            regexMerida,
             'El nombre de usuario es válido para Mérida',
             'No es válido el nombre introducido para Mérida'
           )
@@ -92,8 +88,29 @@ export class Registro extends Vista {
         default:
           // Si no se selecciona una provincia específica, se puede restablecer el estilo del campo de entrada
           this.nickUsu.style.borderColor = ''
-          break
       }
     }
+    //Cambia el valor del placeholder del input del nombre de usuario.
+    this.provincia.onchange = (event) => {
+      event.preventDefault()
+
+      switch (this.provincia.value) {
+        case 'Caceres':
+          this.nickUsu.setAttribute('placeholder',"CA + 2 letras + 3 números");
+          break
+        case 'Badajoz':
+          this.nickUsu.setAttribute('placeholder',"BA + 2 letras + 3 números");
+          break
+        case 'Merida':
+          this.nickUsu.setAttribute('placeholder',"ME + 2 letras + 3 números");
+          break
+        default:
+          this.nickUsu.setAttribute('placeholder',"Elija una localidad");
+      }
+    }
+  }
+  actualizarPuntuacion(puntuacion){
+    this.puntos = document.getElementById('puntos')
+    this.puntos.textContent = `${Vista.puntuacion} puntos`
   }
 }
