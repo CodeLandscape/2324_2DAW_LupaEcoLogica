@@ -394,7 +394,25 @@ export class IniciarTablero extends Vista {
       p2.style.display = 'none'
       divReflexion.appendChild(p2)
 
+      let imgAcierto = document.createElement('img')
+      imgAcierto.setAttribute('id','imagenCorrecto'+i)
+      imgAcierto.src = "img/IonCheckmarkCircled.png"
+      imgAcierto.style.display ='none'
+      divReflexion.appendChild(imgAcierto)
+      
+
+      let imgFallo = document.createElement('img')
+      imgFallo.setAttribute('id','imagenFallo'+i)
+      imgFallo.src = "img/IonCloseCircle.png"
+      imgFallo.style.display ='block'
+      divReflexion.appendChild(imgFallo)
+
+
       contenedorReflexiones.appendChild(divReflexion)
     }
+    
+
+    
+
   }
 }

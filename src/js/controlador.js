@@ -45,7 +45,7 @@ class Controlador {
      * Muestra una vista específica.
      * @param {Symbol} vista - El símbolo que identifica a la vista a mostrar.
      */
-    verVista(vista,puntuacion) {
+    verVista(vista) {
     this.ocultarVistas()
   
     if (vista === Vista.VISTA3) {
@@ -66,7 +66,7 @@ class Controlador {
       if (this.contador == Vista.config.nPregunta)
         vista = Vista.VISTA4
     }
-    this.vistas.get(vista).mostrar(true,puntuacion)
+    this.vistas.get(vista).mostrar(true)
   }
 
   /**

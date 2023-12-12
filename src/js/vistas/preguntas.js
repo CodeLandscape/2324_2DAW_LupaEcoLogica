@@ -13,11 +13,14 @@ export class Preguntas extends Vista {
     this.i = 0;
   }
 
+  mostrar(ver){
+    this.actualizarPuntuacion(Vista.puntuacion);
+    super.mostrar(ver); 
+  }
+
   iniciarPuntuacion() {
     this.contenedorPuntuacion = document.createElement('div');
-    // this.contenedorPuntuacion.setAttribute('id','puntuacion')
-    this.actualizarPuntuacion(this.puntuacion);
-    
+    this.actualizarPuntuacion(Vista.puntuacion);
     this.base.appendChild(this.contenedorPuntuacion)
   }
   
@@ -72,7 +75,8 @@ export class Preguntas extends Vista {
   
     console.log('Entrando en procesarRespuesta');
     console.log('Dentro del bucle. Iteración:', this.i);
-  
+      this.imagenCorrecto = document.getElementById('imagenCorrecto'+this.i)
+      this.imagenFallo = document.getElementById('imagenFallo'+this.i)
       this.reflexionPositiva = document.getElementById('acierto' + this.i);
       this.reflexionNegativa = document.getElementById('fallo' + this.i);
   
@@ -84,11 +88,15 @@ export class Preguntas extends Vista {
         this.actualizarPuntuacion(Vista.puntuacion);
         console.log("Puntuación actualizada:", Vista.puntuacion);
         this.reflexionPositiva.style.display = 'block';
+        this.imagenCorrecto.style.display = 'block'
         this.reflexionNegativa.style.display = 'none';
+        this.imagenFallo.style.display = 'none'
       } else {
         console.log("Respuesta incorrecta.");
         this.reflexionNegativa.style.display = 'block';
+        this.imagenFallo.style.display = 'block'
         this.reflexionPositiva.style.display = 'none';
+        this.imagenCorrecto.style.display = 'none'
       }
       this.i= this.i + 1;
     
