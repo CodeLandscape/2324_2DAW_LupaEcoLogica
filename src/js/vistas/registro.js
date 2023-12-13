@@ -21,21 +21,8 @@ export class Registro extends Vista {
     // Obtener los elementos HTML existentes
     this.formulario = document.getElementById('miFormulario')
 
-    this.irInicio = document.createElement('button')
-    this.irInicio.textContent = 'Volver al Inicio'
-
     this.nickUsu = document.getElementById('nombre')
     this.provincia = document.getElementById('localidad')
-    
-    // Agregar elementos al contenedor base
-    this.base.appendChild(this.irInicio)
-
-    // Al hacer clic en el botón, mostrar la vista correspondiente
-    this.irInicio.onclick = () => {
-      this.footer = document.getElementById('pie')
-      this.footer.textContent = 'Escuela Virgen de Guadalupe 2023'
-      this.controlador.verVista(Vista.VISTA5)
-    }
   }
 
   /**

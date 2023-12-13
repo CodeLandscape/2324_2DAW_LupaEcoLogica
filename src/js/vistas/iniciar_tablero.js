@@ -231,8 +231,19 @@ export class IniciarTablero extends Vista {
   verResultadoAJAXFondo = (objeto) => {
     if (objeto) {
       const fondo = document.getElementById('fondo')
-      fondo.src = 'data:image/png;base64,' + objeto.imagen
+      let imagen = 'data:image/png;base64,' + objeto.imagen;
+      fondo.src = imagen
       fondo.alt = Vista.nomTablero
+      
+      this.fondoPregunta = document.getElementById('imagenFondoPregunta');
+      this.fondoPregunta.src = imagen;
+  
+      this.fondoReflexion = document.getElementById('imagenFondoReflexion');
+      this.fondoReflexion.src = imagen;
+  
+      this.fondoRegistro = document.getElementById('imagenFondoRegistro');
+      this.fondoRegistro.src = imagen;
+
       this.llamarAJAXObjeto()
     } else {
       console.error('La respuesta del servidor no contiene datos de imagen.')
@@ -409,9 +420,5 @@ export class IniciarTablero extends Vista {
 
       contenedorReflexiones.appendChild(divReflexion)
     }
-    
-
-    
-
   }
 }

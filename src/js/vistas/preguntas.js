@@ -20,32 +20,29 @@ export class Preguntas extends Vista {
   }
 
   iniciarPuntuacion() {
-    this.contenedorPuntuacion = document.createElement('div');
+    this.contenedorPuntuacion = document.createElement('header');
+    this.h1Puntuacion = document.createElement('h1');
+    this.h1Puntuacion.setAttribute('class','tamFuenteGrande');
+
     this.actualizarPuntuacion(Vista.puntuacion);
     this.base.appendChild(this.contenedorPuntuacion)
+    this.contenedorPuntuacion.appendChild(this.h1Puntuacion);
   }
   
   crearInterfaz() {
     this.respuestaSi = document.createElement('button');
     this.respuestaNo = document.createElement('button');
-    this.registro = document.createElement('button');
  
     this.respuestaSi.id = 'botonSiPregunta';
     this.respuestaNo.id = 'botonNoPregunta';
     this.respuestaSi.textContent = 'SI';
     this.respuestaNo.textContent = 'NO';
-    this.registro.textContent = 'Ir al registro';
 
     this.base.appendChild(this.respuestaSi);
     this.base.appendChild(this.respuestaNo);
-    this.base.appendChild(this.registro);
     
     // this.base.appendChild(this.contenedorPuntuacion);
     this.iniciarPuntuacion();
-
-    this.registro.onclick = () => {
-      this.controlador.verVista(Vista.VISTA4);
-    };
 
     this.respuestaSi.onclick = () => this.procesarRespuestaSi();
     this.respuestaNo.onclick = () => this.procesarRespuestaNo();
@@ -106,7 +103,7 @@ export class Preguntas extends Vista {
         if (puntuacion === undefined) {
           Vista.puntuacion = 0;
       }
-    this.contenedorPuntuacion.textContent = `Puntuación: ${Vista.puntuacion}`;
+    this.h1Puntuacion.textContent = `${Vista.puntuacion} puntos`;
   }
   
 

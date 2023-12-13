@@ -22,17 +22,9 @@ export class Reflexiones extends Vista {
   crearInterfaz () {
     this.botonContinuar = document.createElement('button');
 
-    this.irIndex = document.createElement('button')
-    this.irIndex.textContent = 'Registro'
     this.botonContinuar.textContent = 'Continuar'
     this.botonContinuar.setAttribute('id','botonContinuar')
     this.base.appendChild(this.botonContinuar)
-    this.base.appendChild(this.irIndex)
-
-    // Asignar evento al botón para volver a la vista de inicio
-    this.irIndex.onclick = () => {
-      this.controlador.verVista(Vista.VISTA4)
-    }
 
     // Selecciona el botón por su ID
     // const botonContinuar = document.getElementById('botonContinuar');
