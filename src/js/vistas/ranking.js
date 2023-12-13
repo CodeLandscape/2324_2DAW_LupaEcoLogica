@@ -26,6 +26,7 @@ export class Ranking extends Vista {
     this.irIndex = document.createElement('button')
     this.irIndex.textContent = 'Inicio'
     this.irIndex.setAttribute('id','inicioRanking')
+    this.irIndex.setAttribute('class','submit');
     this.base.appendChild(this.irIndex)
     
     // Asignar evento al botón para volver a la vista de inicio

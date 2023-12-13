@@ -18,9 +18,11 @@ export class Inicio extends Vista {
     this.enlace1 = document.createElement('button')
     this.enlace1.textContent = 'Jugar partida'
     this.enlace1.setAttribute('id', 'botonJuego')
+    this.enlace1.setAttribute('class','submit');
     this.enlace2 = document.createElement('button')
     this.enlace2.textContent = 'Ranking'
     this.enlace2.setAttribute('id', 'botonRanking')
+    this.enlace2.setAttribute('class','submit');
     this.footer = document.getElementById('pie')
     this.footer.textContent = 'Escuela Virgen de Guadalupe 2023'
     // Agrega los botones al elemento base y asocia eventos

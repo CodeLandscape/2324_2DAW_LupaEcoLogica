@@ -54,14 +54,15 @@ class Controlador {
         this.contador = 0;
       } 
       else {
-        this.contador++
+        this.contador++;
       }
       if(this.contador != Vista.config.nPregunta){
         this.ocultarPreguntasReflexiones();
-        this.pregunta = document.getElementById('preguntaJuego'+this.contador)
+        this.pregunta = document.getElementById('preguntaJuego'+this.contador);
         this.pregunta.style.display= 'block';
-        this.reflexion = document.getElementById('reflexion'+this.contador)
-        this.reflexion.style.display='block'
+        this.reflexion = document.getElementById('reflexion'+this.contador);
+        this.reflexion.style.display='block';
+        this.reflexion.setAttribute('class','preguntaJuego');
       }
       if (this.contador == Vista.config.nPregunta)
         vista = Vista.VISTA4

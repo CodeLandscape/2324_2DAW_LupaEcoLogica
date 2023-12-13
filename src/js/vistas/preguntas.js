@@ -35,6 +35,8 @@ export class Preguntas extends Vista {
  
     this.respuestaSi.id = 'botonSiPregunta';
     this.respuestaNo.id = 'botonNoPregunta';
+    this.respuestaSi.setAttribute('class','submit');
+    this.respuestaNo.setAttribute('class','submit');
     this.respuestaSi.textContent = 'SI';
     this.respuestaNo.textContent = 'NO';
 

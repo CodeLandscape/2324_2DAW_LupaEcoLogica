@@ -17,7 +17,7 @@ button {
     background-color: #36C8F5;
     border-radius: 15px;
     border: 1px solid black;
-    width: 150px;
+    width: 15%;
     height: 50px;
     font-size: large;
     top: 80%;
@@ -267,7 +267,7 @@ table {
 .preguntaJuego {
     position: relative;
     max-width: 80%;
-    margin: 0 auto;
+    margin: 100px auto;
     background-color: #368ff5;
     border-radius: 30px;
     text-align: center;
@@ -279,18 +279,25 @@ table {
 }
 
 .preguntaJuego p {
-    margin: 0;
-    font-size: large;
+    margin: 0 5%;
+    font-size: 25px;
+}
+
+.btnPregunta{
+    
 }
 
 .preguntaJuego img {
-    max-width: 40%;
-    max-height: 40%;
+    width: 15%;
     position: static;
+    margin: 50px auto 0;
+    box-shadow: 0 0 20px white;
+    border-radius: 100%;
 }
 
 header h1 {
     text-align: center;
+    text-shadow: 0 0 10px white;
 }
 
 header{
@@ -299,17 +306,19 @@ header{
 
 #botonSiPregunta {
     right: 60%;
+    top: 50%;
 }
 
 #botonNoPregunta {
     left: 60%;
+    top: 50%;
 }
 
 #containerTabla {
     width: 90%;
     max-height: 100%;
     padding: 2%;
-    margin: 0 auto 5%;
+    margin: 100px auto 5%;
     background-color: bisque;
     border-radius: 40px;
     position: relative;
@@ -326,7 +335,8 @@ header{
 }
 
 #botonContinuar {
-    left: 45%;
+    left: 42.5%;
+    top: 70%;
 }
 
 .reflexion {
@@ -372,6 +382,10 @@ select{
     position: relative;
 }
 
+.imagenReflex{
+    text-align: center;
+}
+
 /* Dispositivo móvil en vertical */
 @media screen and (orientation: portrait){
     #titulo, #botonJuego{
@@ -398,9 +412,6 @@ select{
         position: relative;
         width: 80%;
         left: 10%;
-    }
-    #containerTabla{
-        margin: 2% auto 0;
     }
     /* Móviles en vertical */
     @media screen and (height < 1000px){

@@ -398,7 +398,7 @@ export class IniciarTablero extends Vista {
 
       divReflexion.appendChild(p1)
 
-      let p2 = document.createElement('div')
+      let p2 = document.createElement('p')
       p2.setAttribute('id','fallo'+i)
       p2.textContent = Pregunta[i].reflexionFallo
       p2.style.display = 'none'

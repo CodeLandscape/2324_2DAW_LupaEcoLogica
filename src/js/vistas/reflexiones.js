@@ -15,6 +15,11 @@ export class Reflexiones extends Vista {
     this.crearInterfaz()
   }
 
+  mostrar(ver){
+    this.actualizarPuntuacion(Vista.puntuacion);
+    super.mostrar(ver); 
+  }
+
   /**
      * Crea la interfaz de la vista.
      * Crea elementos HTML, agrega eventos y define acciones.
@@ -24,7 +29,10 @@ export class Reflexiones extends Vista {
 
     this.botonContinuar.textContent = 'Continuar'
     this.botonContinuar.setAttribute('id','botonContinuar')
+    this.botonContinuar.setAttribute('class','submit');
     this.base.appendChild(this.botonContinuar)
+
+    this.iniciarPuntuacion()
 
     // Selecciona el botón por su ID
     // const botonContinuar = document.getElementById('botonContinuar');
@@ -35,4 +43,22 @@ export class Reflexiones extends Vista {
         this.controlador.verVista(Vista.VISTA3);
     })
   }
+
+  iniciarPuntuacion() {
+    this.contenedorPuntuacion = document.createElement('header');
+    this.h1Puntuacion = document.createElement('h1');
+    this.h1Puntuacion.setAttribute('class','tamFuenteGrande');
+
+    this.actualizarPuntuacion(Vista.puntuacion);
+    this.base.appendChild(this.contenedorPuntuacion)
+    this.contenedorPuntuacion.appendChild(this.h1Puntuacion);
+  }
+
+  actualizarPuntuacion(puntuacion) {
+    // Verificar si la puntuación es undefined y establecerla en 0 si es el caso
+    if (puntuacion === undefined) {
+      Vista.puntuacion = 0;
+  }
+this.h1Puntuacion.textContent = `${Vista.puntuacion} puntos`;
+}
 }
