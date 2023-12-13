@@ -21,7 +21,7 @@ export class Vista {
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
-  constructor (controlador, base, config, idCategoria, nomTablero, puntuacion,pregunta) {
+  constructor (controlador, base, config, idCategoria, nomTablero, puntuacion,pregunta,preguntasAcertadas,objetosCapturados) {
     this.controlador = controlador // Asigna el controlador a la instancia de Vista
     this.base = base // Asigna el elemento base a la instancia de Vista
     this.config = config
@@ -29,13 +29,9 @@ export class Vista {
     this.nomTablero = nomTablero
     this.puntuacion = puntuacion
     this.pregunta = pregunta
-    // if (!Vista.instance) {           //Asigna
-    //     this.idCategoria; //valor por ajax
-    //     this.configuracion; //(array) valor por ajax
-    //     this.partida; //valor acumulativo del número de preguntas acertadas, objetos encontrados y puntuación.
-    //     Vista.instance = this;
-    //   }
-    //   return Vista.instance;
+    this.preguntasAcertadas = preguntasAcertadas
+    this.objetosCapturados = objetosCapturados
+
   }
 
   /**

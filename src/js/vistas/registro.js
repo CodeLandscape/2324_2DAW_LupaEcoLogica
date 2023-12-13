@@ -1,4 +1,5 @@
 import { Vista } from './vista.js'
+import { Rest } from '../servicios/rest.js'
 
 export class Registro extends Vista {
   constructor (controlador, base) {
@@ -25,7 +26,7 @@ export class Registro extends Vista {
 
     this.nickUsu = document.getElementById('nombre')
     this.provincia = document.getElementById('localidad')
-
+    
     // Agregar elementos al contenedor base
     this.base.appendChild(this.irInicio)
 
@@ -52,6 +53,7 @@ export class Registro extends Vista {
       } else {
         window.alert(mensajeValido)
         this.nickUsu.style.borderColor = 'green'
+        this.registroAJAX()
       }
     }
 
@@ -61,7 +63,7 @@ export class Registro extends Vista {
       const texto = this.nickUsu.value
 
       switch (this.provincia.value) {
-        case 'Caceres':
+        case 'Cáceres':
           validarNombreUsuario(
             texto,
             regexCaceres,
@@ -77,7 +79,7 @@ export class Registro extends Vista {
             'No es válido el nombre introducido para Badajoz'
           )
           break
-        case 'Merida':
+        case 'Mérida':
           validarNombreUsuario(
             texto,
             regexMerida,
@@ -95,13 +97,13 @@ export class Registro extends Vista {
       event.preventDefault()
 
       switch (this.provincia.value) {
-        case 'Caceres':
+        case 'Cáceres':
           this.nickUsu.setAttribute('placeholder',"CA + 2 letras + 3 números");
           break
         case 'Badajoz':
           this.nickUsu.setAttribute('placeholder',"BA + 2 letras + 3 números");
           break
-        case 'Merida':
+        case 'Mérida':
           this.nickUsu.setAttribute('placeholder',"ME + 2 letras + 3 números");
           break
         default:
@@ -110,7 +112,26 @@ export class Registro extends Vista {
     }
   }
   actualizarPuntuacion(puntuacion){
+        // Verificar si la puntuación es undefined y establecerla en 0 si es el caso
+        if (puntuacion === undefined) {
+          puntuacion = 0;
+      }
     this.puntos = document.getElementById('puntos')
-    this.puntos.textContent = `${Vista.puntuacion} puntos`
+    this.puntos.textContent = `${puntuacion} puntos`
+  }
+
+  registroAJAX(){
+    const params = {
+      nombre: this.nickUsu.value,
+      localidad: this.provincia.value,
+      puntuacion: Vista.puntuacion,
+      objetosAcertados: Vista.objetosAcertados,
+      preguntasAcertadas: Vista.preguntasAcertadas
+    }
+
+    Rest.get('php/controladores/ajax/ajaxRegistro.php', params, this.verResultadoAJAXRegistro)
+  }
+  verResultadoAJAXRegistro(){
+    window.location.href = window.location.href;
   }
 }

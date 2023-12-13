@@ -10,6 +10,7 @@ export class Preguntas extends Vista {
   constructor(controlador, base, config,puntuacion) {
     super(controlador, base, config,puntuacion);
     this.crearInterfaz();
+    this.preguntasAcertadas = 0
     this.i = 0;
   }
 
@@ -38,15 +39,6 @@ export class Preguntas extends Vista {
     this.base.appendChild(this.respuestaSi);
     this.base.appendChild(this.respuestaNo);
     this.base.appendChild(this.registro);
-
-
-    ///mostrar la puntuacion
-    // this.contenedorPuntuacion.textContent = `Puntuación:`;
-    // document.addEventListener('DOMContentLoaded', () => {
-    //   console.log(Vista.puntuacion)
-    //   this.puntuacionActual = Vista.puntuacion;
-    //   this.actualizarPuntuacion(this.puntuacionActual);
-    // });
     
     // this.base.appendChild(this.contenedorPuntuacion);
     this.iniciarPuntuacion();
@@ -91,6 +83,8 @@ export class Preguntas extends Vista {
         this.imagenCorrecto.style.display = 'block'
         this.reflexionNegativa.style.display = 'none';
         this.imagenFallo.style.display = 'none'
+        this.preguntasAcertadas = this.preguntasAcertadas + 1
+        Vista.preguntasAcertadas = this.preguntasAcertadas
       } else {
         console.log("Respuesta incorrecta.");
         this.reflexionNegativa.style.display = 'block';
@@ -108,7 +102,11 @@ export class Preguntas extends Vista {
   }
 
   actualizarPuntuacion(puntuacion) {
-    this.contenedorPuntuacion.textContent = `Puntuación: ${puntuacion}`;
+        // Verificar si la puntuación es undefined y establecerla en 0 si es el caso
+        if (puntuacion === undefined) {
+          Vista.puntuacion = 0;
+      }
+    this.contenedorPuntuacion.textContent = `Puntuación: ${Vista.puntuacion}`;
   }
   
 

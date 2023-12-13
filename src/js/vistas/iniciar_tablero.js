@@ -20,6 +20,7 @@ export class IniciarTablero extends Vista {
     this.objetosBuenos = []
     this.objetosMalos = []
     this.puntuacion = 0
+    this.objetosAcertados = 0
   }
 
   /**
@@ -93,11 +94,6 @@ export class IniciarTablero extends Vista {
         tiempoRestante--;
         this.verificarObjetosPulsados()
       }
-      // if (!cuentaRegresivaEnPausa) {
-        
-      //   console.log("estoy en el if del tiempo")
-      //   this.verificarObjetosPulsados(tiempoRestante,cuentaRegresiva)
-      // }
     };
   
    
@@ -120,6 +116,7 @@ export class IniciarTablero extends Vista {
         console.log('Objeto malo 1 capturado')
         console.log(this.objetosMalos[0].puntuacion)
         this.puntuacion += this.objetosMalos[0].puntuacion;
+        this.objetosAcertados =  this.objetosAcertados + 1
         console.log (this.puntuacion)
         this.añadirObjetoAside(this.objetomalo1)
         this.actualizarPuntuacion();
@@ -131,6 +128,7 @@ export class IniciarTablero extends Vista {
     this.objetomalo2.onclick = () => {
         console.log('Objeto malo 2 capturado')
         this.puntuacion += this.objetosMalos[1].puntuacion
+        this.objetosAcertados =  this.objetosAcertados + 1
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo2)
         this.actualizarPuntuacion();
@@ -142,6 +140,7 @@ export class IniciarTablero extends Vista {
     this.objetomalo3.onclick = () => {
         console.log('Objeto malo 3 capturado')
         this.puntuacion += this.objetosMalos[2].puntuacion;
+        this.objetosAcertados =  this.objetosAcertados + 1
         console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo3)
         this.actualizarPuntuacion();
@@ -187,7 +186,7 @@ export class IniciarTablero extends Vista {
     this.objeto = objeto
     this.objeto.style.display = 'none'
     Vista.puntuacion = this.puntuacion
-
+    Vista.objetosAcertados = this.objetosAcertados
     this.aside = document.getElementById('objetosEncontrados')
     this.nuevoContenido = this.objeto.cloneNode(true)
     this.nuevoContenido.style.display = 'block'
