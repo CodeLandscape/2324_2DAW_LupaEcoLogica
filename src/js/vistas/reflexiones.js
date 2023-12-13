@@ -20,8 +20,13 @@ export class Reflexiones extends Vista {
      * Crea elementos HTML, agrega eventos y define acciones.
      */
   crearInterfaz () {
+    this.botonContinuar = document.createElement('button');
+
     this.irIndex = document.createElement('button')
     this.irIndex.textContent = 'Registro'
+    this.botonContinuar.textContent = 'Continuar'
+    this.botonContinuar.setAttribute('id','botonContinuar')
+    this.base.appendChild(this.botonContinuar)
     this.base.appendChild(this.irIndex)
 
     // Asignar evento al botón para volver a la vista de inicio
@@ -30,10 +35,10 @@ export class Reflexiones extends Vista {
     }
 
     // Selecciona el botón por su ID
-    const botonContinuar = document.getElementById('botonContinuar');
+    // const botonContinuar = document.getElementById('botonContinuar');
 
     // Agrega un evento de clic al botón
-    botonContinuar.addEventListener('click', () => {
+    this.botonContinuar.addEventListener('click', () => {
         // Cambia a la vista deseada (VISTA3 en este caso)
         this.controlador.verVista(Vista.VISTA3);
     })
