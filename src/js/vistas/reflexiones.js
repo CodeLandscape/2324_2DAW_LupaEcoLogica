@@ -47,7 +47,6 @@ export class Reflexiones extends Vista {
   iniciarPuntuacion() {
     this.contenedorPuntuacion = document.createElement('header');
     this.h1Puntuacion = document.createElement('h1');
-    this.h1Puntuacion.setAttribute('class','tamFuenteGrande');
 
     this.actualizarPuntuacion(Vista.puntuacion);
     this.base.appendChild(this.contenedorPuntuacion)

@@ -29,22 +29,24 @@ export class IniciarTablero extends Vista {
      */
   crearInterfaz () {
     // Crear elementos HTML y configurar atributos
+    this.tableroInicio = document.getElementById('tableroInicio');
+    this.tablero = document.getElementById('tablero')
+
     this.botonCrono = document.createElement('button')
     this.botonCrono.textContent = '¡Comenzar partida!'
     this.botonCrono.setAttribute('id', 'botonCrono')
-    this.base.appendChild(this.botonCrono)
+    this.botonCrono.setAttribute('class', 'submit')
+    this.tableroInicio.appendChild(this.botonCrono)
 
-    this.explicacionJuego = document.createElement('p')
     this.tiempoRestante = document.createElement('p') // Elemento para mostrar el tiempo restante
-    this.explicacionJuego.textContent = 'En esta primera fase tu misión consiste en encontrar todos los objetos maliciosos del entorno. ¡Mucho ánimo con tu búsqueda!'
-    this.base.appendChild(this.explicacionJuego)
     this.base.appendChild(this.tiempoRestante) // Agregar elemento del tiempo restante
 
     // Agregar eventos a los botones
     this.botonCrono.onclick = () => {
       this.footer = document.getElementById('pie')
       this.footer.textContent = Vista.nomTablero // Se cogerá de la base de datos el nombre del tablero, footer temporal!!!
-      this.botonCrono.style.display = 'none'
+      this.tableroInicio.style.display = 'none';
+      this.tablero.style.filter = 'none';
 
       this.capturarObjetos()
       this.iniciarCuentaRegresiva()
@@ -53,9 +55,10 @@ export class IniciarTablero extends Vista {
   }
 
   iniciarPuntuacion() {
-    this.verPuntuacion = document.createElement('div');
-    this.verPuntuacion.setAttribute('id','puntuacion')
-    this.base.appendChild(this.verPuntuacion)
+    this.verPuntuacion = document.createElement('p');
+    this.verPuntuacion.setAttribute('id','puntuacion');
+    this.verPuntuacion.setAttribute('class','tamFuenteMediana');
+    this.base.appendChild(this.verPuntuacion);
 
     this.actualizarPuntuacion();
   }
@@ -76,6 +79,7 @@ export class IniciarTablero extends Vista {
     
     
     this.tiempoRestante.setAttribute('id', 'tiempo');
+    this.tiempoRestante.setAttribute('class', 'tamFuenteMediana');
 
     const actualizarTiempo = () => {
       this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;

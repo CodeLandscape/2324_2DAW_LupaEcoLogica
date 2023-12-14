@@ -13,13 +13,6 @@ body {
 
 button {
     position: absolute;
-    font-family: 'Agbalumo';
-    background-color: #36C8F5;
-    border-radius: 15px;
-    border: 1px solid black;
-    width: 15%;
-    height: 50px;
-    font-size: large;
     top: 80%;
 }
 
@@ -53,8 +46,7 @@ footer {
     bottom: 0;
 }
 
-#botonJuego,
-#botonCrono {
+#botonJuego{
     right: 60%;
 }
 
@@ -73,7 +65,6 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
 /* Estilos del formulario dentro del contenido principal */
@@ -116,6 +107,7 @@ input[type="submit"], select, input[type="button"], .submit{
     border: 2px solid black;
     font-size: large;
     padding: 10px 20px;
+    width: 15%;
     height: auto;
     margin: 10px;
     display: inline-block;
@@ -156,14 +148,33 @@ table {
 }
 
 /* Resto de los estilos del primer conjunto */
-#tablero{
+.tablero{
     position: absolute;
     top:5%;
-    width: auto;
-    height: auto;
-    width: 80%;
-    height: 80%;
+    width: 84.6%;
+    height: 86%;
     border: 3px solid black;
+}
+#tablero{
+    filter: blur(5px);
+}
+#tablero img{
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+#tableroInicio{
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+#tableroInicio p{
+    padding: 5% 10%;
+}
+#tableroInicio #botonCrono{
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 40%;
 }
 
 #objetoMalo1{
@@ -220,27 +231,22 @@ table {
     filter: blur(0.5px);
 }
 
-#tablero img{
-    position: static;
-    width: 100%;
-    height: 100%;
-    
-}
-
 #puntuacion{
     position: absolute;
     left: 5%;
     background-color: rgba(240, 255, 255, 0.312);
     border-radius: 20px;
     padding: 5px;
+    top: 5%;
 }
 
 #tiempo{
     position: absolute;
-    left: 60%;
+    left: 53%;
     background-color: rgba(240, 255, 255, 0.312);
     border-radius: 20px;
     padding: 5px;
+    top: 5%;
 }
 
 #objetosEncontrados{
@@ -283,10 +289,6 @@ table {
     font-size: 25px;
 }
 
-.btnPregunta{
-    
-}
-
 .preguntaJuego img {
     width: 15%;
     position: static;
@@ -296,8 +298,9 @@ table {
 }
 
 header h1 {
+    font-size: 50px;
     text-align: center;
-    text-shadow: 0 0 10px white;
+    text-shadow: 0 0 20px white;
 }
 
 header{
@@ -335,7 +338,7 @@ header{
 }
 
 #botonContinuar {
-    left: 42.5%;
+    left: 41.5%;
     top: 70%;
 }
 
@@ -361,6 +364,10 @@ header{
 
 .tamFuenteGrande {
     font-size: 40px;
+    text-align: center;
+}
+.tamFuenteMediana{
+    font-size: 25px;
     text-align: center;
 }
 

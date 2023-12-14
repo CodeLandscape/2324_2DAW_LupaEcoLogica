@@ -17,7 +17,12 @@
 
         </div>
         <div id="busquedaObjetos">
-            <div id="tablero">
+            <div id="tableroInicio" class="tablero">
+                <p class="tamFuenteGrande">
+                    En esta primera fase tu misión consiste en encontrar todos los objetos maliciosos del entorno.<br>¡Mucho ánimo con tu búsqueda!
+                </p>
+            </div>
+            <div id="tablero" class="tablero">
                 <img src="" id="fondo"/>
                 <div id="objetoMalo1">
                 </div>
@@ -49,7 +54,7 @@
         <div id="registro">
             <img id="imagenFondoRegistro" class="imgFondo">
             <header>
-                <h1 class="tamFuenteGrande" id="puntos">4500 puntos</h1>
+                <h1 id="puntos">4500 puntos</h1>
             </header>
             <form method='post' id="miFormulario">
                 <div id="contenido">
@@ -57,6 +62,7 @@
                     <!-- Cambiar dinámicamente según el tablero a jugar -->
                     <label for="localidad">Localidad: </label>
                     <select id="localidad" name="localidad">
+                        <option value=" "></option>
                         <option value="Badajoz">Badajoz</option>
                         <option value="Mérida">Mérida</option>
                         <option value="Cáceres">Cáceres</option>
