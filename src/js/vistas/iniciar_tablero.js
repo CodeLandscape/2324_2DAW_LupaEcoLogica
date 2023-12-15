@@ -12,11 +12,15 @@ export class IniciarTablero extends Vista {
      * @param {any} controlador - El controlador asociado a la vista.
      * @param {HTMLElement} base - El elemento base de la vista.
      */
-  constructor (controlador, base) {
-    super(controlador, base)
+  constructor (controlador, base,puntuacion) {
+    super(controlador, base,puntuacion)
     this.llamarAJAXTablero()
-    this.objetosPulsados = 0 // Contador para rastrear objetos pulsados
+    this.objetosPulsados = false // Contador para rastrear objetos pulsados
     this.crearInterfaz()
+    this.objetosBuenos = []
+    this.objetosMalos = []
+    this.puntuacion = 0
+    this.objetosAcertados = 0
   }
 
   /**
@@ -25,90 +29,85 @@ export class IniciarTablero extends Vista {
      */
   crearInterfaz () {
     // Crear elementos HTML y configurar atributos
+    this.tableroInicio = document.getElementById('tableroInicio');
+    this.tablero = document.getElementById('tablero')
+
     this.botonCrono = document.createElement('button')
     this.botonCrono.textContent = '¡Comenzar partida!'
     this.botonCrono.setAttribute('id', 'botonCrono')
-    this.base.appendChild(this.botonCrono)
+    this.botonCrono.setAttribute('class', 'submit')
+    this.tableroInicio.appendChild(this.botonCrono)
 
-    this.explicacionJuego = document.createElement('p')
     this.tiempoRestante = document.createElement('p') // Elemento para mostrar el tiempo restante
-    this.explicacionJuego.textContent = 'En esta primera fase tu misión consiste en encontrar todos los objetos maliciosos del entorno. ¡Mucho ánimo con tu búsqueda!'
-    this.base.appendChild(this.explicacionJuego)
     this.base.appendChild(this.tiempoRestante) // Agregar elemento del tiempo restante
 
     // Agregar eventos a los botones
     this.botonCrono.onclick = () => {
       this.footer = document.getElementById('pie')
       this.footer.textContent = Vista.nomTablero // Se cogerá de la base de datos el nombre del tablero, footer temporal!!!
-      this.botonCrono.style.display = 'none'
+      this.tableroInicio.style.display = 'none';
+      this.tablero.style.filter = 'none';
 
       this.capturarObjetos()
       this.iniciarCuentaRegresiva()
+      this.iniciarPuntuacion()
     }
   }
 
-  /**
-     * Inicia una cuenta regresiva y cambia a la vista 3 cuando el tiempo llega a cero.
-     */
+  iniciarPuntuacion() {
+    this.verPuntuacion = document.createElement('p');
+    this.verPuntuacion.setAttribute('id','puntuacion');
+    this.verPuntuacion.setAttribute('class','tamFuenteMediana');
+    this.base.appendChild(this.verPuntuacion);
+
+    this.actualizarPuntuacion();
+  }
+
+  actualizarPuntuacion () {
+    if (this.puntuacion < 0) {
+      this.puntuacion = 0; // Asegurar que la puntuación no sea menor que 0
+    }
+    this.verPuntuacion.textContent = `Puntuación: ${this.puntuacion}`
+    
+  }
+
   iniciarCuentaRegresiva() {
     const tiempoLimite = Vista.config.tiempoCrono; // 5 segundos de cuenta regresiva
     let tiempoRestante = tiempoLimite;
     let cuentaRegresivaEnPausa = false;
-    let tiempoPausado = 0;
-  
+    let cuentaRegresiva; // Declarar la variable del intervalo aquí
+    
+    
     this.tiempoRestante.setAttribute('id', 'tiempo');
-  
+    this.tiempoRestante.setAttribute('class', 'tamFuenteMediana');
+
     const actualizarTiempo = () => {
       this.tiempoRestante.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
   
-      if (tiempoRestante === 0) {
+      if (tiempoRestante === 0 ||this.objetosPulsados) {
         clearInterval(cuentaRegresiva);
-        this.controlador.verVista(Vista.VISTA3);
+        
+        this.iniciarCuentaRegresiva = null;
+        this.actualizarTiempo = null;
+        this.controlador.verVista(Vista.VISTA3,Vista.puntuacion);
       }
   
-      if (!cuentaRegresivaEnPausa) {
+
+      if (tiempoRestante != 0 && !cuentaRegresivaEnPausa)
+      {
         tiempoRestante--;
+        this.verificarObjetosPulsados()
       }
     };
   
+   
+  
     // Mostrar inicialmente el tiempo restante y actualizar cada segundo
     actualizarTiempo();
-    let cuentaRegresiva = setInterval(actualizarTiempo, 1000);
+    cuentaRegresiva = setInterval(actualizarTiempo, 1000);
   
-    // Crear y configurar el botón de pausa
-    const botonPausa = document.createElement('button')
-    botonPausa.textContent = 'Pausar'
-    botonPausa.id = 'botonPausa'
-
-    // Agregar un evento de clic al botón de pausa para manejar la pausa/reanudación
-    botonPausa.addEventListener('click', () => {
-      if (!cuentaRegresivaEnPausa) {
-        // Pausar la cuenta regresiva
-        clearInterval(cuentaRegresiva)
-        cuentaRegresivaEnPausa = true
-        tiempoPausado = Date.now()
-        botonPausa.textContent = 'Reanudar'
-        this.pausa = true
-      }
-      else {
-        // Reanudar la cuenta regresiva
-        cuentaRegresivaEnPausa = false
-        const tiempoPausaActual = Date.now()
-        const tiempoPausadoMilisegundos = tiempoPausaActual - tiempoPausado
-        tiempoPausado = 0
-    
-        tiempoRestante -= Math.floor(tiempoPausadoMilisegundos / 1000)
-        
-        // Reiniciar la cuenta regresiva con el nuevo tiempo restante
-        cuentaRegresiva = setInterval(actualizarTiempo, 1000)
-        botonPausa.textContent = 'Pausar'
-        this.pausa = false
-      }
-    })
-
-    // Agregar el botón de pausa al cuerpo del documento HTML
-    document.body.appendChild(botonPausa);
   }
+  
   
   /**
      * Captura los eventos de clic en objetos y actualiza el contador de objetos pulsados.
@@ -118,56 +117,68 @@ export class IniciarTablero extends Vista {
 
     this.objetomalo1.onclick = () => {
       // Verificar si el juego no está en pausa antes de procesar el clic
-      if (!this.pausa){
         console.log('Objeto malo 1 capturado')
+        console.log(this.objetosMalos[0].puntuacion)
+        this.puntuacion += this.objetosMalos[0].puntuacion;
+        this.objetosAcertados =  this.objetosAcertados + 1
+        console.log (this.puntuacion)
         this.añadirObjetoAside(this.objetomalo1)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
+      
     }
     this.objetomalo2 = document.getElementById('objetoMalo2')
-
+    
     this.objetomalo2.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto malo 2 capturado')
+        this.puntuacion += this.objetosMalos[1].puntuacion
+        this.objetosAcertados =  this.objetosAcertados + 1
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo2)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
+      
     }
     this.objetomalo3 = document.getElementById('objetoMalo3')
 
     this.objetomalo3.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto malo 3 capturado')
+        this.puntuacion += this.objetosMalos[2].puntuacion;
+        this.objetosAcertados =  this.objetosAcertados + 1
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetomalo3)
-        this.verificarObjetosPulsados()
-      }
+        this.actualizarPuntuacion();
+        
     }
     this.objetoBueno1 = document.getElementById('objetoBueno1')
 
     this.objetoBueno1.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto bueno 1 capturado')
+        this.puntuacion -= this.objetosBuenos[0].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno1)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
     }
     this.objetoBueno2 = document.getElementById('objetoBueno2')
 
     this.objetoBueno2.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto bueno 2 capturado')
+        this.puntuacion -= this.objetosBuenos[1].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno2)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
     }
     this.objetoBueno3 = document.getElementById('objetoBueno3')
 
     this.objetoBueno3.onclick = () => {
-      if (!this.pausa){
         console.log('Objeto bueno 3 capturado')
+        this.puntuacion -= this.objetosBuenos[2].puntuacion
+        console.log(this.puntuacion);
         this.añadirObjetoAside(this.objetoBueno3)
+        this.actualizarPuntuacion();
         this.verificarObjetosPulsados()
-      }
     }
   }
 
@@ -178,13 +189,13 @@ export class IniciarTablero extends Vista {
   añadirObjetoAside (objeto) {
     this.objeto = objeto
     this.objeto.style.display = 'none'
-
+    Vista.puntuacion = this.puntuacion
+    Vista.objetosAcertados = this.objetosAcertados
     this.aside = document.getElementById('objetosEncontrados')
     this.nuevoContenido = this.objeto.cloneNode(true)
     this.nuevoContenido.style.display = 'block'
     this.nuevoContenido.id = 'objeto1'
     this.aside.appendChild(this.nuevoContenido)
-
   }
 
   /**
@@ -224,8 +235,19 @@ export class IniciarTablero extends Vista {
   verResultadoAJAXFondo = (objeto) => {
     if (objeto) {
       const fondo = document.getElementById('fondo')
-      fondo.src = 'data:image/png;base64,' + objeto.imagen
+      let imagen = 'data:image/png;base64,' + objeto.imagen;
+      fondo.src = imagen
       fondo.alt = Vista.nomTablero
+      
+      this.fondoPregunta = document.getElementById('imagenFondoPregunta');
+      this.fondoPregunta.src = imagen;
+  
+      this.fondoReflexion = document.getElementById('imagenFondoReflexion');
+      this.fondoReflexion.src = imagen;
+  
+      this.fondoRegistro = document.getElementById('imagenFondoRegistro');
+      this.fondoRegistro.src = imagen;
+
       this.llamarAJAXObjeto()
     } else {
       console.error('La respuesta del servidor no contiene datos de imagen.')
@@ -257,17 +279,17 @@ export class IniciarTablero extends Vista {
      */
   crearObjetos (tablaObjeto) {
     const nObjetosBuenos = Vista.config.nObjetosBuenos
-    const objetosBuenos = []
-    const objetosMalos = []
+    // const objetosBuenos = []
+    // const objetosMalos = []
 
     tablaObjeto.forEach(objeto => {
-      if (objeto.valoracion == '0' && objetosBuenos.length < nObjetosBuenos) {
-        objetosBuenos.push(objeto)
+      if (objeto.valoracion == '0' && this.objetosBuenos.length < nObjetosBuenos) {
+        this.objetosBuenos.push(objeto)
       } else {
-        objetosMalos.push(objeto)
+        this.objetosMalos.push(objeto)
       }
     })
-    this.visualizarObjetos(objetosBuenos, objetosMalos)
+    this.visualizarObjetos(this.objetosBuenos, this.objetosMalos)
   }
 
   /**
@@ -308,14 +330,13 @@ export class IniciarTablero extends Vista {
 
     this.objetoBueno3 = document.getElementById('objetoBueno3')
     const imgB3 = document.createElement('img')
+    console.log(buenos[2])
     imgB3.src = 'data:image/png;base64,' + buenos[2].imagen
     imgB3.alt = buenos[2].descripcion
     this.objetoBueno3.appendChild(imgB3)
   }
 
   verificarObjetosPulsados() {
-    this.objetosPulsados++
-  
     // Obtener el estilo de visualización actual de los objetos malos
     const estiloMalo1 = window.getComputedStyle(this.objetomalo1).getPropertyValue('display')
     const estiloMalo2 = window.getComputedStyle(this.objetomalo2).getPropertyValue('display')
@@ -323,20 +344,11 @@ export class IniciarTablero extends Vista {
   
     // Verificar si los tres objetos malos han sido capturados (display: none)
     if (estiloMalo1 === 'none' && estiloMalo2 === 'none' && estiloMalo3 === 'none') {
-      // Los tres objetos malos han sido capturados
-      this.ocultarBotonPausa()
-      this.controlador.verVista(Vista.VISTA3)
-    }
-  }
-  /**
-   * Método que oculta el botón pausar/reanudar al cambiar de vista o si se acaba el tiempo.
-   */
-  ocultarBotonPausa() {
-    // Obtener el elemento del botón de pausa por su ID
-    const botonPausa = document.getElementById('botonPausa')
-    // Verificar si el botón de pausa existe
-    if (botonPausa) {
-      botonPausa.style.display = 'none' // Ocultar el botón de pausa estableciendo el estilo de visualización a 'none'
+      this.objetosPulsados = true
+      // clearInterval(cuentaRegresiva)
+      // this.iniciarCuentaRegresiva = null;
+      
+      // this.controlador.verVista(Vista.VISTA3)
     }
   }
 
@@ -361,7 +373,7 @@ export class IniciarTablero extends Vista {
     console.log(Pregunta)
 
     const contenedorPregunta = document.getElementById('rondaPreguntas')
-    
+    const contenedorReflexiones = document.getElementById('reflexionjuego')
     // Número de preguntas a mostrar según la configuración.
     let nPregunta = Vista.config.nPregunta
     // Bucle de las preguntas
@@ -377,6 +389,40 @@ export class IniciarTablero extends Vista {
       divPregunta.appendChild(p)
 
       contenedorPregunta.appendChild(divPregunta)
+
+      let divReflexion = document.createElement('div')
+      divReflexion.setAttribute('id','reflexion'+i)
+      divReflexion.setAttribute('class','reflexion')
+      divReflexion.style.display = 'none'
+
+      let p1 = document.createElement('p')
+      p1.setAttribute('id','acierto'+i)
+      p1.textContent = Pregunta[i].reflexionAcierto
+      p1.style.display = 'none'
+
+      divReflexion.appendChild(p1)
+
+      let p2 = document.createElement('p')
+      p2.setAttribute('id','fallo'+i)
+      p2.textContent = Pregunta[i].reflexionFallo
+      p2.style.display = 'none'
+      divReflexion.appendChild(p2)
+
+      let imgAcierto = document.createElement('img')
+      imgAcierto.setAttribute('id','imagenCorrecto'+i)
+      imgAcierto.src = "img/IonCheckmarkCircled.png"
+      imgAcierto.style.display ='none'
+      divReflexion.appendChild(imgAcierto)
+      
+
+      let imgFallo = document.createElement('img')
+      imgFallo.setAttribute('id','imagenFallo'+i)
+      imgFallo.src = "img/IonCloseCircle.png"
+      imgFallo.style.display ='block'
+      divReflexion.appendChild(imgFallo)
+
+
+      contenedorReflexiones.appendChild(divReflexion)
     }
   }
 }

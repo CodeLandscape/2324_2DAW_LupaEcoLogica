@@ -124,9 +124,8 @@ class Objeto
 
                             $Modelo->agregarObjeto($nombreSanitizado, $descripcionSanitizada, $base64, $puntuacionSanitizada, ($buenoSanitizado ? 1 : 0), $idCategoria);
                         }
-                    }        
+                    }
                     $mensaje = 'Objetos agregados o actualizados correctamente';
-
                 } else {
                     // Mostrar mensaje de error si no se pueden agregar campos sanitizados
                     $mensaje = 'Error al agregar objetos. Verifica que todos los campos estén completos y válidos.';

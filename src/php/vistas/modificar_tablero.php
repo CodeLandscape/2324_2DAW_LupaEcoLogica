@@ -9,7 +9,7 @@
         include 'template/navegacion.html';
         ?>
     </header>
-    <main>
+    <main class="aumentarMargin100">
         <?php
         // Obtención de datos del tablero según el ID recibido por GET
         $datos = $controlador->verTablero($_GET['id']);
@@ -37,6 +37,3 @@
             </div>
         </form>
     </main>
-</body>
-
-</html>

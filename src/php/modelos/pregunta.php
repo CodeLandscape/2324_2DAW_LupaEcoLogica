@@ -25,10 +25,26 @@ class PreguntaModelo extends Conexion
             array_push($tabla, $fila);
         }
         $stmt->close();
+
+        return $tabla;
+    }
+
+    function verTodasPreguntas()
+    {
+        $tabla = array();
+        $sqlPregunta = "SELECT * FROM pregunta";
+        $stmt = $this->conexion->prepare($sqlPregunta);
+        $stmt->execute();
+        $Resultado = $stmt->get_result();
+        while ($fila = $Resultado->fetch_assoc()) {
+            array_push($tabla, $fila);
+        }
+        $stmt->close();
         $this->conexion->close();
 
         return $tabla;
     }
+
 
     /**
      * Obtiene una pregunta específica mediante una consulta preparada.

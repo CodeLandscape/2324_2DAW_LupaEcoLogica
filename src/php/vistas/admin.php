@@ -17,7 +17,7 @@
     </header>
 
     <!-- Sección principal del contenido -->
-    <main>
+    <main class="aumentarMargin100">
         <form>
             <div id="contenido">
                 <!-- Mostrar mensaje en caso de que exista la variable 'msg' -->
@@ -31,7 +31,7 @@
                 <table>
                     <!-- Encabezados de la tabla -->
                     <tr id="azul">
-                        <td>Nombre</td>
+                        <td class="catNombre">Nombre</td>
                         <td>Ver</td>
                         <td>Borrar</td>
                     </tr>
@@ -48,7 +48,7 @@
                                     <td id=azul>".$fila['nombre']."</td>
                                     <td><a href=index.php?id=".$fila['idCategoria']."&accion=categoria&controlador=controlador class=sinEstilo><img src='../img/IonEye.svg' class=icono></a></td>
                                     <td><a href=index.php?id=".$fila['idCategoria']."&accion=remove&controlador=categoria&funcion=Categoria class=sinEstilo><img src='../img/IonIosRemoveCircle.svg' class=icono></a></td>
-                                  </tr>";
+                                </tr>";
                         }
                     ?>
                 </table>
@@ -58,4 +58,3 @@
             </div>
         </form>
     </main>
-</body>

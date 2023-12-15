@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
     <title>Añadir Objeto</title>
 </head>
 
@@ -10,9 +6,9 @@
         Añadir Objeto
         <?php include 'template/navegacion.html'; ?>
     </header>
-    <main class="aumentarMargin25">
+    <main class="aumentarMargin100">
         <form method='post' action="index.php?accion=agregar_actualizar_objeto&controlador=objeto" enctype="multipart/form-data">
-            <div id="contenido">
+            <div id="objetosContainer">
                 <?php
                 $categoriaSeleccionada = isset($_POST['idCategoria_seleccionada']) ? $_POST['idCategoria_seleccionada'] : '';
 
@@ -20,62 +16,52 @@
                 list($idCategoria, $nombreCategoria) = explode('|', $categoriaSeleccionada);
                 ?>
                 <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $idCategoria; ?>">
+                <h1><?php echo $nombreCategoria; ?></h1>
                 <?php
-                echo '<h1>' . $nombreCategoria . '</h1>';
-
                 // Obtener objetos existentes desde el controlador
                 $objetosExistentes = $controlador->tablaObjeto($idCategoria);
 
                 // Mostrar los objetos existentes con sus detalles para edición
                 foreach ($objetosExistentes as $indice => $objeto) {
-                    echo "<div class='contenedores'>";
-                    echo "<h3>Objeto " . ($indice + 1) . "</h3>";
-                    echo "<input type='hidden' name='id[]' value='{$objeto['idObjeto']}'>";
-                    echo "<label for='nombre{$objeto['idObjeto']}'>Nombre:</label>";
-                    echo "<input type='text' id='nombre{$objeto['idObjeto']}' name='nombre[]' value='{$objeto['nombre']}'><br>";
-
-                    echo "<label for='descripcion{$objeto['idObjeto']}'>Descripción:</label>";
-                    echo "<input type='text' id='descripcion{$objeto['idObjeto']}' name='descripcion[]' value='{$objeto['descripcion']}'><br>";
-
-                    echo "<label for='img{$objeto['idObjeto']}'>Añadir imagen:</label>";
-                    echo "<input type='file' id='img{$objeto['idObjeto']}' name='img[]'><br>";
-
-                    echo "<label for='punt{$objeto['idObjeto']}'>Puntuación:</label>";
-                    echo "<input type='text' id='punt{$objeto['idObjeto']}' name='punt[]' value='{$objeto['puntuacion']}' class='inputPeq'><br>";
-
-                    echo "<label for='bueno{$objeto['idObjeto']}'>Bueno:</label>";
-                    $checked = $objeto['valoracion'] == 1 ? 'checked' : '';
-                    echo "<input type='checkbox' id='bueno{$objeto['idObjeto']}' name='bueno[]' {$checked} class='inputPeq'><br>";
-                    echo '<a href="index.php?accion=remove&id=' . $objeto['idObjeto'] . '&controlador=objeto&funcion=objeto&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
-
-
-                    echo "</div>";
+                    $id=$objeto['idObjeto'];
+                    ?>
+                    <div class="contenedores">
+                        <input type="hidden" name="id[]" value="<?php echo $id; ?>">
+                        <p class="datosObjeto">
+                            <input type="text" name="nombre[]" value="<?php echo $objeto['nombre']; ?>" placeholder="Nombre del objeto" required>
+                            <input type="text" name="descripcion[]" value="<?php echo $objeto['descripcion']; ?>" placeholder="Descripción" required class="descripcion">
+                            <div class="objetoImagen" style="background-image: url('data:image/png;base64,<?php echo $objeto['imagen']; ?>'); width: 200px; height: 200px; background-size: cover;"></div>
+                        </p>
+                        <p>
+                            <input type="file" name="img[]">
+                        </p>
+                        <p>
+                            <label for="punt[]">Puntuación</label>
+                            <input type="number" name="punt[]" value="<?php echo $objeto['puntuacion']; ?>" required class="inputPeq">
+                            <label for="bueno[]">Bueno</label>
+                            <input type="checkbox" name="bueno[]" <?php if($objeto['valoracion']==0){echo 'checked';} ?>>
+                        </p>
+                        <a href="index.php?accion=remove&id=<?php echo $id; ?>&controlador=objeto&funcion=objeto&idCategoria=<?php echo $idCategoria; ?>" class="submit">Borrar</a>
+                    </div>
+                    
+                    <?php
                 }
                 ?>
-
-                <!-- Sección para agregar nuevos objetos -->
-                <div id="objetosContainer"></div>
-
-                <!-- Botón para agregar un nuevo objeto -->
-                <div id="botones">
-                    <input type='button' value='Añadir Objeto' id="btnMas">
-                    <input type='submit' value='Guardar Cambios'>
-                    <a href="index.php?accion=selectCategoria&controlador=Controlador&funcion=objeto"
-                        class="submit">Volver</a>
-                </div>
-
+            </div>
+            <div id="botones">
+                <input type='button' value='Añadir Objeto' onclick="agregarObjeto();" class="submit">
+                <input type='submit' value='Guardar Cambios'>
+                <a href="index.php?accion=selectCategoria&controlador=Controlador&funcion=objeto" class="submit">Volver</a>
             </div>
         </form>
 
         <script>
             'use strict';
-
-            const btnMas = document.getElementById('btnMas');
             const objetosContainer = document.getElementById('objetosContainer');
-            const botonesDiv = document.getElementById('botones');
-            let contadorObjeto = 1;
+            
+            let contadorObjeto = <?php echo count($objetosExistentes); ?>;
 
-            btnMas.onclick = () => {
+            function agregarObjeto(){
                 contadorObjeto++;
 
                 let nuevoObjetoDiv = document.createElement('div');
@@ -83,28 +69,27 @@
                 nuevoObjetoDiv.className = 'contenedores';
 
                 nuevoObjetoDiv.innerHTML = `
-                    <h3>Nuevo Objeto</h3>
-                    <label for='nombreNuevo${contadorObjeto}'>Nombre:</label>
-                    <input type='text' id='nombreNuevo${contadorObjeto}' name='nombre[]'><br>
-
-                    <label for='descripcionNuevo${contadorObjeto}'>Descripción:</label>
-                    <input type='text' id='descripcionNuevo${contadorObjeto}' name='descripcion[]'><br>
-
-                    <label for='imgNuevo${contadorObjeto}'>Añadir imagen:</label>
-                    <input type='file' id='imgNuevo${contadorObjeto}' name='img[]'><br>
-
-                    <label for='puntNuevo${contadorObjeto}'>Puntuación:</label>
-                    <input type='text' id='puntNuevo${contadorObjeto}' name='punt[]' class="inputPeq"><br>
-
-                    <label for='buenoNuevo${contadorObjeto}'>Bueno:</label>
-                    <input type='checkbox' id='buenoNuevo${contadorObjeto}' name='bueno[]' class="inputPeq"><br>
+                        <p class="datosObjeto nuevoObjeto">
+                            <input type="text" name="nombre[]" placeholder="Nombre del objeto" required>
+                            <input type="text" name="descripcion[]" placeholder="Descripción" required class="descripcion">
+                        </p>
+                        <p>
+                            <input type="file" name="img[]">
+                        </p>
+                        <p>
+                            <label for="punt[]">Puntuación</label>
+                            <input type="number" name="punt[]" required class="inputPeq">
+                            <label for="bueno[]">Bueno</label>
+                            <input type="checkbox" name="bueno[]">
+                        </p>
+                        <input type='button' value='Quitar Objeto' onclick="quitarObjeto(${contadorObjeto});" class="submit">
                 `;
-
                 objetosContainer.appendChild(nuevoObjetoDiv);
-                objetosContainer.appendChild(botonesDiv);
+            }
+            function quitarObjeto(contador){
+                const objetosContainer = document.getElementById('objetosContainer');
+                const objetoDiv = document.getElementById('objeto'+contador);
+                const throwawayNode = objetosContainer.removeChild(objetoDiv);
             }
         </script>
     </main>
-</body>
-
-</html>

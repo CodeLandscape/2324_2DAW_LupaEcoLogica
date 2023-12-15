@@ -9,7 +9,7 @@
         include 'template/navegacion.html';
         ?>
     </header>
-    <main>
+    <main class="aumentarMargin100">
         <?php
         // Verificación de parámetros recibidos por GET
         if (isset($_GET['funcion']) && isset($_GET['id'])) {
@@ -36,12 +36,10 @@
             <input type='hidden' name='idCategoria' value='$idCategoria'>
             <div id='botones'>
                 <input type='submit' value='Eliminar'>
-                <a href='index.php'>Volver</a>
+                <a href='index.php' class=submit>Volver</a>
             </div>
         </div>
             </form>";
         }
         ?>
     </main>
-</body>
-</html>

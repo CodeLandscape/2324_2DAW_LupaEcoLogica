@@ -14,70 +14,58 @@
             list($idCategoria, $nombreCategoria) = explode('|', $categoriaSeleccionada);
             ?>
             <input type="hidden" name="idCategoria_seleccionada" value="<?php echo $idCategoria; ?>">
-            <?php
-            echo '<h1>' . $nombreCategoria . '</h1>';
-            ?>
+            <h1><?php echo $nombreCategoria; ?></h1>
             <div id="preguntasContainer">
-                <?php
+            <?php
                 // Obtener las preguntas de la base de datos
                 $preguntasModelo = new PreguntaModelo();
                 $preguntas = $preguntasModelo->verPreguntas($idCategoria);
 
+                $lastId;
+                $todasPreguntas = $preguntasModelo->verTodasPreguntas();
+                foreach($todasPreguntas as $pregunta){$lastId=$pregunta['idPregunta'];}
+
                 foreach ($preguntas as $pregunta) {
-                    echo '<div id="pregunta' . $pregunta['idPregunta'] . '" class="contenedores">';
-                    // Agregar un campo oculto para el ID de la pregunta
-                    echo '<input type="hidden" name="pregunta[' . $pregunta['idPregunta'] . '][idPregunta]" value="' . $pregunta['idPregunta'] . '">';
-                    echo '<label for="pregunta' . $pregunta['idPregunta'] . '">Pregunta ' . $pregunta['idPregunta'] . '</label>';
-                    echo '<input type="text" maxlength="100" name="pregunta[' . $pregunta['idPregunta'] . '][texto]" value="' . $pregunta['texto'] . '" required><br>';
-                    echo '<div class="respuesta">';
-                    echo '<label for="resp' . $pregunta['idPregunta'] . '">Respuesta</label>';
-                    echo '<p>';
-                    echo '<label for="si' . $pregunta['idPregunta'] . '">Sí</label>';
-                    echo '<input type="radio" name="opcion[' . $pregunta['idPregunta'] . ']" value="1" ' . ($pregunta['respuesta'] == 1 ? 'checked' : '') . '>';
-                    echo '</p>';
-                    echo '<p>';
-                    echo '<label for="no' . $pregunta['idPregunta'] . '">No</label>';
-                    echo '<input type="radio" name="opcion[' . $pregunta['idPregunta'] . ']" value="0" ' . ($pregunta['respuesta'] == 0 ? 'checked' : '') . '>';
-                    echo '</p>';
-                    echo '</div>';
-                    echo '<label for="ref1">Reflexion Positiva: </label>';
-                    echo '<input type="text" maxlength="255" name="ref1[' . $pregunta['idPregunta'] . '][]" value="' . $pregunta['reflexionAcierto'] . '" required><br>';
-                    echo '<label for="ref2">Reflexión Negativa: </label>';
-                    echo '<input type="text" maxlength="255" name="ref2[' . $pregunta['idPregunta'] . '][]" value="' . $pregunta['reflexionFallo'] . '" required><br>';
-                    echo '<a href="index.php?accion=remove&id=' . $pregunta['idPregunta'] . '&controlador=pregunta&funcion=Pregunta&idCategoria=' . $idCategoria . '" class="submit">Borrar</a>';
-                    echo '</div>';
+                    $id=$pregunta['idPregunta'];
+                    ?>
+                    <div class="contenedores">
+                        <input type="hidden" name="pregunta[<?php echo $id; ?>][idPregunta]" value="<?php echo $id; ?>">
+                        <p>
+                            <input type="text" maxlength="100" name="pregunta[<?php echo $id; ?>][texto]" value="<?php echo $pregunta['texto']; ?>" placeholder="Pregunta" required>
+                            <input type="text" maxlength="255" name="ref1[<?php echo $id; ?>][]" value="<?php echo $pregunta['reflexionAcierto']; ?>" placeholder="Reflexión positiva" required>
+                            <input type="text" maxlength="255" name="ref2[<?php echo $id; ?>][]" value="<?php echo $pregunta['reflexionFallo']; ?>" placeholder="Reflexión negativa" required>
+                        </p>
+                        <p>
+                            <span>Respuesta</span>
+                            <label for="opcion[<?php echo $id; ?>]">Si</label>
+                            <input type="radio" name="opcion[<?php echo $id; ?>]" value=1 <?php if($pregunta['respuesta'] == 1){echo 'checked';} ?>>
+                            <label for="opcion[<?php echo $id; ?>]">No</label>
+                            <input type="radio" name="opcion[<?php echo $id; ?>]" value=0 <?php if($pregunta['respuesta'] == 0){echo 'checked';} ?>>
+                        </p>
+                        <a href="index.php?accion=remove&id=<?php echo $id; ?>&controlador=pregunta&funcion=Pregunta&idCategoria=<?php echo $idCategoria; ?>" class="submit">Borrar</a>
+                    </div>
+                    <?php
                 }
                 ?>
             </div>
             
             <!-- Cambia la estructura del botón agregar -->
-            <input type="button" value="+" id="btnMas" onclick="agregarPregunta();">
-            
-            <div id="botonesPregunta">
-                <input type='submit' value='Guardar'>
+            <div>
+                <input type="button" value="Añadir Pregunta" onclick="agregarPregunta();" class="submit">
+                <input type='submit' value='Guardar Cambios'>
                 <a href="index.php?accion=selectCategoria&controlador=controlador&funcion=pregunta" class="submit">Volver</a>
             </div>
         </form>
 
         <!-- Agregar el siguiente script al final de la vista -->
-<!-- Agregar el siguiente script al final de la vista -->
-<script>
-    'use strict';
+        <script>
+            'use strict';
 
     // Obtener referencia al formulario
     const formulario = document.querySelector('form');
 
-    // Obtener el contador de preguntas desde PHP
-    let contadorPregunta = <?php echo count($preguntas); ?>;
-    
-    // Obtener el ID más alto de las preguntas existentes
-    <?php
-        $ultimoIdPregunta = 0;
-        foreach ($preguntas as $pregunta) {
-            $ultimoIdPregunta = max($ultimoIdPregunta, $pregunta['idPregunta']);
-        }
-    ?>
-    contadorPregunta = <?php echo $ultimoIdPregunta; ?>;
+            // Inicializar el contador de preguntas
+            let contadorPregunta = <?php echo $lastId; ?>;
 
     function agregarPregunta() {
         // Obtener el contenedor de preguntas
@@ -86,37 +74,35 @@
         // Incrementar el contador
         contadorPregunta++;
 
-        // Crear un nuevo div para la pregunta
-        let nuevaPreguntaDiv = document.createElement('div');
-        nuevaPreguntaDiv.id = `pregunta${contadorPregunta}`;
-        nuevaPreguntaDiv.className = 'contenedores';
+                // Crear un nuevo div para la pregunta
+                let nuevaPreguntaDiv = document.createElement('div');
+                nuevaPreguntaDiv.setAttribute("id",`pregunta${contadorPregunta}`);
+                nuevaPreguntaDiv.className = 'contenedores';
 
-        // Agregar los elementos de la pregunta al nuevo div
-        nuevaPreguntaDiv.innerHTML = `
-            <label for='pregunta${contadorPregunta}'>Pregunta ${contadorPregunta}</label>
-            <input type='text' maxlength="100" name='pregunta[${contadorPregunta}][texto]' required><br>
-            <div class="respuesta">
-                <label for='resp'>Respuesta</label>
-                <p>
-                    <label for='si${contadorPregunta}'>Sí</label>
-                    <input type="radio" name="opcion[${contadorPregunta}]" value="1">
-                </p>
-                <p>
-                    <label for='no${contadorPregunta}'>No</label>
-                    <input type="radio" name="opcion[${contadorPregunta}]" value="0">
-                </p>
-            </div>
-            <label for='ref1'>Reflexion Positiva: </label>
-            <input type='text' maxlength="255" name='ref1[${contadorPregunta}][]' required><br>
-            <label for='ref2'>Reflexión Negativa: </label>
-            <input type='text' maxlength="255" name='ref2[${contadorPregunta}][]' required><br>
-        `;
+                // Agregar los elementos de la pregunta al nuevo div
+                nuevaPreguntaDiv.innerHTML = `
+                    <p>
+                        <input type="text" maxlength="100" name="pregunta[${contadorPregunta}][texto]" placeholder="Pregunta" required>
+                        <input type="text" maxlength="255" name="ref1[${contadorPregunta}][]" placeholder="Reflexión positiva" required>
+                        <input type="text" maxlength="255" name="ref2[${contadorPregunta}][]" placeholder="Reflexión negativa" required>
+                    </p>
+                    <p>
+                        <span>Respuesta</span>
+                        <label for="opcion[${contadorPregunta}]">Si</label>
+                        <input type="radio" name="opcion[${contadorPregunta}]" value=1>
+                        <label for="opcion[${contadorPregunta}]">No</label>
+                        <input type="radio" name="opcion[${contadorPregunta}]" value=0>
+                    </p>
+                    <input type="button" value="Quitar Pregunta" onclick="quitarPregunta(${contadorPregunta});" class="submit">
+                `;
 
-        // Agregar el nuevo div como hijo del contenedor de preguntas
-        preguntasContainer.appendChild(nuevaPreguntaDiv);
-    }
-</script>
-
+                // Agregar el nuevo div como hijo del contenedor de preguntas
+                preguntasContainer.appendChild(nuevaPreguntaDiv);
+            }
+            function quitarPregunta(contador){
+                const preguntasContainer = document.getElementById('preguntasContainer');
+                const preguntaDiv = document.getElementById('pregunta'+contador);
+                const throwawayNode = preguntasContainer.removeChild(preguntaDiv);
+            }
+        </script>
     </main>
-</body>
-</html>
