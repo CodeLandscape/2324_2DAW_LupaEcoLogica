@@ -33,12 +33,11 @@ export class Registro extends Vista {
     let regexBadajoz = /^(BA|ba)[A-Za-z]{2}[0-9]{3}$/;
     let regexMerida = /^(ME|me)[A-Za-z]{2}[0-9]{3}$/;
 
-    const validarNombreUsuario = (texto, regex, mensajeValido, mensajeInvalido) => {
+    const validarNombreUsuario = (texto, regex,mensajeInvalido) => {
       if (!texto.match(regex)) {
         window.alert(mensajeInvalido)
         this.nickUsu.style.borderColor = 'red'
       } else {
-        window.alert(mensajeValido)
         this.nickUsu.style.borderColor = 'green'
         this.registroAJAX()
       }
@@ -54,7 +53,6 @@ export class Registro extends Vista {
           validarNombreUsuario(
             texto,
             regexCaceres,
-            'El nombre de usuario es válido para Cáceres',
             'No es válido el nombre introducido para Cáceres'
           )
           break
@@ -62,7 +60,6 @@ export class Registro extends Vista {
           validarNombreUsuario(
             texto,
             regexBadajoz,
-            'El nombre de usuario es válido para Badajoz',
             'No es válido el nombre introducido para Badajoz'
           )
           break
@@ -70,7 +67,6 @@ export class Registro extends Vista {
           validarNombreUsuario(
             texto,
             regexMerida,
-            'El nombre de usuario es válido para Mérida',
             'No es válido el nombre introducido para Mérida'
           )
           break

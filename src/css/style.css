@@ -320,8 +320,8 @@ header{
 #containerTabla {
     width: 90%;
     max-height: 100%;
-    padding: 2%;
-    margin: 100px auto 5%;
+    padding: 0.5% 1%;
+    margin: 10px auto;
     background-color: bisque;
     border-radius: 40px;
     position: relative;
@@ -339,7 +339,7 @@ header{
 
 #botonContinuar {
     left: 41.5%;
-    top: 70%;
+    top: 80%;
 }
 
 .reflexion {
