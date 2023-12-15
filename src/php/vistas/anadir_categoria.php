@@ -16,7 +16,7 @@
     </header>
 
     <!-- Sección principal del contenido -->
-    <main>
+    <main class="aumentarMargin100">
         <!-- Formulario para insertar categoría y tablero -->
         <form action="index.php?accion=insertarCategoria&controlador=categoria" method="post" enctype="multipart/form-data">
             <div id="contenido">

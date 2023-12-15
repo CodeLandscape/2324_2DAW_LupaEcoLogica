@@ -29,9 +29,9 @@ export class Registro extends Vista {
      * Validación del formulario al escribir el nombre.
      */
   validacionFormulario () {
-    let regexCaceres = /^(CA|ca)[A-Za-z]{2}[0-9]{3}$/;
-    let regexBadajoz = /^(BA|ba)[A-Za-z]{2}[0-9]{3}$/;
-    let regexMerida = /^(ME|me)[A-Za-z]{2}[0-9]{3}$/;
+    let regexCaceres = /^[CA|ca|Ca|cA]{2}[A-Za-z]{2}\d{3}$/;
+    let regexBadajoz = /^[BA|ba|Ba|bA]{2}[A-Za-z]{2}\d{3}$/;
+    let regexMerida = /^[ME|me|Me|mE]{2}[A-Za-z]{2}\d{3}$/;
 
     const validarNombreUsuario = (texto, regex,mensajeInvalido) => {
       if (!texto.match(regex)) {
