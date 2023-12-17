@@ -1,4 +1,4 @@
-    <title>Añadir Objeto</title>
+<title>Añadir Objeto</title>
 </head>
 
 <body>
@@ -38,8 +38,11 @@
                         <p>
                             <label for="punt[]">Puntuación</label>
                             <input type="number" name="punt[]" value="<?php echo $objeto['puntuacion']; ?>" required class="inputPeq">
-                            <label for="bueno[]">Bueno</label>
-                            <input type="checkbox" name="bueno[]" <?php if($objeto['valoracion']==0){echo 'checked';} ?>>
+                            <label for="bueno[]">Bueno </label>
+                            <select id="selectBueno" name="bueno[]">
+                                <option value="1" <?php echo ($objeto['valoracion'] == 1) ? 'selected' : ''; ?>>No</option>
+                                <option value="0" <?php echo ($objeto['valoracion'] == 0) ? 'selected' : ''; ?>>Si</option>
+                            </select>
                         </p>
                         <a href="index.php?accion=remove&id=<?php echo $id; ?>&controlador=objeto&funcion=objeto&idCategoria=<?php echo $idCategoria; ?>" class="submit">Borrar</a>
                     </div>
@@ -80,7 +83,10 @@
                             <label for="punt[]">Puntuación</label>
                             <input type="number" name="punt[]" required class="inputPeq">
                             <label for="bueno[]">Bueno</label>
-                            <input type="checkbox" name="bueno[]">
+                            <select id="selectBueno" name="bueno[]">
+                                <option value="1">No</option>
+                                <option value="0">Si</option>
+                            </select>
                         </p>
                         <input type='button' value='Quitar Objeto' onclick="quitarObjeto(${contadorObjeto});" class="submit">
                 `;

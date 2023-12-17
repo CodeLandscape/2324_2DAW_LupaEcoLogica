@@ -343,3 +343,9 @@ select{
 input[type="file"]{
     font-size: 30px;
 }
+
+#selectBueno{
+    width: 8%;
+    display: inline-block;
+    margin:0;
+}

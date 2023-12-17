@@ -98,8 +98,7 @@ class ObjetoModelo extends Conexion
      */
     public function actualizarObjeto($id, $nombre, $descripcion, $imagen, $puntuacion, $esBueno, $idCategoria)
     {
-        // Convertir el booleano a un entero (0 o 1)
-        $esBueno = $esBueno ? 1 : 0;
+        
 
         // Realizar la actualización en la tabla objeto
         $sql = "UPDATE objeto SET nombre = ?, descripcion = ?, imagen = ?, puntuacion = ?, valoracion = ?, idCategoria = ? WHERE idObjeto = ?";
